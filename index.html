@@ -3,35 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Love You ❤️</title>
+  <title>For You ❤️</title>
 
   <style>
     body {
-      background: linear-gradient(135deg, #ff4d6d, #c9184a, #ff758f);
+      background: linear-gradient(135deg, #ff6b6b, #ff4d6d, #c9184a);
       background-size: 400% 400%;
-      animation: bgMove 10s infinite alternate;
+      animation: bgFlow 8s infinite alternate;
       font-family: "Tahoma";
       color: white;
       text-align: center;
       padding: 20px;
     }
 
-    @keyframes bgMove {
+    @keyframes bgFlow {
       0% { background-position: 0% 50%; }
       100% { background-position: 100% 50%; }
     }
 
-    /* صندوق الباسوورد */
     #passBox {
       margin-top: 120px;
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.15);
       padding: 20px;
       width: 80%;
-      max-width: 350px;
+      max-width: 330px;
       margin-left: auto;
       margin-right: auto;
       border-radius: 20px;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(6px);
     }
 
     input {
@@ -46,107 +45,124 @@
 
     button {
       padding: 10px 20px;
-      background: #ffccd5;
+      background: white;
       border: none;
       color: #c9184a;
       font-weight: bold;
-      font-size: 18px;
       border-radius: 10px;
       cursor: pointer;
+      font-size: 18px;
     }
 
-    /* القلوب */
+    #content {
+      display: none;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    img, video {
+      width: 90%;
+      max-width: 350px;
+      border-radius: 18px;
+      margin-top: 15px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 22px;
+      line-height: 1.8;
+      padding: 10px;
+      text-shadow: 0 0 8px rgba(255,255,255,0.8);
+    }
+
     .heart {
       position: fixed;
       bottom: -10px;
-      font-size: 25px;
-      animation: floatUp 5s linear infinite;
+      font-size: 22px;
+      animation: up 5s linear infinite;
       opacity: 0.7;
     }
 
-    @keyframes floatUp {
-      0%   { transform: translateY(0); opacity: 0.7; }
+    @keyframes up {
+      0% { transform: translateY(0); opacity: 0.8; }
       100% { transform: translateY(-120vh); opacity: 0; }
-    }
-
-    /* المحتوى */
-    #content {
-      display: none;
-    }
-
-    img {
-      width: 90%;
-      max-width: 350px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(255,255,255,0.5);
-      margin-top: 20px;
-    }
-
-    .loveText {
-      font-size: 24px;
-      margin-top: 20px;
-      line-height: 1.7;
-      text-shadow: 0 0 8px rgba(255,255,255,0.9);
     }
   </style>
 </head>
 
 <body>
 
-  <!-- صفحة الباسورد -->
   <div id="passBox">
     <h2>❤️ اكتب الباسورد يا قلبي ❤️</h2>
-    <input type="password" id="pass" placeholder="••••">
-    <br>
+    <input type="password" id="pass">
     <button onclick="checkPass()">دخول</button>
   </div>
 
-  <!-- المحتوى بعد الدخول -->
   <div id="content">
-    <h2>❤️ أهلاً بيكي يا روحي ❤️</h2>
+    <h2>❤️ كلام من قلبي ليكي ❤️</h2>
 
-    <img src="image.jpg" alt="صورة">
+    <!-- كل الصور اللي رفعتها -->
+    <img src="image.jpg">
+    <img src="image1.jpg">
+    <img src="image2.jpg">
+    <img src="image3.jpg">
+    <img src="image4.jpg">
+    <img src="image5.jpg">
+    <img src="image6.jpg">
+    <img src="image8.jpg">
 
-    <p class="loveText">
-      ❤️ انتي أحلى حاجة في حياتي  
-      ❤️ وبحبك قد الدنيا كلها  
-      ❤️ ومفيش حد زيّك في عيني  
-      ❤️ انتي قلبي وعمري وروحي ❤️
+    <!-- الفيديوهات -->
+    <video controls>
+      <source src="video.mp4" type="video/mp4">
+    </video>
+
+    <video controls>
+      <source src="video2.mp4" type="video/mp4">
+    </video>
+
+    <!-- الرسالة -->
+    <p class="message">
+      ❤️ يمكن أكون غلطت… يمكن اتصرفّت غلط…  
+      ❤️ بس عمري ما كنت عايز أزعلِك…  
+      ❤️ إنتي مش مجرد شخص…  
+      ❤️ إنتي كل الأمان اللي بيلحق قلبي…  
+      ❤️ بحبك بطريقة مش قادر أشرحها…  
+      ❤️ وعايز أرجع نضحك زي زمان ❤️
     </p>
 
     <audio controls>
-      <source src="song.mp3">
+      <source src="song.mp3" type="audio/mpeg">
     </audio>
   </div>
 
   <script>
-    // الباسورد — زي ما طلبت ❤️
     let truePass = "962025";
 
     function checkPass() {
       let p = document.getElementById("pass").value;
-
       if (p === truePass) {
         document.getElementById("passBox").style.display = "none";
         document.getElementById("content").style.display = "block";
       } else {
-        alert("غلط يا حب 😘");
+        alert("غلط يا حب 😔");
       }
     }
 
-    // قلوب طايرة
-    function createHearts() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
-      document.body.appendChild(heart);
-
-      setTimeout(() => heart.remove(), 6000);
+    function hearts() {
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.innerHTML = "❤️";
+      h.style.left = Math.random() * 100 + "vw";
+      h.style.animationDuration = 4 + Math.random() * 3 + "s";
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 5000);
     }
-
-    setInterval(createHearts, 500);
+    setInterval(hearts, 400);
   </script>
 
 </body>
