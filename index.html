@@ -11,21 +11,37 @@
         font-family: 'Tajawal', sans-serif;
         color: white;
         text-align: center;
-        padding: 0;
         margin: 0;
+        overflow-x: hidden;
     }
 
+    /* قلوب طايرة */
+    .heart-floating {
+        position: fixed;
+        bottom: -10px;
+        font-size: 25px;
+        animation: floatUp 6s linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) scale(1); opacity: 1; }
+        100% { transform: translateY(-120vh) scale(1.8); opacity: 0; }
+    }
+
+    /* صندوق الباسورد */
     .password-box {
         margin-top: 120px;
+        animation: fadeIn 1.5s ease-in-out;
     }
 
     input {
         padding: 12px;
         border-radius: 15px;
         border: none;
-        text-align: center;
-        width: 200px;
+        width: 230px;
         font-size: 18px;
+        text-align: center;
     }
 
     button {
@@ -35,31 +51,49 @@
         background-color: #ff004c;
         color: white;
         font-size: 18px;
-        margin-top: 10px;
+        margin-top: 15px;
+        cursor: pointer;
+        transition: 0.3s;
     }
 
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    /* المحتوى */
     .content {
         display: none;
         padding: 20px;
+        animation: fadeIn 2s ease-in-out;
     }
 
     img, video {
         width: 90%;
         border-radius: 25px;
-        margin-top: 25px;
-        box-shadow: 0px 0px 20px rgba(255,255,255,0.5);
+        margin-top: 30px;
+        box-shadow: 0 0 20px rgba(255,255,255,0.5);
+        animation: popIn 1.2s ease;
     }
 
     .text-block {
         font-size: 26px;
-        margin: 25px 0;
+        margin: 20px 0;
         line-height: 1.6;
+        animation: fadeIn 2s ease;
     }
 
-    .heart {
-        font-size: 35px;
+    /* مؤثر دخول */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes popIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* زر الأغنية */
     .music-btn {
         background-color: #b300ff;
         margin-bottom: 25px;
@@ -67,10 +101,21 @@
 </style>
 
 </head>
-
 <body>
 
-<!-- صفحة الباسوورد -->
+<!-- قلوب طايرة -->
+<script>
+    setInterval(() => {
+        let h = document.createElement("div");
+        h.className = "heart-floating";
+        h.style.left = Math.random() * 100 + "vw";
+        h.innerHTML = "❤️";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 6000);
+    }, 500);
+</script>
+
+<!-- صفحة الباسورد -->
 <div class="password-box" id="passPage">
     <h2>Enter your password MIRA ❤️</h2>
     <input id="passInput" type="password" placeholder="••••••">
@@ -78,43 +123,36 @@
     <button onclick="checkPass()">دخول</button>
 </div>
 
-<!-- المحتوى الحقيقي -->
+<!-- المحتوى -->
 <div class="content" id="mainContent">
-    
-    <!-- زر تشغيل الأغنية -->
+
+    <!-- زر الأغنية -->
     <button class="music-btn" onclick="playSong()">تشغيل الأغنية ❤️</button>
     <audio id="song">
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- الصور والفيديوهات + كلام الحب -->
-    
+    <!-- صور + كلام حب (كل صورة عليها كلام مناسب) -->
     <img src="image1.jpg">
-    <div class="text-block">❤️ متزعليش مني يا ميرا… إنتي فرحتي ❤️</div>
+    <div class="text-block">❤️ ميرا… انتي دنيتي، ومفيش حاجة تستاهل تزعلِك ❤️</div>
 
     <img src="image2.jpg">
-    <div class="text-block">💗 إنتي روحي… ومفيش في قلبي غيرك 💗</div>
+    <div class="text-block">💗 انتي فرحتي اللي مبتنتهيش… ووجودك بيهون كل حاجة 💗</div>
 
     <img src="image3.jpg">
-    <div class="text-block">🥺 بحب ضحكتك وكل تفاصيلك يا أجمل حاجه حصلتلي 🥺</div>
+    <div class="text-block">🥺 ضحكتك بتصلح يومي كله… متزعليش مني أبداً 🥺</div>
 
     <video controls src="video.mp4"></video>
-    <div class="text-block">💞 والله وجودك جنبي هو أحلى حاجة في الدنيا 💞</div>
+    <div class="text-block">💞 ربنا عالم قد إيه انتي غالية عليا… ومبحبش زعلك 💞</div>
 
     <img src="image4.jpg">
-    <div class="text-block">❤️ عمري ما أحب أزعلك… إنتي كل شيء حلو ❤️</div>
-
-    <img src="image5.jpg">
-    <div class="text-block">💗 إنتي سبب سعادتي… وسبب راحتي 💗</div>
+    <div class="text-block">❤️ بحب كل تفاصيلك… انتي أحن وأجمل من كل الدنيا ❤️</div>
 
     <video controls src="video2.mp4"></video>
-    <div class="text-block">💖 مهما حصل… عمري ما هستغنى عنك 💖</div>
+    <div class="text-block">💖 من يوم ما عرفتك… وانا قلبي ملكك 💖</div>
 
-    <img src="image6.jpg">
-    <div class="text-block">💘 إنتي بنتي… صاحبتي… وحبيبتي في نفس الوقت 💘</div>
-
-    <img src="image8.jpg">
-    <div class="text-block">🌹 والله بحبك يا ميرا… وعايز أشوفك مبسوطة بس 🌹</div>
+    <img src="image5.jpg">
+    <div class="text-block">💗 ميرا… انتي قلبي، وروحي، وكل حاجة بحبها 💗</div>
 
 </div>
 
@@ -125,7 +163,7 @@ function checkPass() {
         document.getElementById("passPage").style.display = "none";
         document.getElementById("mainContent").style.display = "block";
     } else {
-        alert("الباسوورد غلط يا ميرا 🥺");
+        alert("غلط يا قلبي 🥺");
     }
 }
 
