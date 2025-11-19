@@ -1,163 +1,77 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>For You ❤️</title>
-
-<style>
-    body {
-        margin: 0;
-        background: #ffdde6;
-        font-family: "Tajawal", sans-serif;
-        text-align: center;
-    }
-
-    /* صفحة الباسورد */
-    #passwordPage {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: #ffb8c6;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-    }
-
-    #passwordBox {
-        background: white;
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 0 10px #0003;
-        width: 80%;
-        max-width: 300px;
-    }
-
-    input {
-        width: 90%;
-        padding: 10px;
-        border-radius: 10px;
-        border: 1px solid #aaa;
-        margin-top: 10px;
-        text-align: center;
-        font-size: 18px;
-    }
-
-    button {
-        margin-top: 15px;
-        padding: 10px 20px;
-        border: none;
-        background: #ff3b6c;
-        color: white;
-        border-radius: 10px;
-        font-size: 18px;
-    }
-
-    /* المحتوى */
-    .content {
-        display: none;
-        padding: 20px;
-    }
-
-    .heart {
-        font-size: 40px;
-        animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.3); }
-        100% { transform: scale(1); }
-    }
-
-    .media {
-        margin-top: 20px;
-    }
-
-    img, video {
-        width: 90%;
-        max-width: 350px;
-        border-radius: 15px;
-        margin-top: 10px;
-        box-shadow: 0 0 8px #0004;
-    }
-
-    #songBtn {
-        background: #ff0055;
-        color: white;
-        padding: 12px 25px;
-        border-radius: 20px;
-        font-size: 20px;
-        margin: 20px 0;
-    }
-</style>
-
+    <meta charset="UTF-8">
+    <title>For You ❤️</title>
+    <style>
+        body {
+            background: #ffe6ef;
+            font-family: Arial;
+            text-align: center;
+        }
+        h1 {
+            color: #ff3b77;
+            margin-top: 20px;
+        }
+        .media-box {
+            width: 90%;
+            margin: auto;
+            margin-top: 20px;
+        }
+        img, video {
+            width: 100%;
+            border-radius: 15px;
+            margin: 10px 0;
+            box-shadow: 0 0 10px #ff6e91;
+        }
+        button {
+            background: #ff3b77;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        p {
+            color: #e6005c;
+            font-size: 20px;
+            margin: 15px 0;
+        }
+    </style>
 </head>
 <body>
 
-<!-- صفحة الباسورد -->
-<div id="passwordPage">
-    <div id="passwordBox">
-        <h2>✨ ادخل الباسورد ✨</h2>
-        <input type="password" id="pass" placeholder="••••••" />
-        <button onclick="checkPass()">دخول</button>
-        <p style="color:red; display:none;" id="wrong">❌ غلط، حاول تاني</p>
-    </div>
-</div>
+<h1>علشان بحبك ❤️</h1>
 
-<!-- الصفحة الأساسية -->
-<div class="content" id="mainContent">
+<button onclick="playSong()">🎵 شغّلي الأغنية</button>
+<audio id="song" src="song.mp3"></audio>
 
-    <h1 class="heart">❤️ بحبك وعايز أصالحك ❤️</h1>
+<p>كل لحظة فيكي أجمل من اللي قبلها ❤️</p>
 
-    <p style="font-size:20px; line-height:1.7;">
-        يمكن زعلتك… يمكن قصرت…<br>
-        بس والله أنتِ أغلى حد في حياتي ❤️<br>
-        ومفيش حاجة بالدنيا تساوي زعلك.
-    </p>
+<div class="media-box">
 
-    <!-- زرار الأغنية -->
-    <button id="songBtn" onclick="playSong()">🎵 شغّلي الأغنية 🎵</button>
-    <audio id="song" src="song.mp3"></audio>
-
-    <!-- الصور اللي رفعتها -->
-    <div class="media">
-        <img src="image.jpg">
-        <img src="image1.jpg">
-        <img src="image2.jpg">
-        <img src="image3.jpg">
-        <img src="image4.jpg">
-        <img src="image5.jpg">
-        <img src="image6.jpg">
-        <img src="image8.jpg">
-    </div>
+    <!-- كل الصور اللي رفعتها -->
+    <img src="image.jpg">
+    <img src="image1.jpg">
+    <img src="image2.jpg">
+    <img src="image3.jpg">
+    <img src="image4.jpg">
+    <img src="image5.jpg">
+    <img src="image6.jpg">
+    <img src="image8.jpg">
+    <img src="Snapchat-2141877.jpg">
 
     <!-- الفيديوهات -->
-    <div class="media">
-        <video controls src="video.mp4"></video>
-        <video controls src="video2.mp4"></video>
-    </div>
-
-    <h2 style="margin-top:30px;">❤️ انتي قلبي كله ❤️</h2>
+    <video controls src="video.mp4"></video>
+    <video controls src="video2.mp4"></video>
 
 </div>
 
 <script>
-function checkPass() {
-    let p = document.getElementById("pass").value;
-    if (p == "962025") {
-        document.getElementById("passwordPage").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
-    } else {
-        document.getElementById("wrong").style.display = "block";
-    }
-}
-
-function playSong() {
-    let s = document.getElementById("song");
-    s.play();
+function playSong(){
+    document.getElementById("song").play();
 }
 </script>
 
