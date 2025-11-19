@@ -1,77 +1,215 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <title>For You ❤️</title>
-    <style>
-        body {
-            background: #ffe6ef;
-            font-family: Arial;
-            text-align: center;
-        }
-        h1 {
-            color: #ff3b77;
-            margin-top: 20px;
-        }
-        .media-box {
-            width: 90%;
-            margin: auto;
-            margin-top: 20px;
-        }
-        img, video {
-            width: 100%;
-            border-radius: 15px;
-            margin: 10px 0;
-            box-shadow: 0 0 10px #ff6e91;
-        }
-        button {
-            background: #ff3b77;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 20px;
-            font-size: 18px;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-        p {
-            color: #e6005c;
-            font-size: 20px;
-            margin: 15px 0;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>MIRA ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #ff4f88;
+        font-family: Tahoma;
+        overflow-x: hidden;
+    }
+
+    /* صفحة الباسورد */
+    #passwordPage {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: linear-gradient(135deg, #ff5f9e, #ff1a75);
+        text-align: center;
+        color: white;
+        padding: 20px;
+    }
+
+    #passwordPage h2 {
+        font-size: 30px;
+        text-shadow: 0 0 10px white;
+        margin-bottom: 15px;
+    }
+
+    #passwordPage input {
+        padding: 12px;
+        width: 70%;
+        border-radius: 20px;
+        border: none;
+        text-align: center;
+        font-size: 18px;
+        outline: none;
+    }
+
+    #passwordPage button {
+        margin-top: 15px;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 20px;
+        background: white;
+        color: #ff0066;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 0 15px white;
+    }
+
+    /* الصفحة بعد الدخول */
+    #mainPage {
+        display: none;
+        padding-bottom: 50px;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 25px;
+        font-size: 30px;
+        color: white;
+        text-shadow: 0 0 10px #ff0066;
+    }
+
+    p {
+        font-size: 22px;
+        color: white;
+        padding: 10px;
+        text-shadow: 0 0 5px #ff0066;
+    }
+
+    /* الصور والفواصل */
+    .media-container {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    img, video {
+        width: 100%;
+        border-radius: 20px;
+        margin: 12px 0;
+        box-shadow: 0 0 20px rgba(255,0,120,0.7);
+    }
+
+    .divider {
+        margin: 18px 0;
+        font-size: 22px;
+        color: #ffe6f2;
+        text-shadow: 0 0 10px #ff0066;
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    /* زر الأغنية */
+    button.playBtn {
+        background: white;
+        color: #ff0066;
+        padding: 12px 25px;
+        border-radius: 20px;
+        border: none;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+        box-shadow: 0 0 15px white;
+        cursor: pointer;
+    }
+
+    /* القلوب */
+    .heart {
+        position: absolute;
+        animation: fall 6s linear infinite;
+        color: #ff0040;
+        opacity: 0.9;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-10vh); }
+        100% { transform: translateY(110vh); }
+    }
+</style>
+
 </head>
 <body>
 
-<h1>علشان بحبك ❤️</h1>
+<!-- صفحة الباسورد -->
+<div id="passwordPage">
+    <h2>Enter Your Password<br>MIRA ❤️</h2>
+    <input type="password" id="pass" placeholder="•••••">
+    <button onclick="checkPass()">Enter</button>
+</div>
 
-<button onclick="playSong()">🎵 شغّلي الأغنية</button>
+<!-- الصفحة الرئيسية -->
+<div id="mainPage">
+
+<h1>💗 ميرا… أنا بحبك 💗</h1>
+<p>وحشتيني… ومش قادر أكون زعلان منك… ولا عايز يوم يعدّي وإحنا مش تمام ❤️</p>
+
+<button class="playBtn" onclick="playSong()">🎵 اضغطي تشغّلي الأغنية</button>
 <audio id="song" src="song.mp3"></audio>
 
-<p>كل لحظة فيكي أجمل من اللي قبلها ❤️</p>
+<div class="media-container">
 
-<div class="media-box">
-
-    <!-- كل الصور اللي رفعتها -->
+    <!-- الصورة الأولى -->
     <img src="image.jpg">
+    <div class="divider">✨ كل ما ببص على صورتك… قلبي بيطمن… وإحساسي بيقولي إنك ليا وبس ✨</div>
+
     <img src="image1.jpg">
+    <div class="divider">❤️ مهما زعلنا… برجع أحبك أكتر… ومش بقدر أعيش من غيرك ❤️</div>
+
     <img src="image2.jpg">
+    <div class="divider">💞 أنا آسف لو ضايقتك… أنتي مش مجرد بنت… أنتي راحتي كلها 💞</div>
+
     <img src="image3.jpg">
+    <div class="divider">💕 بشوفك أجمل مرة… وأرق قلب… وأحن روح… ومش هسيبك أبداً 💕</div>
+
     <img src="image4.jpg">
+    <div class="divider">🌸 كل لحظة جمبك بتعلّمني يعني إيه أمان… ويعني إيه حب بجد 🌸</div>
+
     <img src="image5.jpg">
+    <div class="divider">💗 نفسي نرجع زي الأول… بل وأحلى… لأني عمري ما هلاقي حد زيك 💗</div>
+
     <img src="image6.jpg">
+    <div class="divider">💓 انتي مش غالية… انتي فوق الغالي… انتي روحي 💓</div>
+
     <img src="image8.jpg">
+    <div class="divider">🔥 مهما حصل… قلبي ملكك… ومش هشوف حد بعدك 🔥</div>
+
     <img src="Snapchat-2141877.jpg">
+    <div class="divider">❤️‍🔥 نفسي تحضنيني بكلمة "متزعلش يا حبيبي"… وأنا هبقى أحسن واحد ليكي ❤️‍🔥</div>
 
     <!-- الفيديوهات -->
     <video controls src="video.mp4"></video>
+    <div class="divider">🎥 كل فيديو ليكي… بيخليني أحبك من جديد… وكأني بشوفك لأول مرة 🎥</div>
+
     <video controls src="video2.mp4"></video>
+    <div class="divider">💫 لو في فرصة واحدة أصلّح كل حاجة… فصدقيني هعمل المستحيل علشانك 💫</div>
+
+</div>
 
 </div>
 
 <script>
+function checkPass(){
+    if(document.getElementById("pass").value === "962025"){
+        document.getElementById("passwordPage").style.display = "none";
+        document.getElementById("mainPage").style.display = "block";
+        spawnHearts();
+    } else {
+        alert("Wrong password 💔");
+    }
+}
+
 function playSong(){
     document.getElementById("song").play();
+}
+
+/* القلوب */
+function spawnHearts(){
+    for(let i = 0; i < 25; i++){
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random()*100 + "%";
+        heart.style.fontSize = (20 + Math.random()*20) + "px";
+        heart.style.animationDuration = (4 + Math.random()*4) + "s";
+        document.body.appendChild(heart);
+    }
 }
 </script>
 
