@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Message</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            padding: 50px;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            max-width: 300px;
+            margin: auto;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            border-radius: 10px;
+            border: 1px solid #aaa;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background: #ff4d4d;
+            color: white;
+            border-radius: 10px;
+        }
+        img {
+            width: 200px;
+            margin-top: 20px;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>ادخل كلمة السر</h2>
+    <input type="password" id="pass" placeholder="Password">
+    <button onclick="check()">دخول</button>
+</div>
+
+<div id="content" style="display:none;">
+    <h1>I LOVE YOU ❤️</h1>
+    <img src="https://i.ibb.co/7VJfRJBv/IMG-20250119-WA0016.jpg">
+</div>
+
+<script>
+function check() {
+    let p = document.getElementById("pass").value;
+    if(p == "96") {
+        document.querySelector(".box").style.display = "none";
+        document.getElementById("content").style.display = "block";
+    } else {
+        alert("كلمة السر غلط!");
+    }
+}
+</script>
+
+</body>
+</html>
