@@ -1,169 +1,165 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For You ❤️</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For You ❤️</title>
 
-  <style>
+<style>
     body {
-      background: linear-gradient(135deg, #ff6b6b, #ff4d6d, #c9184a);
-      background-size: 400% 400%;
-      animation: bgFlow 8s infinite alternate;
-      font-family: "Tahoma";
-      color: white;
-      text-align: center;
-      padding: 20px;
+        margin: 0;
+        background: #ffdde6;
+        font-family: "Tajawal", sans-serif;
+        text-align: center;
     }
 
-    @keyframes bgFlow {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
+    /* صفحة الباسورد */
+    #passwordPage {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: #ffb8c6;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
     }
 
-    #passBox {
-      margin-top: 120px;
-      background: rgba(255,255,255,0.15);
-      padding: 20px;
-      width: 80%;
-      max-width: 330px;
-      margin-left: auto;
-      margin-right: auto;
-      border-radius: 20px;
-      backdrop-filter: blur(6px);
+    #passwordBox {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 10px #0003;
+        width: 80%;
+        max-width: 300px;
     }
 
     input {
-      padding: 10px;
-      border-radius: 10px;
-      border: none;
-      font-size: 18px;
-      width: 80%;
-      text-align: center;
-      margin-bottom: 10px;
+        width: 90%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #aaa;
+        margin-top: 10px;
+        text-align: center;
+        font-size: 18px;
     }
 
     button {
-      padding: 10px 20px;
-      background: white;
-      border: none;
-      color: #c9184a;
-      font-weight: bold;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 18px;
+        margin-top: 15px;
+        padding: 10px 20px;
+        border: none;
+        background: #ff3b6c;
+        color: white;
+        border-radius: 10px;
+        font-size: 18px;
     }
 
-    #content {
-      display: none;
-      animation: fadeIn 1.5s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    img, video {
-      width: 90%;
-      max-width: 350px;
-      border-radius: 18px;
-      margin-top: 15px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.3);
-    }
-
-    .message {
-      margin-top: 20px;
-      font-size: 22px;
-      line-height: 1.8;
-      padding: 10px;
-      text-shadow: 0 0 8px rgba(255,255,255,0.8);
+    /* المحتوى */
+    .content {
+        display: none;
+        padding: 20px;
     }
 
     .heart {
-      position: fixed;
-      bottom: -10px;
-      font-size: 22px;
-      animation: up 5s linear infinite;
-      opacity: 0.7;
+        font-size: 40px;
+        animation: pulse 1.5s infinite;
     }
 
-    @keyframes up {
-      0% { transform: translateY(0); opacity: 0.8; }
-      100% { transform: translateY(-120vh); opacity: 0; }
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.3); }
+        100% { transform: scale(1); }
     }
-  </style>
+
+    .media {
+        margin-top: 20px;
+    }
+
+    img, video {
+        width: 90%;
+        max-width: 350px;
+        border-radius: 15px;
+        margin-top: 10px;
+        box-shadow: 0 0 8px #0004;
+    }
+
+    #songBtn {
+        background: #ff0055;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 20px;
+        font-size: 20px;
+        margin: 20px 0;
+    }
+</style>
+
 </head>
-
 <body>
 
-  <div id="passBox">
-    <h2>❤️ اكتب الباسورد يا قلبي ❤️</h2>
-    <input type="password" id="pass">
-    <button onclick="checkPass()">دخول</button>
-  </div>
+<!-- صفحة الباسورد -->
+<div id="passwordPage">
+    <div id="passwordBox">
+        <h2>✨ ادخل الباسورد ✨</h2>
+        <input type="password" id="pass" placeholder="••••••" />
+        <button onclick="checkPass()">دخول</button>
+        <p style="color:red; display:none;" id="wrong">❌ غلط، حاول تاني</p>
+    </div>
+</div>
 
-  <div id="content">
-    <h2>❤️ كلام من قلبي ليكي ❤️</h2>
+<!-- الصفحة الأساسية -->
+<div class="content" id="mainContent">
 
-    <!-- كل الصور اللي رفعتها -->
-    <img src="image.jpg">
-    <img src="image1.jpg">
-    <img src="image2.jpg">
-    <img src="image3.jpg">
-    <img src="image4.jpg">
-    <img src="image5.jpg">
-    <img src="image6.jpg">
-    <img src="image8.jpg">
+    <h1 class="heart">❤️ بحبك وعايز أصالحك ❤️</h1>
 
-    <!-- الفيديوهات -->
-    <video controls>
-      <source src="video.mp4" type="video/mp4">
-    </video>
-
-    <video controls>
-      <source src="video2.mp4" type="video/mp4">
-    </video>
-
-    <!-- الرسالة -->
-    <p class="message">
-      ❤️ يمكن أكون غلطت… يمكن اتصرفّت غلط…  
-      ❤️ بس عمري ما كنت عايز أزعلِك…  
-      ❤️ إنتي مش مجرد شخص…  
-      ❤️ إنتي كل الأمان اللي بيلحق قلبي…  
-      ❤️ بحبك بطريقة مش قادر أشرحها…  
-      ❤️ وعايز أرجع نضحك زي زمان ❤️
+    <p style="font-size:20px; line-height:1.7;">
+        يمكن زعلتك… يمكن قصرت…<br>
+        بس والله أنتِ أغلى حد في حياتي ❤️<br>
+        ومفيش حاجة بالدنيا تساوي زعلك.
     </p>
 
-    <audio controls>
-      <source src="song.mp3" type="audio/mpeg">
-    </audio>
-  </div>
+    <!-- زرار الأغنية -->
+    <button id="songBtn" onclick="playSong()">🎵 شغّلي الأغنية 🎵</button>
+    <audio id="song" src="song.mp3"></audio>
 
-  <script>
-    let truePass = "962025";
+    <!-- الصور اللي رفعتها -->
+    <div class="media">
+        <img src="image.jpg">
+        <img src="image1.jpg">
+        <img src="image2.jpg">
+        <img src="image3.jpg">
+        <img src="image4.jpg">
+        <img src="image5.jpg">
+        <img src="image6.jpg">
+        <img src="image8.jpg">
+    </div>
 
-    function checkPass() {
-      let p = document.getElementById("pass").value;
-      if (p === truePass) {
-        document.getElementById("passBox").style.display = "none";
-        document.getElementById("content").style.display = "block";
-      } else {
-        alert("غلط يا حب 😔");
-      }
+    <!-- الفيديوهات -->
+    <div class="media">
+        <video controls src="video.mp4"></video>
+        <video controls src="video2.mp4"></video>
+    </div>
+
+    <h2 style="margin-top:30px;">❤️ انتي قلبي كله ❤️</h2>
+
+</div>
+
+<script>
+function checkPass() {
+    let p = document.getElementById("pass").value;
+    if (p == "962025") {
+        document.getElementById("passwordPage").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+    } else {
+        document.getElementById("wrong").style.display = "block";
     }
+}
 
-    function hearts() {
-      const h = document.createElement("div");
-      h.className = "heart";
-      h.innerHTML = "❤️";
-      h.style.left = Math.random() * 100 + "vw";
-      h.style.animationDuration = 4 + Math.random() * 3 + "s";
-      document.body.appendChild(h);
-      setTimeout(() => h.remove(), 5000);
-    }
-    setInterval(hearts, 400);
-  </script>
+function playSong() {
+    let s = document.getElementById("song");
+    s.play();
+}
+</script>
 
 </body>
 </html>
