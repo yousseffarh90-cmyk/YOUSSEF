@@ -1,107 +1,65 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YOUSSEF ♥ LOVE</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I LOVE YOU ❤️</title>
 
-    <style>
-        body {
-            background: #000;
-            color: white;
-            text-align: center;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
+<style>
+    body {
+        background-color: #f8c6c6;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
 
-        #password-box {
-            margin-top: 100px;
-        }
+    h1 {
+        margin-top: 10px;
+        color: #333;
+    }
 
-        input {
-            padding: 10px;
-            font-size: 18px;
-            width: 200px;
-            border-radius: 8px;
-            border: none;
-        }
+    img {
+        width: 250px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
 
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            border-radius: 8px;
-            border: none;
-            background-color: #ff4b70;
-            color: white;
-            cursor: pointer;
-            margin-top: 15px;
-        }
+    button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        font-size: 18px;
+        border: none;
+        background-color: #ff4d6d;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+    }
 
-        #content {
-            display: none;
-            margin-top: 30px;
-        }
-
-        img {
-            width: 85%;
-            border-radius: 15px;
-            margin-bottom: 20px;
-        }
-
-        .love-text {
-            font-size: 20px;
-            line-height: 1.8;
-            margin: 20px;
-            color: #ff9db4;
-        }
-    </style>
+    button:hover {
+        background-color: #ff3355;
+    }
+</style>
 </head>
 
 <body>
 
-    <!-- شاشة الباسورد -->
-    <div id="password-box">
-        <h2>ادخل كلمة السر ❤️</h2>
-        <input type="password" id="pass" placeholder="كلمة السر">
-        <br>
-        <button onclick="checkPass()">دخول</button>
-        <p id="wrong" style="color:red; display:none;">غلط يا حبّي ❤️‍🔥</p>
-    </div>
+<h1>I LOVE YOU ❤️</h1>
 
-    <!-- المحتوى الحقيقي -->
-    <div id="content">
-        <img src="image.jpg">
+<!-- زرار تشغيل الأغنية -->
+<button onclick="playMusic()">▶ تشغيل الأغنية</button>
 
-        <div class="love-text">
-            بحبك يا أجمل حاجة في حياتي ❤️  
-            إنتي حدود قلبي وراحة بالي…  
-            وكل يوم بحس بحبّك بيكبر جوايا أكتر وأكتر 🫶✨  
-        </div>
+<!-- الأغنية -->
+<audio id="music" src="song.mp3"></audio>
 
-        <!-- زر تشغيل الأغنية -->
-        <button onclick="playSong()">❤️ اضغط لتشغيل الأغنية ❤️</button>
+<!-- الصورة -->
+<img src="image.jpg" alt="photo">
 
-        <!-- مشغل الصوت -->
-        <audio id="loveSong">
-            <source src="song.mp3" type="audio/mpeg">
-        </audio>
-    </div>
-
-    <script>
-        function checkPass() {
-            let p = document.getElementById("pass").value;
-            if (p == "96") {
-                document.getElementById("password-box").style.display = "none";
-                document.getElementById("content").style.display = "block";
-            } else {
-                document.getElementById("wrong").style.display = "block";
-            }
-        }
-
-        function playSong() {
-            document.getElementById("loveSong").play();
-        }
-    </script>
+<script>
+function playMusic() {
+    document.getElementById("music").play();
+}
+</script>
 
 </body>
 </html>
