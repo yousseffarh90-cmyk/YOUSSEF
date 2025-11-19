@@ -1,169 +1,120 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MIRA ❤</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIRA ❤️</title>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffdee9;
+            background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+            font-family: "Arial", sans-serif;
+            text-align: center;
+            color: #b30059;
+        }
 
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Cairo', sans-serif;
-        background: #ffebf0;
-        color: #b30059;
-        text-align: center;
-    }
+        .password-box {
+            margin-top: 120px;
+        }
 
-    /* قلوب خلفية */
-    .hearts {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-        overflow: hidden;
-    }
-    .heart {
-        position: absolute;
-        color: #ff4d88;
-        font-size: 20px;
-        animation: floatUp 6s linear infinite;
-    }
-    @keyframes floatUp {
-        0% { transform: translateY(100vh) scale(1); opacity: 1; }
-        100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
-    }
+        input {
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            width: 200px;
+            outline: none;
+            font-size: 18px;
+        }
 
-    /* صفحة الباسورد */
-    #passwordPage {
-        padding-top: 120px;
-    }
-    #passwordPage h1 {
-        font-size: 28px;
-        margin-bottom: 20px;
-    }
-    input {
-        padding: 12px;
-        width: 250px;
-        border: 2px solid #ff4d88;
-        border-radius: 10px;
-        outline: none;
-        font-size: 18px;
-    }
-    button {
-        margin-top: 15px;
-        padding: 12px 25px;
-        background: #ff4d88;
-        color: white;
-        border: none;
-        font-size: 18px;
-        border-radius: 10px;
-        cursor: pointer;
-    }
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            background-color: #ff4081;
+            color: white;
+            border-radius: 12px;
+        }
 
-    /* المحتوى */
-    #content {
-        display: none;
-        padding: 20px;
-    }
+        .hidden { display: none; }
 
-    .photo, video {
-        width: 90%;
-        max-width: 350px;
-        border-radius: 15px;
-        box-shadow: 0 0 10px #ff99bb;
-        margin-top: 20px;
-    }
+        .content img, video {
+            width: 90%;
+            margin-top: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 15px #ff99cc;
+        }
 
-    .love-text {
-        margin: 25px 0;
-        font-size: 20px;
-        color: #cc0066;
-        font-weight: bold;
-    }
+        .msg {
+            font-size: 24px;
+            margin-top: 25px;
+            color: #880e4f;
+        }
 
-</style>
+        .heart {
+            font-size: 40px;
+            animation: beat 1s infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+    </style>
 
 </head>
+
 <body>
 
-<div class="hearts" id="hearts"></div>
-
-<!-- صفحة الباسوورد -->
-<div id="passwordPage">
-    <h1>Enter your password MIRA ❤</h1>
-    <input type="password" id="passwordInput" placeholder="••••••">
-    <br>
-    <button onclick="checkPassword()">دخول</button>
+<div id="passScreen" class="password-box">
+    <h1>Enter Your Password MIRA ❤️</h1>
+    <input type="password" id="pass">
+    <button onclick="checkPass()">Enter</button>
+    <div id="error" style="color:red; margin-top:10px;"></div>
 </div>
 
-<!-- المحتوى -->
-<div id="content">
+<div id="main" class="hidden">
 
-    <audio id="music" src="song.mp3"></audio>
-    <button onclick="document.getElementById('music').play()">تشغيل الأغنية 🎵</button>
+    <h1 class="heart">❤️ بحبك يا ميرا ❤️</h1>
 
-    <div class="love-text">❤️ ميرا… مهما حصل بينا، انتي الإحساس اللي عمري ما هبدله ❤️</div>
+    <div class="content">
+        <div class="msg">من قلبي لقلبك… معلش سامحيني 🥺❤️</div>
+        <img src="image1.jpg">
 
-    <img class="photo" src="image.jpg">
-    <div class="love-text">💗 وجودك في حياتي مش صدفة… وجودك قدر مكتوب ليا 💗</div>
+        <div class="msg">كل لحظة معاك بتعلّمني إن مفيش زيّك ❤️</div>
+        <img src="image2.jpg">
 
-    <img class="photo" src="image1.jpg">
-    <div class="love-text">🌸 لو تعرفي ان ضحكتك كفيلة تمسح ألف زعل 🌸</div>
+        <div class="msg">أنا غلطان… وبحبك فوق ما تتخيلي 😔❤️</div>
+        <img src="image3.jpg">
 
-    <img class="photo" src="image2.jpg">
-    <div class="love-text">💞 انتي مش مجرد حد… انتي كل اللي قلبي اختاره 💞</div>
+        <div class="msg">نفسي نرجع أحسن من الأول ❤️</div>
+        <img src="image4.jpg">
 
-    <img class="photo" src="image3.jpg">
-    <div class="love-text">❤️ معلش لو زعلتك… بس والله عمري ما قصدت أخسرك ❤️</div>
+        <div class="msg">قلبي بيزيد لك كل يوم ❤️🔥</div>
+        <img src="image5.jpg">
 
-    <img class="photo" src="image4.jpg">
-    <div class="love-text">💕 انتي أمان… انتي بيت… انتي راحة 💕</div>
+        <div class="msg">ولو زعلتك، فهعمل المستحيل عشان أراضيكي ❤️</div>
+        <video src="video.mp4" controls></video>
 
-    <img class="photo" src="image5.jpg">
-    <div class="love-text">✨ وجودك في يومي بيكمّل كل حاجة ناقصة ✨</div>
-
-    <img class="photo" src="image6.jpg">
-    <div class="love-text">💗 وحشتيني بجد… وحشتيني بشكل ميتوصفش 💗</div>
-
-    <img class="photo" src="image8.jpg">
-    <div class="love-text">❤️ خلينا نبدأ صفحة جديدة… صفحة مفيهاش غيري وِكِ ❤️</div>
-
-    <video controls src="video.mp4"></video>
-    <div class="love-text">💞 حتى الفيديو دا… بيخليني أفتكر قد إيه أنا بحبك 💞</div>
-
-    <video controls src="video2.mp4"></video>
-    <div class="love-text">❤️ إنتي ميرا… وإنتي كل يوم حلو في حياتي ❤️</div>
+        <div class="msg">وآخر حاجة… بحبك بطرق كتير ❤️</div>
+        <video src="video2.mp4" controls></video>
+    </div>
 
 </div>
 
 <script>
-    // قلب متحرك
-    for (let i = 0; i < 25; i++) {
-        let h = document.createElement("div");
-        h.className = "heart";
-        h.innerHTML = "❤";
-        h.style.left = Math.random() * 100 + "vw";
-        h.style.animationDuration = (4 + Math.random() * 4) + "s";
-        h.style.fontSize = (15 + Math.random() * 25) + "px";
-        document.getElementById("hearts").appendChild(h);
+function checkPass(){
+    let p = document.getElementById("pass").value;
+    if(p === "962025"){
+        document.getElementById("passScreen").classList.add("hidden");
+        document.getElementById("main").classList.remove("hidden");
+    } else {
+        document.getElementById("error").innerText = "Wrong password ❤️";
     }
-
-    // باسورد
-    function checkPassword(){
-        let input = document.getElementById("passwordInput").value;
-        if(input === "9/6/25"){
-            document.getElementById("passwordPage").style.display = "none";
-            document.getElementById("content").style.display = "block";
-        } else{
-            alert("❌ غلط يا حلو… جربي تاني ❤");
-        }
-    }
+}
 </script>
 
 </body>
