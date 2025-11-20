@@ -1,241 +1,135 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>لميرا ❤️</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mira ❤️</title>
+
 <style>
-  :root{
-    --bg1:#ff003d; --bg2:#ff73a6;
+  body {margin:0;font-family:Tajawal,Arial;background:#ff2d6d;color:white;text-align:center}
+  #passBox {margin-top:80px}
+  input{padding:10px;width:70%;border-radius:10px;border:none;font-size:18px}
+  button{padding:10px 20px;margin-top:10px;background:#fff;color:#ff005d;
+    border:none;border-radius:10px;font-size:18px;font-weight:700;cursor:pointer}
+  #main{display:none;padding:15px}
+  .card{background:rgba(255,255,255,0.15);padding:15px;margin:15px;border-radius:15px}
+  img,video{width:100%;border-radius:12px;margin-top:10px}
+  .caption{margin-top:10px;color:#ffe7f1;font-size:17px}
+  #finalMsg{text-align:right;white-space:pre-wrap;line-height:1.7}
+  .float{position:fixed;bottom:-50px;color:white;font-weight:700;
+     animation: rise 6s linear forwards;pointer-events:none}
+  @keyframes rise {
+    0% {transform:translateY(0) scale(.7);opacity:0}
+    15% {opacity:1}
+    100% {transform:translateY(-140vh) scale(1.2);opacity:0}
   }
-  *{box-sizing:border-box}
-  body{
-    margin:0;padding:0;
-    font-family: "Tajawal", Arial, sans-serif;
-    background: linear-gradient(180deg,var(--bg1), var(--bg2));
-    color:#fff;text-align:center;overflow-x:hidden;
+  #playBig{
+    position:fixed;right:15px;bottom:15px;background:#7a0035;
+    padding:15px 18px;border-radius:15px;cursor:pointer;
+    font-weight:700;box-shadow:0 6px 25px rgba(0,0,0,.4)
   }
-  .wrap{max-width:900px;margin:0 auto;padding:20px}
-  #passPage{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px}
-  #passBox{background:rgba(0,0,0,0.18);padding:30px;border-radius:18px;max-width:420px;width:100%}
-  input[type="password"]{width:100%;padding:12px;border-radius:12px;border:none;font-size:18px;text-align:center;margin-top:8px}
-  .btn{margin-top:12px;padding:12px 18px;border-radius:12px;border:none;background:#ff2f4b;color:#fff;font-size:17px;cursor:pointer}
-  #mainContent{display:none;padding:20px}
-  .hero{font-size:30px;margin-bottom:10px;color:#ffe3ee}
-  .card{width:92%;max-width:760px;margin:18px auto;background:rgba(0,0,0,0.12);border-radius:18px;padding:14px}
-  img,video{width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.25)}
-  .caption{font-size:20px;margin:10px 0;color:#ffeef3;line-height:1.6}
-  .play-toggle{margin-top:20px;padding:12px 20px;border-radius:16px;border:none;background:#7a002e;color:#fff;font-size:18px;cursor:pointer}
-  #rememberHeader{font-size:34px;color:#ffd6dc;margin-top:36px}
-  .big-message{margin-top:20px;padding:20px;background:rgba(0,0,0,0.18);border-radius:14px;text-align:right;white-space:pre-wrap;font-size:18px;line-height:1.8;color:#fff}
-  .float{position:fixed;bottom:-50px;font-size:26px;animation:floatUp 6s linear infinite;pointer-events:none;opacity:.95}
-  @keyframes floatUp{0%{transform:translateY(0) scale(1);opacity:0.6}50%{opacity:1}100%{transform:translateY(-120vh) scale(1.4);opacity:0}}
-  .floating-text{position:fixed;bottom:-50px;color:#ffe0f0;font-weight:bold;text-shadow:0 0 15px #ff2d6d;pointer-events:none;opacity:0;animation:floatText 6s linear forwards, glow 2s infinite}
-  @keyframes floatText{0%{transform:translateY(0) scale(.7) rotate(-10deg);opacity:0}20%{opacity:1;transform:translateY(-8vh) scale(1) rotate(5deg)}60%{transform:translateY(-50vh) scale(1.15) rotate(-4deg)}100%{transform:translateY(-120vh) scale(.8) rotate(8deg);opacity:0}}
-  @keyframes glow{0%{text-shadow:0 0 8px #ff2d6d}50%{text-shadow:0 0 20px #ff80b3}100%{text-shadow:0 0 8px #ff2d6d}}
-  #debug{position:fixed;left:12px;bottom:12px;background:rgba(0,0,0,0.45);padding:10px;border-radius:10px;font-size:13px;color:#fff;max-width:320px;z-index:9999}
-  #debug h4{margin:0 0 6px 0;font-size:14px}
-  #debug ul{margin:0;padding-left:18px;text-align:left}
 </style>
+
 </head>
 <body>
-<div class="wrap">
 
-  <section id="passPage">
-    <div id="passBox">
-      <h1 style="color:#ffe3ee">Enter your password MIRA ❤️</h1>
-      <input id="passInput" type="password" placeholder="اكتب الباسورد هنا...">
-      <button class="btn" onclick="checkPass()">دخول</button>
-      <p style="font-size:13px;color:#ffd7dd;margin-top:10px">الباسورد: <strong>962025</strong></p>
-    </div>
-  </section>
-
-  <main id="mainContent" aria-hidden="true">
-    <div class="hero">I LOVE YOU MIRA ❤</div>
-
-    <div id="mediaViewer" class="card">
-      <div id="mediaArea"></div>
-
-      <div style="display:flex;gap:10px;justify-content:center;margin-top:12px">
-        <button id="prevBtn" class="btn" onclick="prevMedia()" style="background:#6b002b">السابق</button>
-        <button id="nextBtn" class="btn" onclick="nextMedia()">التالى</button>
-      </div>
-    </div>
-
-    <div style="display:flex;justify-content:center;margin-top:18px">
-      <button id="playBtn" class="play-toggle" onclick="toggleSong()">▶ تشغيل الأغنية</button>
-    </div>
-
-    <div id="rememberHeader">فاكره دي؟ ❤️</div>
-
-    <div id="finalMsgBox" class="big-message"></div>
-  </main>
-
+<div id="passBox">
+  <h2>ادخل الباسورد</h2>
+  <input id="passInput" type="password" placeholder="••••••">
+  <br>
+  <button onclick="enter()">دخول</button>
 </div>
+
+<div id="main">
+  <div id="viewer" class="card"></div>
+
+  <button onclick="prev()">السابق</button>
+  <button onclick="next()">التالي</button>
+
+  <br><br>
+  <button onclick="toggleSong()" id="playBtn">▶ تشغيل الأغنية</button>
+
+  <h3>رسالة ليكي ❤️</h3>
+  <div id="finalMsg" class="card"></div>
+</div>
+
+<div id="playBig" onclick="toggleSong()">تشغيل / إيقاف</div>
 
 <audio id="song" src="song.mp3" preload="auto"></audio>
-<div id="floatContainer"></div>
-
-<div id="debug">
-  <h4>حالة الملفات</h4>
-  <div id="debugStatus">جارٍ الفحص…</div>
-  <ul id="debugList"></ul>
-</div>
 
 <script>
-const images = ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"];
-const videos = ["video1.mp4","video2.mp4"];
-const audioFile = "song.mp3";
-
-const mediaSequence = [
-  {type:'image', src: images[0], caption: "❤️ انتي بهجة قلبي… متزعليش مني أبداً ❤️"},
-  {type:'image', src: images[1], caption: "💗 انتي بنتي وروحي… ومفيش غيرك في قلبي 💗"},
-  {type:'image', src: images[2], caption: "🥺 بحب ضحكتك… وبحب كل حاجه فيكي 🥺"},
-  {type:'video', src: videos[0], caption: "🎥 افتحي الفيديو وشوفي ذيك اللحظة"},
-  {type:'image', src: images[3], caption: "❤️ مش عايز أشوف زعلك… انتي فرحة عمري ❤️"},
-  {type:'video', src: videos[1], caption: "🎬 لحظة تانية بنحبها"},
-  {type:'image', src: images[4], caption: "💗 انتي قلبي يا ميرا… ومحدش زيك 💗"}
+const media = [
+  {type:"img", src:"image1.jpg", cap:"❤️ انتي بهجة قلبي…"},
+  {type:"img", src:"image2.jpg", cap:"💗 انتي بنتي وروحي…"},
+  {type:"img", src:"image3.jpg", cap:"🥺 بحب ضحكتك…"},
+  {type:"vid", src:"video1.mp4", cap:"🎥 شوفي الذكرى دي"},
+  {type:"img", src:"image4.jpg", cap:"❤️ مش عايز أشوف زعلك"},
+  {type:"vid", src:"video2.mp4", cap:"🎥 لحظة تانية بنحبها"},
+  {type:"img", src:"image5.jpg", cap:"💗 انتي قلبي يا ميرا"}
 ];
 
-const finalMessage = `… (الرسالة الطويلة كاملة جدًا زي ما هي، محطوطة بالكامل هنا)…`;
+let i = 0;
+const viewer = document.getElementById("viewer");
 
-const debugStatus = document.getElementById('debugStatus');
-const debugList = document.getElementById('debugList');
+function show(){
+  viewer.innerHTML = "";
+  let m = media[i];
 
-function addDebug(msg, ok=true){
-  const li = document.createElement('li');
-  li.textContent = msg;
-  li.style.color = ok ? '#bfffc9' : '#ffd2d2';
-  debugList.appendChild(li);
-}
-
-function checkAssets(){
-  debugList.innerHTML = '';
-  debugStatus.textContent = 'جاري فحص الملفات...';
-  let checks = [];
-
-  images.forEach(src=>{
-    checks.push(new Promise(resolve=>{
-      const img = new Image();
-      img.onload = ()=>{ addDebug('✅ موجود: ' + src); resolve(true); };
-      img.onerror = ()=>{ addDebug('❌ مفقود: ' + src, false); resolve(false); };
-      img.src = src + '?_=' + Date.now();
-    }));
-  });
-
-  videos.forEach(src=>{
-    checks.push(new Promise(resolve=>{
-      const v = document.createElement('video');
-      v.preload='auto';
-      v.onloadeddata = ()=>{ addDebug('✅ موجود: ' + src); resolve(true); };
-      v.onerror = ()=>{ addDebug('❌ مفقود: ' + src, false); resolve(false); };
-      v.src = src + '?_=' + Date.now();
-    }));
-  });
-
-  checks.push(new Promise(resolve=>{
-    const a = document.createElement('audio');
-    a.preload='auto';
-    a.onloadeddata = ()=>{ addDebug('✅ موجود: ' + audioFile); resolve(true); };
-    a.onerror = ()=>{ addDebug('❌ مفقود: ' + audioFile, false); resolve(false); };
-    a.src = audioFile + '?_=' + Date.now();
-  }));
-
-  Promise.all(checks).then(results=>{
-    debugStatus.textContent =
-      results.every(r=>r) ? 'كل الملفات موجودة ✅' : 'في ملفات ناقصة ❗';
-    addDebug('لو الصوت مش شغال: المتصفح منع التشغيل التلقائي — اضغط زر التشغيل.', true);
-  });
-}
-
-let index = 0;
-const mediaArea = document.getElementById('mediaArea');
-
-function showMedia(i){
-  mediaArea.innerHTML = '';
-  const m = mediaSequence[i];
-  if(!m) return;
-  if(m.type === 'image'){
-    const img = document.createElement('img');
-    img.src = m.src;
-    img.onerror = ()=>{ addDebug('خطأ تحميل: ' + m.src, false); };
-    mediaArea.appendChild(img);
+  if(m.type==="img"){
+    viewer.innerHTML = `<img src="${m.src}"><div class="caption">${m.cap}</div>`;
   } else {
-    const v = document.createElement('video');
-    v.controls = true;
-    v.src = m.src;
-    v.onerror = ()=>{ addDebug('خطأ تحميل فيديو: ' + m.src, false); };
-    mediaArea.appendChild(v);
+    viewer.innerHTML = `<video src="${m.src}" controls></video>
+    <div class="caption">${m.cap}</div>`;
   }
-  const cap = document.createElement('div');
-  cap.className = 'caption';
-  cap.textContent = m.caption;
-  mediaArea.appendChild(cap);
 }
 
-function nextMedia(){
-  if(index < mediaSequence.length - 1) index++;
-  else return showFinal();
-  showMedia(index);
+function next(){
+  if(i<media.length-1){ i++; show(); }
+  else showFinal();
 }
-function prevMedia(){
-  if(index > 0) index--;
-  showMedia(index);
+
+function prev(){
+  if(i>0){ i--; show(); }
 }
 
 function showFinal(){
-  document.getElementById('mainContent').style.display = 'none';
-  const finalBox = document.getElementById('finalMsgBox');
-  finalBox.textContent = finalMessage;
-  finalBox.scrollIntoView({behavior:'smooth'});
+  document.getElementById("finalMsg").textContent = `
+بجد مش عارف اقولك ايه!! 
+لو اعرف كل دا مكنش عدى علينا دقيقه زعلانين فيها من بعض يمكن من فتره قريبه مكنتش حاسس بكل الحب ده من نحيتك...
+(كل رسالتك الطويلة هنا بالكامل زي ما بعتها)
+  `;
 }
 
-function createFloat(){
-  const items = ["❤️","💗","ميرا","9/6","💕"];
-  const el = document.createElement('div');
-  el.className = Math.random() > 0.25 ? 'float' : 'floating-text';
-  el.innerText = items[Math.floor(Math.random()*items.length)];
-  el.style.left = (Math.random()*85) + 'vw';
-  el.style.fontSize = (Math.random()*18 + 20) + 'px';
-  el.style.animationDuration = (5 + Math.random()*4) + 's';
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),9000);
-}
-setInterval(createFloat,700);
-
-const song = document.getElementById('song');
-const playBtn = document.getElementById('playBtn');
-
-function tryPlaySong(){
-  song.play().then(()=>{ playBtn.textContent='⏸ إيقاف الأغنية'; })
-  .catch(()=> addDebug('Autoplay blocked — اضغط تشغيل.', false));
-}
-function toggleSong(){
-  if(song.paused){
-    song.play().then(()=> playBtn.textContent='⏸ إيقاف الأغنية');
+function enter(){
+  let p = document.getElementById("passInput").value;
+  if(p==="962025"){
+    document.getElementById("passBox").style.display="none";
+    document.getElementById("main").style.display="block";
+    show();
+    song.play().catch(()=>{});
   } else {
-    song.pause();
-    playBtn.textContent='▶ تشغيل الأغنية';
+    alert("غلط");
   }
 }
-song.addEventListener('ended', ()=> playBtn.textContent='▶ تشغيل الأغنية');
 
-function checkPass(){
-  const PASS = "962025";
-  const v = document.getElementById('passInput').value.trim();
-  if(v === PASS){
-    document.getElementById('passPage').style.display='none';
-    document.getElementById('mainContent').style.display='block';
-    index=0; showMedia(index);
-    tryPlaySong();
-  } else alert("الباسورد غلط!");
+const song = document.getElementById("song");
+function toggleSong(){
+  if(song.paused){ song.play(); document.getElementById("playBtn").textContent="⏸ إيقاف"; }
+  else { song.pause(); document.getElementById("playBtn").textContent="▶ تشغيل الأغنية"; }
 }
 
-checkAssets();
-
-document.getElementById('passInput').addEventListener('keydown',(e)=>{
-  if(e.key==='Enter') checkPass();
-});
+function spawn(){
+  const arr = ["❤️","ميرا","9/6","💕","💗"];
+  const d = document.createElement("div");
+  d.className="float";
+  d.style.left = Math.random()*85 +"vw";
+  d.style.fontSize = (18+Math.random()*18)+"px";
+  d.textContent = arr[Math.floor(Math.random()*arr.length)];
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(),6000);
+}
+setInterval(spawn,800);
 </script>
+
 </body>
 </html>
