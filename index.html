@@ -1,245 +1,200 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>لميرا ❤️</title>
+
 <style>
-  :root{
-    --dark:#1a0004;
-    --reddeep:#8b0000;
-    --redmid:#ff2f4b;
-    --accent:#ff7a9a;
-    --card: rgba(255,255,255,0.06);
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;padding:0;
-    font-family: "Tajawal", Arial, sans-serif;
-    background: linear-gradient(180deg,var(--dark), #330006);
-    color:#fff;text-align:center;overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
-  }
+    body {
+        background: linear-gradient(#ff003d, #ff73a6);
+        font-family: 'Tajawal', sans-serif;
+        color: white;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+    }
 
-  /* floating hearts */
-  .heart{position:fixed;bottom:-40px;font-size:22px;opacity:.9;animation:floatUp 6s linear infinite;pointer-events:none}
-  @keyframes floatUp{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-120vh) scale(1.6);opacity:0}}
+    /* صفحة الباسورد */
+    .password-box {
+        margin-top: 120px;
+    }
 
-  /* layout */
-  .wrap{max-width:900px;margin:0 auto;padding:20px}
-  .center{display:flex;flex-direction:column;align-items:center;justify-content:center}
+    input {
+        padding: 12px;
+        border-radius: 15px;
+        border: none;
+        text-align: center;
+        width: 200px;
+        font-size: 18px;
+    }
 
-  /* password page */
-  #passPage{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px}
-  #passBox{background:var(--card);padding:30px;border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,0.6);max-width:420px;width:100%}
-  h1.small{margin:0 0 12px 0;color:var(--accent);font-size:26px}
-  input[type="password"]{width:100%;padding:12px;border-radius:12px;border:none;font-size:18px;text-align:center;margin-top:8px}
-  .btn{margin-top:12px;padding:12px 18px;border-radius:12px;border:none;background:var(--redmid);color:#fff;font-size:17px;cursor:pointer;box-shadow:0 6px 20px rgba(255,0,60,0.12)}
-  .btn:active{transform:scale(.99)}
+    button {
+        padding: 12px 20px;
+        border-radius: 15px;
+        border: none;
+        background-color: #ff004c;
+        color: white;
+        font-size: 18px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
 
-  /* main content */
-  #mainContent{display:none;padding:40px 10px 80px}
-  .hero{font-size:30px;margin-bottom:10px;color:var(--accent);text-shadow:0 6px 25px rgba(0,0,0,0.6)}
-  .card{width:92%;max-width:760px;margin:18px auto;background:var(--card);border-radius:18px;padding:14px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
-  img,video{width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)}
-  .caption{font-size:20px;margin:10px 0;color:#ffeef3;line-height:1.6;text-shadow:0 4px 20px rgba(0,0,0,0.6)}
-  .play-toggle{margin-top:20px;padding:12px 20px;border-radius:16px;border:none;background:var(--reddeep);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 8px 30px rgba(139,0,0,0.35)}
-  .play-toggle:hover{transform:translateY(-2px)}
+    .content {
+        display: none;
+        padding: 20px;
+        animation: fadeIn 2s ease;
+    }
 
-  /* "فاكره دي؟" header and final message */
-  #rememberHeader{font-size:34px;color:#ffd6dc;margin-top:36px;margin-bottom:8px;text-shadow:0 6px 25px rgba(0,0,0,0.6)}
-  #finalMsgBox{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); padding:20px;border-radius:16px;margin-top:16px;box-shadow:0 10px 40px rgba(0,0,0,0.55)}
-  #finalMsg{white-space:pre-wrap;text-align:right;font-size:18px;line-height:1.8;color:#ffeef3}
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
 
-  /* small responsive */
-  @media(min-width:700px){ .hero{font-size:40px} #finalMsg{font-size:20px} input[type="password"]{font-size:20px} .caption{font-size:22px} }
+    img, video {
+        width: 90%;
+        border-radius: 25px;
+        margin-top: 25px;
+        box-shadow: 0px 0px 25px rgba(255,255,255,0.6);
+        animation: pop 0.6s ease;
+    }
 
-  /* subtle entrance animations */
-  .fadeIn{animation:fadeIn 700ms ease both}
-  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    @keyframes pop {
+        0% {transform: scale(0.8); opacity: 0;}
+        100% {transform: scale(1); opacity: 1;}
+    }
+
+    .text-block {
+        font-size: 26px;
+        margin: 25px 0;
+        line-height: 1.7;
+        animation: fadeIn 1.5s ease;
+    }
+
+    /* زر الأغنية */
+    .music-btn {
+        background-color: #b300ff;
+        margin-bottom: 25px;
+    }
+
+    /* القلوب وميرا و 9/6 */
+    .float {
+        position: fixed;
+        bottom: -50px;
+        font-size: 28px;
+        animation: floatUp 6s linear infinite;
+        opacity: 0.9;
+    }
+
+    @keyframes floatUp {
+        0% {transform: translateY(0) scale(1);}
+        100% {transform: translateY(-120vh) scale(1.4);}
+    }
+
+    /* الرسالة الطويلة */
+    .big-message {
+        margin-top: 40px;
+        padding: 25px;
+        background: rgba(255,255,255,0.12);
+        border-radius: 20px;
+        font-size: 22px;
+        line-height: 2;
+        backdrop-filter: blur(4px);
+        animation: fadeIn 2s ease;
+    }
+
 </style>
+
 </head>
+
 <body>
 
-<!-- floating hearts -->
-<script>
-  function spawnHeart(){ const d=document.createElement('div'); d.className='heart'; d.style.left=(Math.random()*90)+'vw'; d.innerText='❤️'; document.body.appendChild(d); setTimeout(()=>d.remove(),7000); }
-  setInterval(spawnHeart,600);
-</script>
+<!-- عناصر طايرة -->
+<div id="floatContainer"></div>
 
-<div class="wrap">
-
-  <!-- PASSWORD PAGE -->
-  <section id="passPage" class="center">
-    <div id="passBox" class="fadeIn">
-      <h1 class="small">Enter your password MIRA ❤️</h1>
-      <input id="passInput" type="password" placeholder="اكتبي الباسورد هنا...">
-      <button class="btn" onclick="checkPass()">دخول</button>
-      <p style="font-size:13px;margin-top:10px;color:#ffd7dd">الباسورد: <strong>962025</strong></p>
-    </div>
-  </section>
-
-  <!-- MAIN CONTENT (hidden until correct pass) -->
-  <main id="mainContent" class="fadeIn" aria-hidden="true">
-
-    <div class="hero">I LOVE YOU MIRA ❤</div>
-
-    <!-- MEDIA SEQUENCE -->
-    <div class="card">
-      <img src="image.jpg" alt="photo 0">
-      <div class="caption">❤️ متزعليش مني يا ميرا… إنتي فرحتي</div>
-    </div>
-
-    <div class="card">
-      <img src="image1.jpg" alt="photo 1">
-      <div class="caption">💗 انتي راحتي… و أجمل حاجة حصلتلي</div>
-    </div>
-
-    <div class="card">
-      <img src="image2.jpg" alt="photo 2">
-      <div class="caption">🥰 ضحكتك بتنور يومي</div>
-    </div>
-
-    <div class="card">
-      <img src="image3.jpg" alt="photo 3">
-      <div class="caption">💞 كل صورة بتحكي لحظة حلوة بينا</div>
-    </div>
-
-    <div class="card">
-      <video controls src="video.mp4"></video>
-      <div class="caption">🎥 افتحي الفيديو وشوفي ذيك اللحظة</div>
-    </div>
-
-    <div class="card">
-      <img src="image4.jpg" alt="photo 4">
-      <div class="caption">❤️ وجودك كفاية — متزعليش مني</div>
-    </div>
-
-    <div class="card">
-      <video controls src="video2.mp4"></video>
-      <div class="caption">🎬 لحظة تانية بنحبها</div>
-    </div>
-
-    <div class="card">
-      <img src="image5.jpg" alt="photo 5">
-      <div class="caption">💗 انتي قلبي وروحي، ميرا</div>
-    </div>
-
-    <!-- PLAY/PAUSE BUTTON (قبل الرسالة الطويلة) -->
-    <div style="display:flex;justify-content:center;">
-      <button id="playBtn" class="play-toggle" onclick="toggleSong()">▶ تشغيل الأغنية</button>
-    </div>
-
-    <!-- 'فاكره دي؟' header -->
-    <div id="rememberHeader">فاكره دي؟ ❤️</div>
-
-    <!-- FINAL LONG MESSAGE (exactly as provided) -->
-    <div id="finalMsgBox" class="card">
-      <div id="finalMsg">
-بجد مش عارف اقولك ايه!! 
-لو اعرف كل دا مكنش عدى علينا دقيقه زعلانين فيها من بعض يمكن من فتره قريبه مكنتش حاسس بكل الحب ده من نحيتك احنا اه مبقلناش غير شهر اصلا بس كل حاجه بتطور بسرعه اوى زى م انتى شايفه 
-ومش معنى انها بتطور بسرعه انها مش حقيقيه لا هى حقيقيه وزياده كمان 
-بس بجد مش عارف ايه الحب دا كله اول مره احس انى مهم بالنسبه لشخص كدا 
-انا من ساعه م ارتبطنا يميرا وانا حاسس بنفس الاحساس من نحيتك نفس الحب الرهيب نفس كميه الخوف اللى بخافها عليكى نفس الغيره ويمكن كمان كل يوم الحاجات دى بتزيد عن اليوم اللى قبله 
-كل يوم بحبك اكتر بحس بيكى اكتر واكتر مش بشوفك زى باقى البنات شايفك حاجه تانيه لنى فعلا معنتش شايف غيرك 
-بحب كل نقطه فيكى يميرا بجد كل حته فيكى بحبها مش بقرف منها حتى تصرفاتك اللى كنت بشوفها زمان غريبه الوقتى مقدرش اعيش من غيرها 
-انسانه بيضا من جوا بتتصرف معايا ع طبيعتها طول الوقت وبيبان اوى ف طريقه كلامهك يحبيبتى لو تعرفى اد ايه انا مبسوط اننا سوى ونفسى نبقى لبعض بجد هتفهمى اد ايه انا بحبك 
-كميه الثقه اللى انتى ادتيهالى مخليانى عاوز اكل الدنيا عشانك عشان احسسك ان ثقتك كانت ف محلها انك انتى اختارتى صح 
-ان انا الاختيار المناسب ليكى 
-يمكن حاليا عشان تبقى حلالى الموضوع صعب شويه بس صعب ماديا بس بالنسبالى 
-وحاسس ان نقطه الماديات دى هتخلص قريب ان شاء الله وهتبقى ليا بجد كل يوم بسمع منك فيه كلمه بحبك نشاطى بيتجدد وببقى عاوز اقوم اسافر الوقتى اعمل اللى عليا وزياده 
-ومتأكد انى هعمل كدا هموت نفسى شغل مش مشكله عشانك عشان انتى تستاهلى كل حاجه واحلى حاجه حرفيا الكلام ده بكتبه ودموعى خلاص هتنزل من عنيا لانى بكتبه بقلبى مش بعقلى ومع كل كلمه بكتبهالك بفتكر شكلك فيها وبفتكرلك مواقف كتير او ضحكه او ابتسامه صغيره دخلت قلبى 
-اول مره اكتب اللى بحس بيه كدا طول عمرى كنت بحس واكتم وازعل واكتم وافرح وبردو اكتم 
-الكتمان بالنسبالى كان شغلانه تقريبا لحد مجالى الضغط  بس الكلام دا كان قبل 6/9 
-من بدايه التاريخ دا عرفت يعنى ايه حب عرفت يعنى ايه تحب انسانه وتحاول عشان توصلها 
-عرفت يعنى ايه انسانه تحبك وتفرح لفرحك وتزعل لزعلك 
-عرفت يعنى ايه ثقه 
-بجد عرفت يعنى ايه ثقه عمرى موثقت ف حد كدا ابدا دايما عاطى خوانه يمكن انتى ساعات بتحسى انى مش بثق فيكى بس والله محصل طول م انا بسمعك واعرف وجهه نظرك او الموضوع عامل ازاى من منظورك يبقى بثق فيكى يروحى ببقى غيران عليكى بس مش اكتر ومتستهونيش بغيرتى عليكى انا لو عليا احطك ف قلبى واقفل عليكى عشان محدش يشوفك او يكلمك ربع كلمه 
-بحبك اوى بحد بحب اى حاجه من ناحيتك برتاح وانتى معايا وقدامى بفرح لما ابقى شايف ان ف حاجه بتضايقنى والاقيكى بتتجنبيها لاجل بس مكونش متضايق 
-ومن اكتر الحاجات اللى فرحت بيها انهارده انك فتحتيلى قلبك كنت مستنيها من زمان وعمال اقول اصبر مع انى مش صبور خاااالص بس صبرت يمكن الوقت اللى صبرت فيه قليل لانه شهر واحد بس عدى عليا اكنه سنه مش شهر مكنتش قادر استحمل بجد انى ابقى حاسس او متأكد ان قلبك فيه حاجه ومش بتقوليلى عليا مش قادره تحكيهالى او توصفهالى 
-سواء حاجه مفرحاكى او حاجه مضيقاكى مش حابه تقولى وتفضلى انك تسكتى عن انك تحكيلى وقتها كنت بزعل اويييييي بس كنت بسكت مع انى كنت بفضل اتحايل عليكى عشان تتكلمى اه ساعات كنت بزهق واقفل بس عشانى مش متعود ع الصبر دا كله 
-بس حتى لما بسيبك وقتها واقفل مبفكرش غير فيكى وانى عاوز اراضيكى بحس انك بنتى مش حبيبتى محتاج اطبطب عليكى واخدك ف حضنى وابوسك واطمنك وهتبقى كويسه محتاجه حنيه وانا عمرى مكنت حنين كدا معاكى عرفت حاجات كتير اوى عنى مكنتش اعرفها شوفت حاجات كتيره وشوفت ناس كتيره ع حقيقتها
-بزعل لما بفتكر اى مره كنت ظالمك فيها فى اى حاجه عموما 
-مش محتاجه ادور وراكى ف حاجه حتى اكونتاتك حاليا بفتحها يدوب اشوف الريبوستات لو حد بعتلك فولو معجبنيش ابلكه وكدا 
-حاسس انى فعلا مفيش حاجه بتطلبيها منى الا وبرفض وبدأت اتضايق منى بس كل حاجه بجد كان ليها سبب للرفض مبتطمنش عليكى غير وانتى ادام عنيا 
-حتى لما بتنزلى بفضل افكر ي ترى حد كلمها ي ترى حد بصلها بصه مش حلوه ي ترى ي ترى
-بس برتاح اول متطلعى وابص ف عينك لان بقيت بعرف منها لو ف حاجه او لا 
-برتاح وانا ببوسك وبوقك ف بوقى حسيت اننا بقينا واحد وصلنا لمرحله فعلا زى م انتى قولتى الناس بتقعد شهور او سنين عشان يوصلولها 
-برتاح وانتى ف حضنى بتطمن برتاح لما بشوفك مرتاحه ومتطمنه يحبيبتى مبزهقش منك ولا من انى ابوسك او احضنك نفسى ف كدا طول الوقت يحبيبتى نفسى ابوسك حته حته 
-ومصدقك يحبيبتى من غير متقولى انك اول مره ولد يبوسك كدا باين عليكى فعلا انك مش فاهمه حاجه كل اللى كنتى حاسله بيه انك بتحبينى اوى 
-ووالله انا كمان اول مره ابوس بنت او بنت تبوسنى 
-كل دا كان ارتجال منى انهارده كنت عاوز نندمج اوى زى م انتى شوفتى كدا والحمد لله انها عدت ع خير وربنا ستر  لان الموضوع اكبر من ما تتخيلى 
-بس وقتها حبك ليا مخليكى مش حاسه بقلق او بخوف 
-وانا حبى ليكى مقلقنى ومخوفنى عليكى و ع سمعتك وسط الناس يحبيبتى 
-احساس انك سيبالى نفسك وواثقه فيا كدا بيخلينى اتمسك بيكى اكتر واكتر يروحي بقيت مصدقك حتى لو مكدبك قلبى مصدقك وبيخلقلك الاعذار ف كل حاجه يمكن ده مش بقوله لكن بحس بيه بس 
-كل اللى قولتهولك دا ميجيش نقطه ف بحر حبى ليكى يميرا او نقطه بالنسبه لكميه التفكير اللى بفكره فيكى حى وشى بقى باين عليه الارهاق من قله النوم والتفكير طول الوقت بفكر فيكى بنام واصحى الاقينى بكمل تفكير فيكى 
-بحترم الصراحه اوى يميرا ان يحصل حاجه وتقوليلى عليا حتى لو انتى خايفه من رد فعلى ده بيكبرك ف نظرى اوى اوى 
-بكره الكدب كره العمى الكدب بالنسبالى شكل من اشكال الخيانه مش بقولك الكلام دا انى اقصد بيه حاجه معينه لا والله انا بس بشرحلك الحاجات دى بالنسبالى ايه 
-مراتى المستقبليه خلاص 
-ميرا حرم يوسف فرح 
-ميرا فرح 
-بحبك يميرا بجد ونفسى اسعدك وافرحك بحب اشوف الفرحه فى عنيكى مع انك بتفرحى من اقل حاجه حتى لو شوكولاتايه 
-بس انا فرحتى وسعادتى انى اشوفك بتضحكى ومبسوطه 
-مكنتش عاوز اقفل انهارده كنت عاوز افضل صاحى واكلمك  بس المواعيد اللى امين بعتهالى ضايقتنى بس قولت مش هقعد كل يوم اعارض فيه بكرا نبقى نشوف 
-انا بكتب الرساله دى حرفيا بقالى ساعه او ساعه الا حاجه بسيطه 
-بجد محسيتش بالوقت لانه كله عدى وانا بفكر فيكى 
-واخيرا وليس اخرا 
-بحبك اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى 
-بدعى ربنا اننا نكون سوى نكون لبعض ربنا ميجعل بينا اى مشاكل خالص بعد الايام عشان تطلعى م المكان الملعون دا 
-وبعد الايام عشان اطلع انا كمان م البلد دى 
-بعد الايام اللى بعدها هنبقى سوى ي رب تقدرى تستحملى وتستنينى ي ميرا مهما طولت
-ربنا يقدرنى واعمل كل حاجه بسرعه عشانك 
-احى واحده شافتها عيونى واحلى الوحيده اللى حركت قلبى 
-من قبل متخبطى قلبى فتحلك وقالك ادخلى وانتى فعلا دخلتى وسكنتى جواه ومن وقتها وهو متطمن بوجودك وعمره مهيفتح ويخرجك ابداااا 
-بحبك ي كل حاجه ي احلى حاجه  ي اغلى حاجه ♥💋💞
-      </div>
-    </div>
-
-  </main>
+<!-- صفحة الباسورد -->
+<div class="password-box" id="passPage">
+    <h2>Enter your password MIRA ❤️</h2>
+    <input id="passInput" type="password" placeholder="••••••">
+    <br>
+    <button onclick="checkPass()">دخول</button>
 </div>
 
-<!-- audio element (file: song.mp3) -->
-<audio id="song" src="song.mp3"></audio>
+<!-- المحتوى -->
+<div class="content" id="mainContent">
+    
+    <button class="music-btn" onclick="toggleSong()">تشغيل / إيقاف الأغنية 🎵</button>
+    <audio id="song">
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <img src="image1.jpg">
+    <div class="text-block">❤️ انتي بهجة قلبي… متزعليش مني أبداً ❤️</div>
+
+    <img src="image2.jpg">
+    <div class="text-block">💗 انتي بنتي وروحي… ومفيش غيرك في قلبي 💗</div>
+
+    <img src="image3.jpg">
+    <div class="text-block">🥺 بحب ضحكتك… وبحب كل حاجه فيكي 🥺</div>
+
+    <video controls src="video1.mp4"></video>
+    <div class="text-block">💞 مهما حصل… انتي أغلى حاجة عندي 💞</div>
+
+    <img src="image4.jpg">
+    <div class="text-block">❤️ مش عايز أشوف زعلك… انتي فرحة عمري ❤️</div>
+
+    <video controls src="video2.mp4"></video>
+    <div class="text-block">💖 من يوم ما عرفتك… وانا مبسوط بيكي 💖</div>
+
+    <img src="image5.jpg">
+    <div class="text-block">💗 انتي قلبي يا ميرا… ومحدش زيك 💗</div>
+
+    <h2 style="margin-top:40px; color:#ffdde8;">فاكره دي؟ ❤️</h2>
+
+    <!-- رسالتك الطويلة -->
+    <div class="big-message">
+        بجد مش عارف اقولك ايه!! 
+        لو اعرف كل دا مكنش عدى علينا دقيقه زعلانين فيها من بعض...
+        <br><br>
+        ❤️ بحبك يا ميرا… كل حرف فيا بينادي عليكي ❤️
+    </div>
+
+</div>
 
 <script>
-  // password exactly as requested
-  const PASS = "962025";
-
-  function checkPass(){
-    const v = document.getElementById('passInput').value.trim();
-    if(v === PASS){
-      document.getElementById('passPage').style.display='none';
-      const main = document.getElementById('mainContent');
-      main.style.display='block';
-      main.setAttribute('aria-hidden','false');
-      // do NOT autoplay song (user wanted button at the end),
-      // but we can optionally scroll to top of content
-      window.scrollTo({top:0,behavior:'smooth'});
+/* باسورد */
+function checkPass() {
+    let p = document.getElementById("passInput").value;
+    if (p == "962025") {
+        document.getElementById("passPage").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        document.getElementById("song").play();
     } else {
-      alert('كلمة المرور غلط يا قلبي — جرب تاني');
+        alert("غلط يا روحي 🥺");
     }
-  }
+}
 
-  // toggle play/pause for the song button near the end
-  const song = document.getElementById('song');
-  const playBtn = document.getElementById('playBtn');
-  function toggleSong(){
-    if(song.paused){
-      song.play().catch(()=>{ alert('المتصفح منع التشغيل تلقائياً، اضغط مره تانيه'); });
-      playBtn.textContent = '⏸ إيقاف الأغنية';
-    } else {
-      song.pause();
-      playBtn.textContent = '▶ تشغيل الأغنية';
-    }
-  }
+/* تشغيل/إيقاف الأغنية */
+function toggleSong() {
+    let s = document.getElementById("song");
+    if (s.paused) s.play();
+    else s.pause();
+}
 
-  // try to update button label if song ends
-  song.addEventListener('ended', ()=>{ playBtn.textContent = '▶ تشغيل الأغنية'; });
+/* القلوب + Mira + 9/6 تطير */
+function createFloat() {
+    const items = ["❤️","💗","💕","Mira","9/6"];
+    let f = document.createElement("div");
+    f.className = "float";
+    f.innerText = items[Math.floor(Math.random() * items.length)];
+    f.style.left = Math.random() * 90 + "vw";
+    f.style.animationDuration = (5 + Math.random() * 4) + "s";
+    document.getElementById("floatContainer").appendChild(f);
 
-  // if user presses Enter on password input -> submit
-  document.getElementById('passInput').addEventListener('keydown',(e)=>{
-    if(e.key === 'Enter') checkPass();
-  });
+    setTimeout(() => { f.remove(); }, 9000);
+}
+setInterval(createFloat, 700);
 </script>
 
 </body>
