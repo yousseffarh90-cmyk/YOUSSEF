@@ -1,204 +1,175 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>لميرا ❤️</title>
-<style>
-  :root{
-    --bg1:#ff2f6e;
-    --bg2:#ff6fa8;
-    --btn:#ff004c;
-    --btn2:#b300ff;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;padding:0;
-    font-family: "Tajawal", Arial, sans-serif;
-    background: linear-gradient(180deg,var(--bg1),var(--bg2));
-    color:#fff;text-align:center;overflow-x:hidden;
-  }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لميرا ❤️</title><!-- Google Fonts --><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet"><style>
+    body {
+        background: linear-gradient(135deg, #ff2f6e, #ff6fa8);
+        font-family: 'Tajawal', sans-serif;
+        color: white;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+    }
 
-  /* hearts floating */
-  .heart{
-    position:fixed;bottom:-40px;font-size:24px;opacity:.9;
-    animation:floatUp 6s linear infinite;
-    pointer-events:none;
-  }
-  @keyframes floatUp{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-120vh) scale(1.6);opacity:0}}
+    /* تأثير قلوب متطايرة */
+    .heart-float {
+        position: fixed;
+        bottom: -10px;
+        font-size: 25px;
+        animation: floatUp 5s linear infinite;
+        opacity: 0.7;
+    }
 
-  /* password box */
-  .password-box{margin-top:90px;padding:20px; animation:fadeIn .9s ease;}
-  input[type="password"]{
-    width:220px;padding:12px;border-radius:14px;border:none;font-size:18px;text-align:center;
-  }
-  .btn{
-    display:inline-block;margin-top:12px;padding:12px 18px;border-radius:14px;background:var(--btn);color:#fff;border:none;font-size:17px;cursor:pointer;
-    transition:transform .15s ease;
-  }
-  .btn:active{transform:scale(.98)}
-  .music-btn{background:var(--btn2);margin:12px 0}
+    @keyframes floatUp {
+        0% { transform: translateY(0) translateX(0); opacity: 0.7; }
+        100% { transform: translateY(-100vh) translateX(40px); opacity: 0; }
+    }
 
-  /* main content */
-  .content{display:none;padding:18px 10px 80px; animation:fadeIn 1s ease;}
-  .hero-title{font-weight:700;font-size:26px;margin-top:18px}
-  .card{width:92%;max-width:560px;margin:22px auto;background:rgba(255,255,255,.05);border-radius:22px;padding:14px;box-shadow:0 6px 30px rgba(0,0,0,.2)}
-  img, video{width:100%;border-radius:16px;display:block;margin:8px 0;box-shadow:0 8px 30px rgba(0,0,0,.25)}
-  .text-block{font-size:20px;margin:10px 0;line-height:1.5;color:#fff;text-shadow:0 3px 10px rgba(0,0,0,.35)}
-  audio{display:none}
+    .password-box {
+        margin-top: 120px;
+        animation: fadeIn 2s ease;
+    }
 
-  /* small responsive */
-  @media(min-width:600px){ .hero-title{font-size:34px} .text-block{font-size:22px} input[type="password"]{width:320px} }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
 
-  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-</style>
-</head>
-<body>
+    input {
+        padding: 12px;
+        border-radius: 15px;
+        border: none;
+        text-align: center;
+        width: 200px;
+        font-size: 18px;
+        box-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
 
-<!-- floating hearts generator (lightweight) -->
-<script>
-  function spawnHeart(){ 
-    const d=document.createElement('div'); d.className='heart'; 
-    d.style.left = Math.random()*90 + 'vw'; 
-    d.innerText='❤️'; 
-    document.body.appendChild(d);
-    setTimeout(()=>d.remove(),7000);
-  }
-  setInterval(spawnHeart,600);
-</script>
+    button {
+        padding: 12px 20px;
+        border-radius: 15px;
+        border: none;
+        background-color: #ff004c;
+        color: white;
+        font-size: 18px;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    }
 
-<!-- password page -->
-<div id="passPage" class="password-box">
-  <h2 class="hero-title">Enter your password MIRA ❤️</h2>
-  <input id="passInput" type="password" placeholder="••••••" autocomplete="off" />
-  <br>
-  <button class="btn" onclick="checkPass()">دخول</button>
-  <div style="margin-top:8px;font-size:13px;opacity:.9">اكتب كلمة المرور وادخل — هتسمع أغنية وتشوف صور وفيديوهات</div>
-</div>
+    button:hover {
+        transform: scale(1.1);
+        background-color: #ff1f61;
+    }
 
-<!-- main content -->
-<div id="mainContent" class="content" aria-hidden="true">
+    .content {
+        display: none;
+        padding: 20px;
+        animation: fadeIn 2s ease-in-out;
+    }
 
-  <h1 class="hero-title">I LOVE YOU MIRA ❤</h1>
+    img, video {
+        width: 90%;
+        border-radius: 25px;
+        margin-top: 20px;
+        box-shadow: 0px 0px 25px rgba(255,255,255,0.7);
+        animation: popIn 1.5s ease;
+    }
 
-  <!-- play button (user must tap to allow mobile audio) -->
-  <button class="btn music-btn" onclick="playSong()">تشغيل الأغنية ❤️</button>
-  <audio id="song">
+    @keyframes popIn {
+        from { transform: scale(0.9); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    .text-block {
+        font-size: 26px;
+        margin: 20px 0;
+        line-height: 1.6;
+        animation: fadeIn 2s ease;
+        text-shadow: 0px 0px 10px rgba(255,255,255,0.8);
+    }
+
+    .music-btn {
+        background-color: #b300ff;
+        margin-bottom: 25px;
+    }
+</style></head><body><!-- قلوب متحركة --><!-- صفحة إضافية بعد الصور والفيديوهات --><div id="extraPage" style="display:none; margin-top:40px; padding:30px; background:rgba(255,255,255,0.1); border-radius:25px; box-shadow:0 0 20px rgba(255,255,255,0.7);">
+    <h2 style="font-size:30px; margin-bottom:20px;">فاكره؟ ❤️</h2>
+    <p style="font-size:22px; line-height:2; margin-bottom:25px;">قبل ما تقفلي… اختاري زرار من دول يا روحي:</p><button onclick="alert('بحبك ❤️')" style="padding:15px 25px; border-radius:20px; border:none; background:#ff2f6e; color:#fff; font-size:20px; margin:10px; cursor:pointer;">بحبك؟ ❤️</button>
+
+<button onclick="alert('انا متمسك بيكي 🥺')" style="padding:15px 25px; border-radius:20px; border:none; background:#b300ff; color:#fff; font-size:20px; margin:10px; cursor:pointer;">لسه زعلانة؟ 🥺</button>
+
+<button onclick="alert('هفضل معاكِ دايمًا 💗')" style="padding:15px 25px; border-radius:20px; border:none; background:#ff6fa8; color:#fff; font-size:20px; margin:10px; cursor:pointer;">هتفضلي معايا؟ 💗</button>
+
+</div><script>
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart-float");
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.innerHTML = "❤";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 400);
+</script><!-- صفحة الباسوورد --><div class="password-box" id="passPage">
+    <h2>Enter your password MIRA ❤️</h2>
+    <input id="passInput" type="password" placeholder="••••••">
+    <br>
+    <button onclick="checkPass()">دخول</button>
+</div><!-- المحتوى الحقيقي --><div class="content" id="mainContent"><button class="music-btn" onclick="playSong()">تشغيل الأغنية ❤️</button>
+<audio id="song">
     <source src="song.mp3" type="audio/mpeg">
-  </audio>
+</audio>
 
-  <!-- card list: استخدمت نفس الأسماء اللي رفعتهم -->
-  <div class="card">
-    <img src="image.jpg" alt="photo 0" />
-    <div class="text-block">💖 انتي أحلى ما في حياتي — متزعليش</div>
-  </div>
+<img src="image1.jpg">
+<div class="text-block">❤️ انتي بهجة قلبي… متزعليش مني أبداً ❤️</div>
 
-  <div class="card">
-    <img src="image1.jpg" alt="photo 1" />
-    <div class="text-block">💕 بحبك قوي، ومش هخليك زعلانة</div>
-  </div>
+<img src="image2.jpg">
+<div class="text-block">💗 انتي بنتي وروحي… ومفيش غيرك في قلبي 💗</div>
 
-  <div class="card">
-    <img src="image2.jpg" alt="photo 2" />
-    <div class="text-block">🥰 ضحكتك بتنور الدنيا — نفسي دايماً أشوفكي مبتسمة</div>
-  </div>
+<img src="image3.jpg">
+<div class="text-block">🥺 بحب ضحكتك… وبحب كل حاجه فيكي 🥺</div>
 
-  <div class="card">
-    <img src="image3.jpg" alt="photo 3" />
-    <div class="text-block">💞 كل صورة بتحكي قصة حبنا</div>
-  </div>
+<video controls src="video.mp4"></video>
+<div class="text-block">💞 مهما حصل… انتي أغلى حاجة عندي 💞</div>
 
-  <div class="card">
-    <video controls src="video.mp4"></video>
-    <div class="text-block">🎥 فيديو حلو — افتحيه واتفرجي</div>
-  </div>
+<img src="image4.jpg">
+<div class="text-block">❤️ مش عايز أشوف زعلك… انتي فرحة عمري ❤️</div>
 
-  <div class="card">
-    <img src="image4.jpg" alt="photo 4" />
-    <div class="text-block">❤️ وجودك كفاية — متزعليش مني</div>
-  </div>
+<video controls src="video2.mp4"></video>
+<div class="text-block">💖 من يوم ما عرفتك… وانا مبسوط بيكي 💖</div>
 
-  <div class="card">
-    <video controls src="video2.mp4"></video>
-    <div class="text-block">🎬 فيديو تاني — صباح/مساء الخير يا حبيبتي</div>
-  </div>
+<img src="image5.jpg">
+<div class="text-block">💗 انتي قلبي يا ميرا… ومحدش زيك 💗</div>
 
-  <div class="card">
-    <img src="image5.jpg" alt="photo 5" />
-    <div class="text-block">💗 انتي قلبي وروحي، ميرا</div>
-  </div>
+<!-- زر يودّي لرسالتك -->
+<button class="music-btn" onclick="document.getElementById('loveLetter').scrollIntoView({behavior:'smooth'})" style="margin-top:25px; font-size:20px; padding:14px 22px; border-radius:20px;">اضغطي هنا يا ميرا 💖</button>
 
-  <!-- hidden debug area -->
-  <div id="debug" style="font-size:13px;opacity:.9;margin-top:14px"></div>
+<!-- الرسالة -->
+<div id="loveLetter" class="love-letter" style="margin-top:40px; padding:25px; background:rgba(255,255,255,0.1); border-radius:25px; box-shadow:0 0 20px rgba(255,255,255,0.6); line-height:2; font-size:22px; white-space:pre-line; animation: fadeIn 2s ease-in-out;">" style="margin-top:40px; padding:25px; background:rgba(255,255,255,0.1); border-radius:25px; box-shadow:0 0 20px rgba(255,255,255,0.6); line-height:2; font-size:22px; white-space:pre-line; animation: fadeIn 2s ease-in-out;">
 
-</div>
+بجد مش عارف اقولك ايه!! لو اعرف كل دا مكنش عدى علينا دقيقه زعلانين فيها من بعض يمكن من فتره قريبه مكنتش حاسس بكل الحب ده من نحيتك احنا اه مبقلناش غير شهر اصلا بس كل حاجه بتطور بسرعه اوى زى م انتى شايفه ومش معنى انها بتطور بسرعه انها مش حقيقيه لا هى حقيقيه وزياده كمان بس بجد مش عارف ايه الحب دا كله اول مره احس انى مهم بالنسبه لشخص كدا انا من ساعه م ارتبطنا يميرا وانا حاسس بنفس الاحساس من نحيتك نفس الحب الرهيب نفس كميه الخوف اللى بخافها عليكى نفس الغيره ويمكن كمان كل يوم الحاجات دى بتزيد عن اليوم اللى قبله كل يوم بحبك اكتر بحس بيكى اكتر واكتر مش بشوفك زى باقى البنات شايفك حاجه تانيه لنى فعلا معنتش شايف غيرك بحب كل نقطه فيكى يميرا بجد كل حته فيكى بحبها مش بقرف منها حتى تصرفاتك اللى كنت بشوفها زمان غريبه الوقتى مقدرش اعيش من غيرها انسانه بيضا من جوا بتتصرف معايا ع طبيعتها طول الوقت وبيبان اوى ف طريقه كلامهك يحبيبتى لو تعرفى اد ايه انا مبسوط اننا سوى ونفسى نبقى لبعض بجد هتفهمى اد ايه انا بحبك كميه الثقه اللى انتى ادتيهالى مخليانى عاوز اكل الدنيا عشانك عشان احسسك ان ثقتك كانت ف محلها انك انتى اختارتى صح ان انا الاختيار المناسب ليكى يمكن حاليا عشان تبقى حلالى الموضوع صعب شويه بس صعب ماديا بس بالنسبالى وحاسس ان نقطه الماديات دى هتخلص قريب ان شاء الله وهتبقى ليا بجد كل يوم بسمع منك فيه كلمه بحبك نشاطى بيتجدد وببقى عاوز اقوم اسافر الوقتى اعمل اللى عليا وزياده ومتأكد انى هعمل كدا هموت نفسى شغل مش مشكله عشانك عشان انتى تستاهلى كل حاجه واحلى حاجه حرفيا الكلام ده بكتبه ودموعى خلاص هتنزل من عنيا لانى بكتبه بقلبى مش بعقلى ومع كل كلمه بكتبهالك بفتكر شكلك فيها وبفتكرلك مواقف كتير او ضحكه او ابتسامه صغيره دخلت قلبى اول مره اكتب اللى بحس بيه كدا طول عمرى كنت بحس واكتم وازعل واكتم وافرح وبردو اكتم الكتمان بالنسبالى كان شغلانه تقريبا لحد مجالى الضغط  بس الكلام دا كان قبل 6/9 من بدايه التاريخ دا عرفت يعنى ايه حب عرفت يعنى ايه تحب انسانه وتحاول عشان توصلها عرفت يعنى ايه انسانه تحبك وتفرح لفرحك وتزعل لزعلك عرفت يعنى ايه ثقه بجد عرفت يعنى ايه ثقه عمرى موثقت ف حد كدا ابدا دايما عاطى خوانه يمكن انتى ساعات بتحسى انى مش بثق فيكى بس والله محصل طول م انا بسمعك واعرف وجهه نظرك او الموضوع عامل ازاى من منظورك يبقى بثق فيكى يروحى ببقى غيران عليكى بس مش اكتر ومتستهونيش بغيرتى عليكى انا لو عليا احطك ف قلبى واقفل عليكى عشان محدش يشوفك او يكلمك ربع كلمه بحبك اوى بحد بحب اى حاجه من ناحيتك برتاح وانتى معايا وقدامى بفرح لما ابقى شايف ان ف حاجه بتضايقنى والاقيكى بتتجنبيها لاجل بس مكونش متضايق ومن اكتر الحاجات اللى فرحت بيها انهارده انك فتحتيلى قلبك كنت مستنيها من زمان وعمال اقول اصبر مع انى مش صبور خاااالص بس صبرت يمكن الوقت اللى صبرت فيه قليل لانه شهر واحد بس عدى عليا اكنه سنه مش شهر مكنتش قادر استحمل بجد انى ابقى حاسس او متأكد ان قلبك فيه حاجه ومش بتقوليلى عليا مش قادره تحكيهالى او توصفهالى سواء حاجه مفرحاكى او حاجه مضيقاكى مش حابه تقولى وتفضلى انك تسكتى عن انك تحكيلى وقتها كنت بزعل اويييييي بس كنت بسكت مع انى كنت بفضل اتحايل عليكى عشان تتكلمى اه ساعات كنت بزهق واقفل بس عشانى مش متعود ع الصبر دا كله بس حتى لما بسيبك وقتها واقفل مبفكرش غير فيكى وانى عاوز اراضيكى بحس انك بنتى مش حبيبتى محتاج اطبطب عليكى واخدك ف حضنى وابوسك واطمنك وهتبقى كويسه محتاجه حنيه وانا عمرى مكنت حنين كدا معاكى عرفت حاجات كتير اوى عنى مكنتش اعرفها شوفت حاجات كتيره وشوفت ناس كتيره ع حقيقتها بزعل لما بفتكر اى مره كنت ظالمك فيها فى اى حاجه عموما مش محتاجه ادور وراكى ف حاجه حتى اكونتاتك حاليا بفتحها يدوب اشوف الريبوستات لو حد بعتلك فولو معجبنيش ابلكه وكدا حاسس انى فعلا مفيش حاجه بتطلبيها منى الا وبرفض وبدأت اتضايق منى بس كل حاجه بجد كان ليها سبب للرفض مبتطمنش عليكى غير وانتى ادام عنيا حتى لما بتنزلى بفضل افكر ي ترى حد كلمها ي ترى حد بصلها بصه مش حلوه ي ترى ي ترى بس برتاح اول متطلعى وابص ف عينك لان بقيت بعرف منها لو ف حاجه او لا برتاح وانا ببوسك وبوقك ف بوقى حسيت اننا بقينا واحد وصلنا لمرحله فعلا زى م انتى قولتى الناس بتقعد شهور او سنين عشان يوصلولها برتاح وانتى ف حضنى بتطمن برتاح لما بشوفك مرتاحه ومتطمنه يحبيبتى مبزهقش منك ولا من انى ابوسك او احضنك نفسى ف كدا طول الوقت يحبيبتى نفسى ابوسك حته حته ومصدقك يحبيبتى من غير متقولى انك اول مره ولد يبوسك كدا باين عليكى فعلا انك مش فاهمه حاجه كل اللى كنتى حاسه بيه انك بتحبينى اوى ووالله انا كمان اول مره ابوس بنت او بنت تبوسنى كل دا كان ارتجال منى انهارده كنت عاوز نندمج اوى زى م انتى شوفتى كدا والحمد لله انها عدت ع خير وربنا ستر  لان الموضوع اكبر من ما تتخيلى بس وقتها حبك ليا مخليكى مش حاسه بقلق او بخوف وانا حبى ليكى مقلقنى ومخوفنى عليكى و ع سمعتك وسط الناس يحبيبتى احساس انك سيبالى نفسك وواثقه فيا كدا بيخلينى اتمسك بيكى اكتر واكتر يروحي بقيت مصدقك حتى لو مكدبك قلبى مصدقك وبيخلقلك الاعذار ف كل حاجه يمكن ده مش بقوله لكن بحس بيه بس كل اللى قولتهولك دا ميجيش نقطه ف بحر حبى ليكى يميرا او نقطه بالنسبه لكميه التفكير اللى بفكره فيكى حى وشى بقى باين عليه الارهاق من قله النوم والتفكير طول الوقت بفكر فيكى بنام واصحى الاقينى بكمل تفكير فيكى بحترم الصراحه اوى يميرا ان يحصل حاجه وتقوليلى عليا حتى لو انتى خايفه من رد فعلى ده بيكبرك ف نظرى اوى اوى بكره الكدب كره العمى الكدب بالنسبالى شكل من اشكال الخيانه مش بقولك الكلام دا انى اقصد بيه حاجه معينه لا والله انا بس بشرحلك الحاجات دى بالنسبالى ايه مراتى المستقبليه خلاص ميرا حرم يوسف فرح ميرا فرح بحبك يميرا بجد ونفسى اسعدك وافرحك بحب اشوف الفرحه فى عنيكى مع انك بتفرحى من اقل حاجه حتى لو شوكولاتايه بس انا فرحتى وسعادتى انى اشوفك بتضحكى ومبسوطه مكنتش عاوز اقفل انهارده كنت عاوز افضل صاحى واكلمك  بس المواعيد اللى ام
 
 <script>
-  // exact password you asked
-  const PASS = "962025";
+function showExtraPage() {
+    document.getElementById('extraPage').style.display = 'block';
+}
 
-  // show/hide
-  function checkPass(){
-    const val = document.getElementById('passInput').value.trim();
-    if(val === PASS){
-      document.getElementById('passPage').style.display = 'none';
-      const main = document.getElementById('mainContent');
-      main.style.display = 'block';
-      main.setAttribute('aria-hidden','false');
-      // try to resume audio context on mobile
-      try{ document.getElementById('song').play().catch(()=>{}); }catch(e){}
-      logDebug('تم الدخول ✅');
+function checkPass() {
+    let p = document.getElementById("passInput").value;
+    if (p == "962025") {
+        document.getElementById("passPage").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
     } else {
-      alert('كلمة المرور غلط يا قلبي — جرب تاني');
-      logDebug('attempt failed: ' + val);
+        alert("غلط يا روحي 🥺");
     }
-  }
+}
 
-  function playSong(){
-    const a = document.getElementById('song');
-    a.play().catch(err=>{
-      // mobile autoplay can block — show message
-      alert('لأسباب في المتصفح، اضغط مرة تانية للسماح بالتشغيل');
-      logDebug('audio play error: ' + (err && err.message ? err.message : err));
-    });
-  }
-
-  // small debug helper to show if files are missing
-  function logDebug(txt){
-    const el = document.getElementById('debug');
-    el.innerText = txt;
-  }
-
-  // on load check if files exist by creating Image objects for quick test (non-blocking)
-  window.addEventListener('load',()=>{
-    const files = ['song.mp3','video.mp4','video2.mp4','image.jpg','image1.jpg','image2.jpg','image3.jpg','image4.jpg','image5.jpg'];
-    let missing = [];
-    let checked=0;
-    files.forEach(f=>{
-      // for images
-      if(f.endsWith('.jpg')){
-        const im=new Image();
-        im.onload = ()=>{ checked++; if(checked===files.length) finalize(); };
-        im.onerror = ()=>{ missing.push(f); checked++; if(checked===files.length) finalize(); };
-        im.src = f + '?_=' + Date.now();
-      } else {
-        // for media files: use fetch HEAD attempt (may be blocked by CORS on some hosts but on GitHub raw it works)
-        fetch(f, {method:'HEAD'}).then(res=>{
-          if(!res.ok) missing.push(f);
-          checked++; if(checked===files.length) finalize();
-        }).catch(e=>{
-          missing.push(f); checked++; if(checked===files.length) finalize();
-        });
-      }
-    });
-    function finalize(){
-      if(missing.length>0){
-        logDebug('ملفات مفقودة: ' + missing.join(', ')+'. تأكد من الأسماء واحفظ وفّرّش الصفحة.');
-      } else {
-        logDebug('كل الملفات موجودة ✅');
-      }
-    }
-  });
-</script>
-</body>
-</html>
+function playSong() {
+    document.getElementById("song").play();
+}
+</script></body>
+  </html>
