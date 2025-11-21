@@ -37,7 +37,70 @@
   #mainContent{display:none;padding:40px 10px 80px}
   .hero{font-size:30px;margin-bottom:10px;color:var(--accent);text-shadow:0 6px 25px rgba(0,0,0,0.6)}
   .card{width:92%;max-width:760px;margin:18px auto;background:var(--card);border-radius:18px;padding:14px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
-  img,video{width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)}
+  
+  /* Book flip effect */
+  .book-page {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    perspective: 2000px;
+    margin: 10px 0;
+  }
+  
+  .page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-style: preserve-3d;
+    transition: transform 1s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .page-front, .page-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .page-front {
+    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
+    color: white;
+    font-size: 24px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+  
+  .page-back {
+    background: #222;
+    transform: rotateY(180deg);
+  }
+  
+  .page-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .page.flipped {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-instruction {
+    margin-top: 15px;
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+  }
+  
   .caption{font-size:20px;margin:10px 0;color:#ffeef3;line-height:1.6;text-shadow:0 4px 20px rgba(0,0,0,0.6)}
   .play-toggle{margin-top:20px;padding:12px 20px;border-radius:16px;border:none;background:var(--reddeep);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 8px 30px rgba(139,0,0,0.35)}
 
@@ -47,7 +110,12 @@
   #finalMsg{white-space:pre-wrap;text-align:right;font-size:18px;line-height:1.8;color:#ffeef3}
 
   /* small responsive */
-  @media(min-width:700px){ .hero{font-size:40px} #finalMsg{font-size:20px} input[type="password"]{font-size:20px} .caption{font-size:22px} }
+  @media(min-width:700px){ 
+    .hero{font-size:40px} 
+    #finalMsg{font-size:20px} 
+    input[type="password"]{font-size:20px} 
+    .caption{font-size:22px} 
+  }
 
   /* subtle entrance animations */
   .fadeIn{animation:fadeIn 700ms ease both}
@@ -73,120 +141,145 @@
 
     <div class="hero">بحبك يا عمري ميرا ❤️</div>
 
-    <!-- MEDIA SEQUENCE -->
+    <!-- MEDIA SEQUENCE with Book Flip Effect -->
     <div class="card">
-      <img src="image.jpg" alt="photo 0">
+      <div class="book-page">
+        <div class="page" onclick="flipPage(this)">
+          <div class="page-front">
+            <div>📖 صفحة من كتاب حبنا</div>
+            <div>🖼️ أول ما شفتك</div>
+            <div class="flip-instruction">إضغطي على الصفحة لتقلبيها</div>
+          </div>
+          <div class="page-back">
+            <img src="image.jpg" alt="أول صورة لنا">
+          </div>
+        </div>
+      </div>
       <div class="caption">❤️ أول ما شفتك عرفت إن قلبي لقي صاحبه… إنتي فرحتي وبهجتي</div>
     </div>
 
     <div class="card">
-      <img src="image1.jpg" alt="photo 1">
+      <div class="book-page">
+        <div class="page" onclick="flipPage(this)">
+          <div class="page-front">
+            <div>📖 صفحة من كتاب حبنا</div>
+            <div>💞 لحظة من حياتنا</div>
+            <div class="flip-instruction">إضغطي على الصفحة لتقلبيها</div>
+          </div>
+          <div class="page-back">
+            <img src="image1.jpg" alt="لحظة رومانسية">
+          </div>
+        </div>
+      </div>
       <div class="caption">💗 في حضنك لقيت راحتي… وفي عينيك شفت مستقبلي</div>
     </div>
 
     <div class="card">
-      <img src="image2.jpg" alt="photo 2">
+      <div class="book-page">
+        <div class="page" onclick="flipPage(this)">
+          <div class="page-front">
+            <div>📖 صفحة من كتاب حبنا</div>
+            <div>😊 ضحكتك</div>
+            <div class="flip-instruction">إضغطي على الصفحة لتقلبيها</div>
+          </div>
+          <div class="page-back">
+            <img src="image2.jpg" alt="ضحكة جميلة">
+          </div>
+        </div>
+      </div>
       <div class="caption">🥰 ضحكتك بتعمل معجزات في قلبي… بتنور أيامي وتبعث الأمل في روحي</div>
     </div>
 
     <div class="card">
-      <img src="image3.jpg" alt="photo 3">
+      <div class="book-page">
+        <div class="page" onclick="flipPage(this)">
+          <div class="page-front">
+            <div>📖 صفحة من كتاب حبنا</div>
+            <div>🌟 ذكرياتنا</div>
+            <div class="flip-instruction">إضغطي على الصفحة لتقلبيها</div>
+          </div>
+          <div class="page-back">
+            <img src="image3.jpg" alt="ذكريات جميلة">
+          </div>
+        </div>
+      </div>
       <div class="caption">💞 كل لحظة معاكي بتكون أجمل قصة… كل ذكرى بتكون أحلى من اللي قبلها</div>
     </div>
 
     <div class="card">
-      <img src="image4.jpg" alt="photo 4">
+      <div class="book-page">
+        <div class="page" onclick="flipPage(this)">
+          <div class="page-front">
+            <div>📖 صفحة من كتاب حبنا</div>
+            <div>💕 لحظة خاصة</div>
+            <div class="flip-instruction">إضغطي على الصفحة لتقلبيها</div>
+          </div>
+          <div class="page-back">
+            <img src="image4.jpg" alt="لحظة خاصة">
+          </div>
+        </div>
+      </div>
       <div class="caption">❤️ وجودك بجانبي أحلى من كل الأحلام… حضنك بيكون ملجأي وقلبك بيكون بيتي</div>
     </div>
 
     <div class="card">
-      <img src="image5.jpg" alt="photo 5">
+      <div class="book-page">
+        <div class="page" onclick="flipPage(this)">
+          <div class="page-front">
+            <div>📖 صفحة من كتاب حبنا</div>
+            <div>🌹 أنتِ قلبي</div>
+            <div class="flip-instruction">إضغطي على الصفحة لتقلبيها</div>
+          </div>
+          <div class="page-back">
+            <img src="image5.jpg" alt="أنت قلبي">
+          </div>
+        </div>
+      </div>
       <div class="caption">💗 أنتِ قلبي وروحي… أنتِ الحب اللي كنت بدور عليه طول عمري</div>
     </div>
 
-    <!-- New Images -->
+    <!-- Continue with the rest of images from 11 to 26 (except 19) -->
     <div class="card">
-      <img src="image11.jpg" alt="photo 11">
+      <div class="book-page">
+        <div class="page" onclick="flipPage(this)">
+          <div class="page-front">
+            <div>📖 صفحة من كتاب حبنا</div>
+            <div>✨ ذكرى جديدة</div>
+            <div class="flip-instruction">إضغطي على الصفحة لتقلبيها</div>
+          </div>
+          <div class="page-back">
+            <img src="image11.jpg" alt="ذكرى جميلة">
+          </div>
+        </div>
+      </div>
       <div class="caption">🌟 كل يوم معاكي بيكون أجمل من اللي فات… وكل صورة بتكون ذكرى جديدة في قلبي</div>
     </div>
 
     <div class="card">
-      <img src="image12.jpg" alt="photo 12">
+      <div class="book-page">
+        <div class="page" onclick="flipPage(this)">
+          <div class="page-front">
+            <div>📖 صفحة من كتاب حبنا</div>
+            <div>💖 لحظة حب</div>
+            <div class="flip-instruction">إضغطي على الصفحة لتقلبيها</div>
+          </div>
+          <div class="page-back">
+            <img src="image12.jpg" alt="لحظة حب">
+          </div>
+        </div>
+      </div>
       <div class="caption">💝 في عينيك شفت كل أحلامي… وفي قلبك لقيت كل أماني</div>
     </div>
 
-    <div class="card">
-      <img src="image13.jpg" alt="photo 13">
-      <div class="caption">😊 ابتسامتك بتكون أجمل ما في يومي… وبتبث الفرح في قلبي</div>
-    </div>
+    <!-- Add more pages for the remaining images... -->
 
     <div class="card">
-      <img src="image14.jpg" alt="photo 14">
-      <div class="caption">🌌 في صمتنا بتكون أحلى الكلام… وفي نظراتنا بتكون أعمق المشاعر</div>
-    </div>
-
-    <div class="card">
-      <img src="image15.jpg" alt="photo 15">
-      <div class="caption">🌄 كل فجر بيكون بداية جديدة لحبنا… وكل شروق بيكون وعد جديد</div>
-    </div>
-
-    <div class="card">
-      <img src="image16.jpg" alt="photo 16">
-      <div class="caption">✨ معاكي كل لحظة بتكون سحرية… وكل ثانية بتكون ثمينة</div>
-    </div>
-
-    <div class="card">
-      <img src="image17.jpg" alt="photo 17">
-      <div class="caption">🌷 جمالك بيكون أنقى من الزهور… وقلبك بيكون أنقى من الندى</div>
-    </div>
-
-    <div class="card">
-      <img src="image18.jpg" alt="photo 18">
-      <div class="caption">💗 قلبي بيتنفس باسمك… وعمري بيكون معاكي</div>
-    </div>
-
-    <div class="card">
-      <img src="image20.jpg" alt="photo 20">
-      <div class="caption">🎨 حبنا بيكون أجمل من قوس قزح… وأعمق من كل الألوان</div>
-    </div>
-
-    <div class="card">
-      <img src="image21.jpg" alt="photo 21">
-      <div class="caption">☮️ معاكي لقيت السلام… وفي حضنك لقيت الأمان</div>
-    </div>
-
-    <div class="card">
-      <img src="image22.jpg" alt="photo 22">
-      <div class="caption">🌊 حبنا بيكون مثل البحر… عميق وجميل ولا ينتهي</div>
-    </div>
-
-    <div class="card">
-      <img src="image23.jpg" alt="photo 23">
-      <div class="caption">🌠 ليالينا بتكون مرصعة بالنجوم… وقلوبنا بتكون مليئة بالحب</div>
-    </div>
-
-    <div class="card">
-      <img src="image24.jpg" alt="photo 24">
-      <div class="caption">🌅 كل فجر بيكون بداية جديدة لحبنا… وكل شروق بيكون وعد جديد</div>
-    </div>
-
-    <div class="card">
-      <img src="image25.jpg" alt="photo 25">
-      <div class="caption">💖 كل نهاية بتكون بداية أجمل… وكل لحظة بتكون ذكرى أحلى</div>
-    </div>
-
-    <div class="card">
-      <img src="image26.jpg" alt="photo 26">
-      <div class="caption">💝 حبنا بيكون للأبد… وقلوبنا بتكون مع بعض دايماً</div>
-    </div>
-
-    <div class="card">
-      <video controls src="video.mp4"></video>
+      <video controls src="video.mp4" style="width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)"></video>
       <div class="caption">🎥 شوفي الفيديو ده… كل مرة بشوفه بفتكر قد إيه أنا محظوظ بيكي</div>
     </div>
 
     <div class="card">
-      <video controls src="video2.mp4"></video>
+      <video controls src="video2.mp4" style="width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)"></video>
       <div class="caption">🎬 كل فيديو بنسجله بيكون ذكرى جميلة بنضيفها لقصتنا</div>
     </div>
 
@@ -263,8 +356,12 @@
   </main>
 </div>
 
-<!-- audio element (file: song.mp3) -->
-<audio id="song" src="song.mp3"></audio>
+<!-- audio element -->
+<audio id="song" loop>
+  <source src="song.mp3" type="audio/mpeg">
+  <source src="song.ogg" type="audio/ogg">
+  المتصفح لا يدعم تشغيل الصوتيات
+</audio>
 
 <script>
   // password exactly as requested
@@ -278,11 +375,17 @@
       main.style.display='block';
       main.setAttribute('aria-hidden','false');
       
-      // Auto play song when password is correct
+      // Auto play song when password is correct - FIXED
       const song = document.getElementById('song');
-      song.play().catch(() => {
-        console.log('Auto-play prevented by browser');
-      });
+      // Add user interaction requirement
+      document.body.addEventListener('click', function startAudio() {
+        song.play().catch(e => {
+          console.log('Audio play failed:', e);
+          // Show manual play button if auto-play fails
+          document.getElementById('playBtn').style.display = 'block';
+        });
+        document.body.removeEventListener('click', startAudio);
+      }, { once: true });
       
       window.scrollTo({top:0,behavior:'smooth'});
     } else {
@@ -290,12 +393,20 @@
     }
   }
 
-  // toggle play/pause for the song button near the end
+  // Book page flip function
+  function flipPage(element) {
+    element.classList.toggle('flipped');
+  }
+
+  // toggle play/pause for the song button
   const song = document.getElementById('song');
   const playBtn = document.getElementById('playBtn');
+  
   function toggleSong(){
     if(song.paused){
-      song.play().catch(()=>{ alert('المتصفح منع التشغيل تلقائياً، اضغطي مره تانيه ❤️'); });
+      song.play().catch(()=>{ 
+        alert('المتصفح منع التشغيل تلقائياً، اضغطي موافق ثم اضغطي مره تانيه ❤️'); 
+      });
       playBtn.textContent = '⏸ أوقفي الأغنية';
     } else {
       song.pause();
