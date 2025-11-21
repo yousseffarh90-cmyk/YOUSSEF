@@ -4,8 +4,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>لميرا ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   :root{
     --dark:#1a0004;
@@ -13,160 +11,102 @@
     --redmid:#ff2f4b;
     --accent:#ff7a9a;
     --card: rgba(255,255,255,0.06);
-    --gold: #ffd700;
   }
   *{box-sizing:border-box}
   body{
     margin:0;padding:0;
-    font-family: "Tajawal", Arial, sans-serif;
+    font-family: Arial, sans-serif;
     background: linear-gradient(180deg,var(--dark), #330006);
     color:#fff;text-align:center;overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
-    position: relative;
   }
 
-  /* floating hearts */
-  .heart{position:fixed;bottom:-40px;font-size:22px;opacity:.9;animation:floatUp 6s linear infinite;pointer-events:none;z-index:1}
-  .date-heart{position:fixed;bottom:-40px;font-size:18px;opacity:.9;animation:floatUp 7s linear infinite;pointer-events:none;z-index:1;color:var(--gold);font-weight:bold}
-  @keyframes floatUp{0%{transform:translateY(0) scale(1) rotate(0deg);opacity:1}100%{transform:translateY(-120vh) scale(1.6) rotate(20deg);opacity:0}}
+  /* floating hearts - optimized */
+  .heart{position:fixed;bottom:-40px;font-size:22px;opacity:.9;animation:floatUp 8s linear infinite;pointer-events:none;z-index:1}
+  @keyframes floatUp{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-120vh) scale(1.6);opacity:0}}
 
-  /* decorative elements */
-  .sparkle{position:fixed;width:4px;height:4px;background:var(--gold);border-radius:50%;pointer-events:none;animation:sparkle 4s linear infinite;z-index:1}
-  @keyframes sparkle{0%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0)}}
-  
-  .border-decoration{position:absolute;width:100%;height:100%;top:0;left:0;pointer-events:none;z-index:2;background:radial-gradient(circle at 20% 80%, rgba(255,215,0,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,122,154,0.1) 0%, transparent 50%);}
-  
   /* layout */
-  .wrap{max-width:900px;margin:0 auto;padding:20px;position:relative;z-index:3}
+  .wrap{max-width:900px;margin:0 auto;padding:20px}
   .center{display:flex;flex-direction:column;align-items:center;justify-content:center}
 
-  /* password page */
+  /* password page - improved */
   #passPage{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px;position:relative}
-  #passBox{background:var(--card);padding:30px;border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,122,154,0.2);max-width:420px;width:100%;border:1px solid rgba(255,122,154,0.2);position:relative;overflow:hidden}
-  #passBox::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle, rgba(255,122,154,0.1) 0%, transparent 70%);animation:rotate 10s linear infinite}
-  @keyframes rotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-  h1.small{margin:0 0 12px 0;color:var(--accent);font-size:26px;text-shadow:0 0 10px rgba(255,122,154,0.5)}
-  input[type="password"]{width:100%;padding:12px;border-radius:12px;border:none;font-size:18px;text-align:center;margin-top:8px;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,122,154,0.3);transition:all 0.3s}
-  input[type="password"]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 10px rgba(255,122,154,0.5)}
-  .btn{margin-top:12px;padding:12px 18px;border-radius:12px;border:none;background:var(--redmid);color:#fff;font-size:17px;cursor:pointer;box-shadow:0 6px 20px rgba(255,0,60,0.12);transition:all 0.3s;position:relative;overflow:hidden}
-  .btn:hover{background:var(--reddeep);transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,0,60,0.3)}
+  #passBox{background:var(--card);padding:30px;border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,0.6);max-width:420px;width:100%}
+  h1.small{margin:0 0 12px 0;color:var(--accent);font-size:26px}
+  input[type="password"]{width:100%;padding:12px;border-radius:12px;border:none;font-size:18px;text-align:center;margin-top:8px;background:rgba(255,255,255,0.1);color:#fff}
+  .btn{margin-top:12px;padding:12px 18px;border-radius:12px;border:none;background:var(--redmid);color:#fff;font-size:17px;cursor:pointer;box-shadow:0 6px 20px rgba(255,0,60,0.12)}
   .btn:active{transform:scale(.99)}
-  .btn::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);transition:all 0.5s}
-  .btn:hover::after{left:100%}
 
   /* main content */
   #mainContent{display:none;padding:40px 10px 80px}
-  .hero{font-size:30px;margin-bottom:10px;color:var(--accent);text-shadow:0 0 15px rgba(255,122,154,0.7);position:relative;padding:10px}
-  .hero::before, .hero::after{content:'✦';position:absolute;color:var(--gold);font-size:20px;top:50%;transform:translateY(-50%)}
-  .hero::before{left:10px}
-  .hero::after{right:10px}
-  .card{width:92%;max-width:760px;margin:18px auto;background:var(--card);border-radius:18px;padding:14px;box-shadow:0 8px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,122,154,0.1);border:1px solid rgba(255,122,154,0.1);position:relative;overflow:hidden;transition:transform 0.3s}
-  .card:hover{transform:translateY(-5px)}
-  .card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg, var(--redmid), var(--accent), var(--redmid))}
-  
-  /* flip book effect for images */
-  .flip-container{width:100%;perspective:1000px;margin:10px 0}
-  .flipper{position:relative;width:100%;height:300px;transition:transform 0.8s;transform-style:preserve-3d}
-  .flip-container:hover .flipper{transform:rotateY(180deg)}
-  .front, .back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:14px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.45)}
-  .front{background:linear-gradient(45deg, var(--reddeep), var(--redmid));display:flex;align-items:center;justify-content:center;color:white;font-size:24px;text-shadow:0 2px 10px rgba(0,0,0,0.5)}
-  .back{transform:rotateY(180deg);background:#222}
-  .back img{width:100%;height:100%;object-fit:cover}
-  
-  .caption{font-size:20px;margin:10px 0;color:#ffeef3;line-height:1.6;text-shadow:0 4px 20px rgba(0,0,0,0.6);position:relative;padding:10px}
-  .caption::before{content:'❦';position:absolute;left:0;top:0;color:var(--accent)}
-  .play-toggle{margin-top:20px;padding:12px 20px;border-radius:16px;border:none;background:var(--reddeep);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 8px 30px rgba(139,0,0,0.35);transition:all 0.3s;position:relative;overflow:hidden}
-  .play-toggle:hover{transform:translateY(-2px);background:var(--redmid);box-shadow:0 10px 35px rgba(255,47,75,0.4)}
-  .play-toggle::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);transform:translateX(-100%);transition:transform 0.6s}
-  .play-toggle:hover::before{transform:translateX(100%)}
+  .hero{font-size:30px;margin-bottom:10px;color:var(--accent);text-shadow:0 6px 25px rgba(0,0,0,0.6)}
+  .card{width:92%;max-width:760px;margin:18px auto;background:var(--card);border-radius:18px;padding:14px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  img,video{width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)}
+  .caption{font-size:20px;margin:10px 0;color:#ffeef3;line-height:1.6;text-shadow:0 4px 20px rgba(0,0,0,0.6)}
+  .play-toggle{margin-top:20px;padding:12px 20px;border-radius:16px;border:none;background:var(--reddeep);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 8px 30px rgba(139,0,0,0.35)}
 
   /* "فاكره دي؟" header and final message */
-  #rememberHeader{font-size:34px;color:#ffd6dc;margin-top:36px;margin-bottom:8px;text-shadow:0 6px 25px rgba(0,0,0,0.6), 0 0 15px rgba(255,122,154,0.5);position:relative;padding:15px 0}
-  #rememberHeader::before, #rememberHeader::after{content:'✧';position:absolute;color:var(--gold);font-size:24px}
-  #rememberHeader::before{left:20px}
-  #rememberHeader::after{right:20px}
-  #finalMsgBox{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); padding:20px;border-radius:16px;margin-top:16px;box-shadow:0 10px 40px rgba(0,0,0,0.55), 0 0 25px rgba(255,122,154,0.1);border:1px solid rgba(255,122,154,0.1);position:relative}
-  #finalMsgBox::before{content:'';position:absolute;top:10px;right:10px;width:30px;height:30px;border-top:2px solid var(--accent);border-right:2px solid var(--accent)}
-  #finalMsgBox::after{content:'';position:absolute;bottom:10px;left:10px;width:30px;height:30px;border-bottom:2px solid var(--accent);border-left:2px solid var(--accent)}
-  #finalMsg{white-space:pre-wrap;text-align:right;font-size:18px;line-height:1.8;color:#ffeef3;text-shadow:0 2px 5px rgba(0,0,0,0.3)}
+  #rememberHeader{font-size:34px;color:#ffd6dc;margin-top:36px;margin-bottom:8px;text-shadow:0 6px 25px rgba(0,0,0,0.6)}
+  #finalMsgBox{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); padding:20px;border-radius:16px;margin-top:16px;box-shadow:0 10px 40px rgba(0,0,0,0.55)}
+  #finalMsg{white-space:pre-wrap;text-align:right;font-size:18px;line-height:1.8;color:#ffeef3}
 
   /* small responsive */
-  @media(min-width:700px){ 
-    .hero{font-size:40px} 
-    #finalMsg{font-size:20px} 
-    input[type="password"]{font-size:20px} 
-    .caption{font-size:22px} 
-    .flipper{height:400px}
-  }
+  @media(min-width:700px){ .hero{font-size:40px} #finalMsg{font-size:20px} input[type="password"]{font-size:20px} .caption{font-size:22px} }
 
   /* subtle entrance animations */
   .fadeIn{animation:fadeIn 700ms ease both}
   @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
   
-  /* text glow effect */
-  .glow{animation:glow 2s ease-in-out infinite alternate}
-  @keyframes glow{from{text-shadow:0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent), 0 0 20px var(--accent)}to{text-shadow:0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--accent), 0 0 40px var(--accent)}}
-  
-  /* decorative corner */
-  .corner{position:absolute;width:30px;height:30px}
-  .corner-tl{top:10px;left:10px;border-top:2px solid var(--gold);border-left:2px solid var(--gold)}
-  .corner-tr{top:10px;right:10px;border-top:2px solid var(--gold);border-right:2px solid var(--gold)}
-  .corner-bl{bottom:10px;left:10px;border-bottom:2px solid var(--gold);border-left:2px solid var(--gold)}
-  .corner-br{bottom:10px;right:10px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold)}
+  /* loading placeholder */
+  .media-placeholder {
+    height: 300px;
+    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    margin: 10px 0;
+    color: white;
+    font-size: 20px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
 </style>
 </head>
 <body>
 
-<!-- floating hearts and date elements -->
+<!-- floating hearts - optimized performance -->
 <script>
+  // Reduced number of hearts for better performance
+  let heartCount = 0;
+  const maxHearts = 15;
+  
   function spawnHeart(){ 
-    const d=document.createElement('div'); 
-    d.className='heart'; 
-    d.style.left=(Math.random()*90)+'vw'; 
-    d.innerText='❤️'; 
-    document.body.appendChild(d); 
-    setTimeout(()=>d.remove(),7000); 
+    if (heartCount < maxHearts) {
+      const d = document.createElement('div'); 
+      d.className = 'heart'; 
+      d.style.left = (Math.random() * 90) + 'vw'; 
+      d.innerText = '❤️'; 
+      document.body.appendChild(d); 
+      heartCount++;
+      
+      setTimeout(() => {
+        d.remove();
+        heartCount--;
+      }, 8000);
+    }
   }
   
-  function spawnDateHeart(){ 
-    const d=document.createElement('div'); 
-    d.className='date-heart'; 
-    d.style.left=(Math.random()*90)+'vw'; 
-    d.innerText='9/6'; 
-    document.body.appendChild(d); 
-    setTimeout(()=>d.remove(),7000); 
-  }
-  
-  function spawnSparkle(){ 
-    const s=document.createElement('div'); 
-    s.className='sparkle'; 
-    s.style.left=(Math.random()*90)+'vw'; 
-    s.style.top=(Math.random()*90)+'vh'; 
-    s.style.animationDelay = (Math.random()*4)+'s';
-    document.body.appendChild(s); 
-    setTimeout(()=>s.remove(),4000); 
-  }
-  
-  setInterval(spawnHeart,600);
-  setInterval(spawnDateHeart,800);
-  setInterval(spawnSparkle,300);
+  // Reduced frequency for better performance
+  setInterval(spawnHeart, 1000);
 </script>
-
-<!-- decorative border -->
-<div class="border-decoration"></div>
 
 <div class="wrap">
 
-  <!-- PASSWORD PAGE -->
+  <!-- PASSWORD PAGE - improved -->
   <section id="passPage" class="center">
-    <div class="corner corner-tl"></div>
-    <div class="corner corner-tr"></div>
-    <div class="corner corner-bl"></div>
-    <div class="corner corner-br"></div>
-    
     <div id="passBox" class="fadeIn">
-      <h1 class="small glow">Enter your password MIRA ❤️</h1>
-      <input id="passInput" type="password" placeholder="اكتبي الباسورد هنا...">
+      <h1 class="small">Enter your password MIRA ❤️</h1>
+      <input id="passInput" type="password" placeholder="اكتبي الباسورد هنا..." autocomplete="off" autofocus>
       <button class="btn" onclick="checkPass()">دخول</button>
       <p style="font-size:13px;margin-top:10px;color:#ffd7dd">الباسورد: <strong>962025</strong></p>
     </div>
@@ -175,92 +115,50 @@
   <!-- MAIN CONTENT (hidden until correct pass) -->
   <main id="mainContent" class="fadeIn" aria-hidden="true">
 
-    <div class="hero glow">I LOVE YOU MIRA ❤</div>
+    <div class="hero">I LOVE YOU MIRA ❤</div>
 
-    <!-- MEDIA SEQUENCE with flip book effect -->
+    <!-- MEDIA SEQUENCE with placeholders -->
     <div class="card">
-      <div class="flip-container">
-        <div class="flipper">
-          <div class="front">ذكرياتنا الجميلة ❤️</div>
-          <div class="back">
-            <img src="image.jpg" alt="photo 0" onerror="this.parentNode.parentNode.parentNode.innerHTML='<div class=\'front\'>صورة جميلة لميرا ❤️</div>'">
-          </div>
-        </div>
-      </div>
+      <div class="media-placeholder">❤️ صورة جميلة لميرا</div>
       <div class="caption">❤️ متزعليش مني يا ميرا… إنتي فرحتي</div>
     </div>
 
     <div class="card">
-      <div class="flip-container">
-        <div class="flipper">
-          <div class="front">لحظات لا تنسى 💗</div>
-          <div class="back">
-            <img src="image1.jpg" alt="photo 1" onerror="this.parentNode.parentNode.parentNode.innerHTML='<div class=\'front\'>لحظات رومانسية 💗</div>'">
-          </div>
-        </div>
-      </div>
+      <div class="media-placeholder">💗 صورة رومانسية</div>
       <div class="caption">💗 انتي راحتي… و أجمل حاجة حصلتلي</div>
     </div>
 
     <div class="card">
-      <div class="flip-container">
-        <div class="flipper">
-          <div class="front">ضحكتك نور حياتي 🥰</div>
-          <div class="back">
-            <img src="image2.jpg" alt="photo 2" onerror="this.parentNode.parentNode.parentNode.innerHTML='<div class=\'front\'>ضحكتك الجميلة 🥰</div>'">
-          </div>
-        </div>
-      </div>
+      <div class="media-placeholder">🥰 لحظة ضحك</div>
       <div class="caption">🥰 ضحكتك بتنور يومي</div>
     </div>
 
     <div class="card">
-      <div class="flip-container">
-        <div class="flipper">
-          <div class="front">لحظات حلوة بينا 💞</div>
-          <div class="back">
-            <img src="image3.jpg" alt="photo 3" onerror="this.parentNode.parentNode.parentNode.innerHTML='<div class=\'front\'>ذكرياتنا معاً 💞</div>'">
-          </div>
-        </div>
-      </div>
+      <div class="media-placeholder">💞 ذكريات جميلة</div>
       <div class="caption">💞 كل صورة بتحكي لحظة حلوة بينا</div>
     </div>
 
     <div class="card">
-      <video controls src="video.mp4" style="width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)"></video>
+      <div class="media-placeholder">🎥 فيديو خاص</div>
       <div class="caption">🎥 افتحي الفيديو وشوفي ذيك اللحظة</div>
     </div>
 
     <div class="card">
-      <div class="flip-container">
-        <div class="flipper">
-          <div class="front">وجودك يعني لي كل شيء ❤️</div>
-          <div class="back">
-            <img src="image4.jpg" alt="photo 4" onerror="this.parentNode.parentNode.parentNode.innerHTML='<div class=\'front\'>أنتِ كل شيء ❤️</div>'">
-          </div>
-        </div>
-      </div>
+      <div class="media-placeholder">❤️ لحظة خاصة</div>
       <div class="caption">❤️ وجودك كفاية — متزعليش مني</div>
     </div>
 
     <div class="card">
-      <video controls src="video2.mp4" style="width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)"></video>
+      <div class="media-placeholder">🎬 فيديو تاني</div>
       <div class="caption">🎬 لحظة تانية بنحبها</div>
     </div>
 
     <div class="card">
-      <div class="flip-container">
-        <div class="flipper">
-          <div class="front">أنتِ قلبي وروحي 💗</div>
-          <div class="back">
-            <img src="image5.jpg" alt="photo 5" onerror="this.parentNode.parentNode.parentNode.innerHTML='<div class=\'front\'>قلبي وروحي 💗</div>'">
-          </div>
-        </div>
-      </div>
+      <div class="media-placeholder">💗 صورة أخيرة</div>
       <div class="caption">💗 انتي قلبي وروحي، ميرا</div>
     </div>
 
-    <!-- PLAY/PAUSE BUTTON (قبل الرسالة الطويلة) -->
+    <!-- PLAY/PAUSE BUTTON -->
     <div style="display:flex;justify-content:center;">
       <button id="playBtn" class="play-toggle">▶ تشغيل الأغنية</button>
     </div>
@@ -268,12 +166,8 @@
     <!-- 'فاكره دي؟' header -->
     <div id="rememberHeader">فاكره دي؟ ❤️</div>
 
-    <!-- FINAL LONG MESSAGE (exactly as provided) -->
+    <!-- FINAL LONG MESSAGE -->
     <div id="finalMsgBox" class="card">
-      <div class="corner corner-tl"></div>
-      <div class="corner corner-tr"></div>
-      <div class="corner corner-bl"></div>
-      <div class="corner corner-br"></div>
       <div id="finalMsg">
 بجد مش عارف اقولك ايه!! 
 لو اعرف كل دا مكنش عدى علينا دقيقه زعلانين فيها من بعض يمكن من فتره قريبه مكنتش حاسس بكل الحب ده من نحيتك احنا اه مبقلناش غير شهر اصلا بس كل حاجه بتطور بسرعه اوى زى م انتى شايفه 
@@ -351,8 +245,6 @@
       const main = document.getElementById('mainContent');
       main.style.display='block';
       main.setAttribute('aria-hidden','false');
-      // do NOT autoplay song (user wanted button at the end),
-      // but we can optionally scroll to top of content
       window.scrollTo({top:0,behavior:'smooth'});
     } else {
       alert('كلمة المرور غلط يا قلبي — جرب تاني');
@@ -382,6 +274,11 @@
   
   // Add event listener to play button
   document.getElementById('playBtn').addEventListener('click', toggleSong);
+  
+  // Focus on password input when page loads
+  window.addEventListener('load', function() {
+    document.getElementById('passInput').focus();
+  });
 </script>
 
 </body>
