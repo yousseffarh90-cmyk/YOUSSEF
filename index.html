@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>لميرا ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --dark:#1a0004;
@@ -15,7 +16,7 @@
   *{box-sizing:border-box}
   body{
     margin:0;padding:0;
-    font-family: Arial, sans-serif;
+    font-family: 'Playfair Display', serif;
     background: linear-gradient(180deg,var(--dark), #330006);
     color:#fff;text-align:center;overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
@@ -28,26 +29,86 @@
   /* password page - fixed */
   #passPage{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px;position:relative}
   #passBox{background:var(--card);padding:30px;border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,0.6);max-width:420px;width:100%}
-  h1.small{margin:0 0 12px 0;color:var(--accent);font-size:26px}
-  input[type="password"]{width:100%;padding:12px;border-radius:12px;border:none;font-size:18px;text-align:center;margin-top:8px;background:rgba(255,255,255,0.1);color:#fff}
-  .btn{margin-top:12px;padding:12px 18px;border-radius:12px;border:none;background:var(--redmid);color:#fff;font-size:17px;cursor:pointer;box-shadow:0 6px 20px rgba(255,0,60,0.12)}
+  h1.small{margin:0 0 12px 0;color:var(--accent);font-size:26px;font-family: 'Playfair Display', serif;}
+  input[type="password"]{width:100%;padding:12px;border-radius:12px;border:none;font-size:18px;text-align:center;margin-top:8px;background:rgba(255,255,255,0.1);color:#fff;font-family: 'Playfair Display', serif;}
+  .btn{margin-top:12px;padding:12px 18px;border-radius:12px;border:none;background:var(--redmid);color:#fff;font-size:17px;cursor:pointer;box-shadow:0 6px 20px rgba(255,0,60,0.12);font-family: 'Playfair Display', serif;}
   .btn:active{transform:scale(.99)}
 
   /* main content */
   #mainContent{display:none;padding:40px 10px 80px}
-  .hero{font-size:30px;margin-bottom:10px;color:var(--accent);text-shadow:0 6px 25px rgba(0,0,0,0.6)}
+  .hero{font-size:30px;margin-bottom:10px;color:var(--accent);text-shadow:0 6px 25px rgba(0,0,0,0.6);font-family: 'Playfair Display', serif;}
   .card{width:92%;max-width:760px;margin:18px auto;background:var(--card);border-radius:18px;padding:14px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
-  img,video{width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)}
-  .caption{font-size:20px;margin:10px 0;color:#ffeef3;line-height:1.6;text-shadow:0 4px 20px rgba(0,0,0,0.6)}
-  .play-toggle{margin-top:20px;padding:12px 20px;border-radius:16px;border:none;background:var(--reddeep);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 8px 30px rgba(139,0,0,0.35)}
+  
+  /* image flip container */
+  .flip-container {
+    width: 100%;
+    perspective: 1000px;
+    margin: 10px 0;
+  }
+  .flipper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  .flip-container.flipped .flipper {
+    transform: rotateY(180deg);
+  }
+  .front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow:0 12px 40px rgba(0,0,0,0.45);
+  }
+  .back {
+    transform: rotateY(180deg);
+  }
+  .back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .front {
+    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    padding: 20px;
+  }
+  .flip-btn {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .caption{font-size:20px;margin:10px 0;color:#ffeef3;line-height:1.6;text-shadow:0 4px 20px rgba(0,0,0,0.6);font-family: 'Playfair Display', serif;}
+  .play-toggle{margin-top:20px;padding:12px 20px;border-radius:16px;border:none;background:var(--reddeep);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 8px 30px rgba(139,0,0,0.35);font-family: 'Playfair Display', serif;}
 
   /* "فاكره دي؟" header and final message */
-  #rememberHeader{font-size:34px;color:#ffd6dc;margin-top:36px;margin-bottom:8px;text-shadow:0 6px 25px rgba(0,0,0,0.6)}
+  #rememberHeader{font-size:34px;color:#ffd6dc;margin-top:36px;margin-bottom:8px;text-shadow:0 6px 25px rgba(0,0,0,0.6);font-family: 'Playfair Display', serif;}
   #finalMsgBox{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); padding:20px;border-radius:16px;margin-top:16px;box-shadow:0 10px 40px rgba(0,0,0,0.55)}
-  #finalMsg{white-space:pre-wrap;text-align:right;font-size:18px;line-height:1.8;color:#ffeef3}
+  #finalMsg{white-space:pre-wrap;text-align:right;font-size:18px;line-height:1.8;color:#ffeef3;font-family: 'Playfair Display', serif;}
 
   /* small responsive */
-  @media(min-width:700px){ .hero{font-size:40px} #finalMsg{font-size:20px} input[type="password"]{font-size:20px} .caption{font-size:22px} }
+  @media(min-width:700px){ 
+    .hero{font-size:40px} 
+    #finalMsg{font-size:20px} 
+    input[type="password"]{font-size:20px} 
+    .caption{font-size:22px} 
+  }
 
   /* subtle entrance animations */
   .fadeIn{animation:fadeIn 700ms ease both}
@@ -61,66 +122,132 @@
   <!-- PASSWORD PAGE - fixed -->
   <section id="passPage" class="center">
     <div id="passBox" class="fadeIn">
-      <h1 class="small">Enter your password MIRA ❤️</h1>
-      <input id="passInput" type="password" placeholder="اكتبي الباسورد هنا..." autocomplete="off" autofocus>
-      <button class="btn" onclick="checkPass()">دخول</button>
-      <p style="font-size:13px;margin-top:10px;color:#ffd7dd">الباسورد: <strong>962025</strong></p>
+      <h1 class="small">✍️ اكتبى تاريخ ارتباطنا يعمري ❤️</h1>
+      <input id="passInput" type="password" placeholder="هنا..." autocomplete="off" autofocus>
+      <button class="btn" onclick="checkPass()">أدخلي عالم حبنا ✨</button>
+      <p style="font-size:13px;margin-top:10px;color:#ffd7dd;font-family: 'Playfair Display', serif;">التاريخ: <strong>962025</strong></p>
     </div>
   </section>
 
   <!-- MAIN CONTENT (hidden until correct pass) -->
   <main id="mainContent" class="fadeIn" aria-hidden="true">
 
-    <div class="hero">I LOVE YOU MIRA ❤</div>
+    <div class="hero">بحبك يا عمري ميرا ❤️</div>
 
-    <!-- MEDIA SEQUENCE - original images restored -->
+    <!-- MEDIA SEQUENCE with flip effect -->
     <div class="card">
-      <img src="image.jpg" alt="photo 0">
-      <div class="caption">❤️ متزعليش مني يا ميرا… إنتي فرحتي</div>
+      <div class="flip-container" id="flip-0">
+        <div class="flipper">
+          <div class="front">
+            <div>🖼️ أول ما شفتك</div>
+            <div style="font-size:18px;margin-top:10px;">اضغطي علشان تشوفي أول ذكرى لنا</div>
+            <button class="flip-btn" onclick="flipImage(0)">قلبي الصورة 💖</button>
+          </div>
+          <div class="back">
+            <img src="image.jpg" alt="أول صورة لنا">
+          </div>
+        </div>
+      </div>
+      <div class="caption">❤️ أول ما شفتك عرفت إن قلبي لقي صاحبه… إنتي فرحتي وبهجتي</div>
     </div>
 
     <div class="card">
-      <img src="image1.jpg" alt="photo 1">
-      <div class="caption">💗 انتي راحتي… و أجمل حاجة حصلتلي</div>
+      <div class="flip-container" id="flip-1">
+        <div class="flipper">
+          <div class="front">
+            <div>💞 لحظة من حياتنا</div>
+            <div style="font-size:18px;margin-top:10px;">اضغطي علشان تشوفي الذكرى</div>
+            <button class="flip-btn" onclick="flipImage(1)">قلبي الصورة 💖</button>
+          </div>
+          <div class="back">
+            <img src="image1.jpg" alt="لحظة رومانسية">
+          </div>
+        </div>
+      </div>
+      <div class="caption">💗 في حضنك لقيت راحتي… وفي عينيك شفت مستقبلي</div>
     </div>
 
     <div class="card">
-      <img src="image2.jpg" alt="photo 2">
-      <div class="caption">🥰 ضحكتك بتنور يومي</div>
+      <div class="flip-container" id="flip-2">
+        <div class="flipper">
+          <div class="front">
+            <div>😊 ضحكتك</div>
+            <div style="font-size:18px;margin-top:10px;">اضغطي علشان تشوفي الذكرى</div>
+            <button class="flip-btn" onclick="flipImage(2)">قلبي الصورة 💖</button>
+          </div>
+          <div class="back">
+            <img src="image2.jpg" alt="ضحكة جميلة">
+          </div>
+        </div>
+      </div>
+      <div class="caption">🥰 ضحكتك بتعمل معجزات في قلبي… بتنور أيامي وتبعث الأمل في روحي</div>
     </div>
 
     <div class="card">
-      <img src="image3.jpg" alt="photo 3">
-      <div class="caption">💞 كل صورة بتحكي لحظة حلوة بينا</div>
+      <div class="flip-container" id="flip-3">
+        <div class="flipper">
+          <div class="front">
+            <div>🌟 ذكرياتنا</div>
+            <div style="font-size:18px;margin-top:10px;">اضغطي علشان تشوفي الذكرى</div>
+            <button class="flip-btn" onclick="flipImage(3)">قلبي الصورة 💖</button>
+          </div>
+          <div class="back">
+            <img src="image3.jpg" alt="ذكريات جميلة">
+          </div>
+        </div>
+      </div>
+      <div class="caption">💞 كل لحظة معاكي بتكون أجمل قصة… كل ذكرى بتكون أحلى من اللي قبلها</div>
     </div>
 
     <div class="card">
-      <video controls src="video.mp4"></video>
-      <div class="caption">🎥 افتحي الفيديو وشوفي ذيك اللحظة</div>
+      <video controls src="video.mp4" style="width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)"></video>
+      <div class="caption">🎥 شوفي الفيديو ده… كل مرة بشوفه بفتكر قد إيه أنا محظوظ بيكي</div>
     </div>
 
     <div class="card">
-      <img src="image4.jpg" alt="photo 4">
-      <div class="caption">❤️ وجودك كفاية — متزعليش مني</div>
+      <div class="flip-container" id="flip-4">
+        <div class="flipper">
+          <div class="front">
+            <div>💕 لحظة خاصة</div>
+            <div style="font-size:18px;margin-top:10px;">اضغطي علشان تشوفي الذكرى</div>
+            <button class="flip-btn" onclick="flipImage(4)">قلبي الصورة 💖</button>
+          </div>
+          <div class="back">
+            <img src="image4.jpg" alt="لحظة خاصة">
+          </div>
+        </div>
+      </div>
+      <div class="caption">❤️ وجودك بجانبي أحلى من كل الأحلام… حضنك بيكون ملجأي وقلبك بيكون بيتي</div>
     </div>
 
     <div class="card">
-      <video controls src="video2.mp4"></video>
-      <div class="caption">🎬 لحظة تانية بنحبها</div>
+      <video controls src="video2.mp4" style="width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)"></video>
+      <div class="caption">🎬 كل فيديو بنسجله بيكون ذكرى جميلة بنضيفها لقصتنا</div>
     </div>
 
     <div class="card">
-      <img src="image5.jpg" alt="photo 5">
-      <div class="caption">💗 انتي قلبي وروحي، ميرا</div>
+      <div class="flip-container" id="flip-5">
+        <div class="flipper">
+          <div class="front">
+            <div>🌹 أنتِ قلبي</div>
+            <div style="font-size:18px;margin-top:10px;">اضغطي علشان تشوفي الذكرى</div>
+            <button class="flip-btn" onclick="flipImage(5)">قلبي الصورة 💖</button>
+          </div>
+          <div class="back">
+            <img src="image5.jpg" alt="أنت قلبي">
+          </div>
+        </div>
+      </div>
+      <div class="caption">💗 أنتِ قلبي وروحي… أنتِ الحب اللي كنت بدور عليه طول عمري</div>
     </div>
 
     <!-- PLAY/PAUSE BUTTON -->
     <div style="display:flex;justify-content:center;">
-      <button id="playBtn" class="play-toggle">▶ تشغيل الأغنية</button>
+      <button id="playBtn" class="play-toggle">▶ استمعي لأغنية حبنا 🎵</button>
     </div>
 
     <!-- 'فاكره دي؟' header -->
-    <div id="rememberHeader">فاكره دي؟ ❤️</div>
+    <div id="rememberHeader">فاكره كل الذكريات دي يا عمري؟ ❤️</div>
 
     <!-- FINAL LONG MESSAGE -->
     <div id="finalMsgBox" class="card">
@@ -188,7 +315,7 @@
 </div>
 
 <!-- audio element (file: song.mp3) -->
-<audio id="song" src="song.mp3"></audio>
+<audio id="song" src="song.mp3" loop></audio>
 
 <script>
   // password exactly as requested
@@ -201,10 +328,23 @@
       const main = document.getElementById('mainContent');
       main.style.display='block';
       main.setAttribute('aria-hidden','false');
+      
+      // Auto play song when password is correct
+      const song = document.getElementById('song');
+      song.play().catch(() => {
+        console.log('Auto-play prevented by browser');
+      });
+      
       window.scrollTo({top:0,behavior:'smooth'});
     } else {
-      alert('كلمة المرور غلط يا قلبي — جرب تاني');
+      alert('التاريخ غلط يا عمري — جربي تاني ❤️');
     }
+  }
+
+  // Image flip function
+  function flipImage(index) {
+    const container = document.getElementById('flip-' + index);
+    container.classList.toggle('flipped');
   }
 
   // toggle play/pause for the song button near the end
@@ -212,16 +352,18 @@
   const playBtn = document.getElementById('playBtn');
   function toggleSong(){
     if(song.paused){
-      song.play().catch(()=>{ alert('المتصفح منع التشغيل تلقائياً، اضغط مره تانيه'); });
-      playBtn.textContent = '⏸ إيقاف الأغنية';
+      song.play().catch(()=>{ alert('المتصفح منع التشغيل تلقائياً، اضغطي مره تانيه ❤️'); });
+      playBtn.textContent = '⏸ أوقفي الأغنية';
     } else {
       song.pause();
-      playBtn.textContent = '▶ تشغيل الأغنية';
+      playBtn.textContent = '▶ استمعي لأغنية حبنا 🎵';
     }
   }
 
   // try to update button label if song ends
-  song.addEventListener('ended', ()=>{ playBtn.textContent = '▶ تشغيل الأغنية'; });
+  song.addEventListener('ended', ()=>{ 
+    playBtn.textContent = '▶ استمعي لأغنية حبنا 🎵'; 
+  });
 
   // if user presses Enter on password input -> submit
   document.getElementById('passInput').addEventListener('keydown',(e)=>{
