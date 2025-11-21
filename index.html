@@ -60,27 +60,14 @@
   .fadeIn{animation:fadeIn 700ms ease both}
   @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
   
-  /* media placeholder */
-  .media-placeholder {
+  /* loading state */
+  .loading {
     height: 300px;
-    background: linear-gradient(135deg, #ff7a9a, #ff2f4b);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 14px;
-    margin: 10px 0;
-    color: white;
+    color: var(--accent);
     font-size: 20px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  }
-  
-  .info-note {
-    background: rgba(255,255,255,0.1);
-    padding: 10px;
-    border-radius: 10px;
-    margin: 10px 0;
-    font-size: 14px;
-    color: #ffd6dc;
   }
 </style>
 </head>
@@ -108,49 +95,53 @@
   <main id="mainContent" class="fadeIn" aria-hidden="true">
 
     <div class="hero">I LOVE YOU MIRA ❤</div>
-    
-    <div class="info-note">
-      هذه صفحة خاصة لميرا - يمكن استبدال الصور والفيديوهات بصورك الخاصة
-    </div>
 
     <!-- MEDIA SEQUENCE -->
     <div class="card">
-      <div class="media-placeholder">❤️ صورة جميلة لميرا</div>
+      <img src="image.jpg" alt="صورة جميلة لميرا" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="loading" style="display:none;">⚠️ الصورة غير متوفرة - تأكدي من اسم الملف</div>
       <div class="caption">❤️ متزعليش مني يا ميرا… إنتي فرحتي</div>
     </div>
 
     <div class="card">
-      <div class="media-placeholder">💗 صورة رومانسية</div>
+      <img src="image1.jpg" alt="صورة رومانسية" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="loading" style="display:none;">⚠️ الصورة غير متوفرة - تأكدي من اسم الملف</div>
       <div class="caption">💗 انتي راحتي… و أجمل حاجة حصلتلي</div>
     </div>
 
     <div class="card">
-      <div class="media-placeholder">🥰 لحظة ضحك</div>
+      <img src="image2.jpg" alt="لحظة ضحك" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="loading" style="display:none;">⚠️ الصورة غير متوفرة - تأكدي من اسم الملف</div>
       <div class="caption">🥰 ضحكتك بتنور يومي</div>
     </div>
 
     <div class="card">
-      <div class="media-placeholder">💞 ذكريات جميلة</div>
+      <img src="image3.jpg" alt="ذكريات جميلة" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="loading" style="display:none;">⚠️ الصورة غير متوفرة - تأكدي من اسم الملف</div>
       <div class="caption">💞 كل صورة بتحكي لحظة حلوة بينا</div>
     </div>
 
     <div class="card">
-      <div class="media-placeholder">🎥 فيديو خاص</div>
+      <video controls src="video.mp4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"></video>
+      <div class="loading" style="display:none;">⚠️ الفيديو غير متوفر - تأكدي من اسم الملف</div>
       <div class="caption">🎥 افتحي الفيديو وشوفي ذيك اللحظة</div>
     </div>
 
     <div class="card">
-      <div class="media-placeholder">❤️ لحظة خاصة</div>
+      <img src="image4.jpg" alt="لحظة خاصة" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="loading" style="display:none;">⚠️ الصورة غير متوفرة - تأكدي من اسم الملف</div>
       <div class="caption">❤️ وجودك كفاية — متزعليش مني</div>
     </div>
 
     <div class="card">
-      <div class="media-placeholder">🎬 فيديو تاني</div>
+      <video controls src="video2.mp4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"></video>
+      <div class="loading" style="display:none;">⚠️ الفيديو غير متوفر - تأكدي من اسم الملف</div>
       <div class="caption">🎬 لحظة تانية بنحبها</div>
     </div>
 
     <div class="card">
-      <div class="media-placeholder">💗 صورة أخيرة</div>
+      <img src="image5.jpg" alt="صورة أخيرة" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="loading" style="display:none;">⚠️ الصورة غير متوفرة - تأكدي من اسم الملف</div>
       <div class="caption">💗 انتي قلبي وروحي، ميرا</div>
     </div>
 
@@ -228,10 +219,7 @@
 </div>
 
 <!-- audio element (file: song.mp3) -->
-<audio id="song" loop>
-  <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-tender-moment-487.mp3" type="audio/mp3">
-  المتصفح لا يدعم تشغيل الصوتيات
-</audio>
+<audio id="song" src="song.mp3" loop></audio>
 
 <script>
   // password exactly as requested
@@ -271,6 +259,19 @@
   // if user presses Enter on password input -> submit
   document.getElementById('passInput').addEventListener('keydown',(e)=>{
     if(e.key === 'Enter') checkPass();
+  });
+
+  // Preload images for better performance
+  window.addEventListener('load', function() {
+    const images = [
+      'image.jpg', 'image1.jpg', 'image2.jpg', 
+      'image3.jpg', 'image4.jpg', 'image5.jpg'
+    ];
+    
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
   });
 </script>
 
