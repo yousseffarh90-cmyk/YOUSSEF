@@ -3,120 +3,170 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>لميرا ❤️ - موقع حبنا الخاص</title>
+<title>موقع حب ميرا ❤️ - معمول خصيصاً لميرا</title>
 <style>
   :root{
     --dark:#1a0004;
     --reddeep:#8b0000;
     --redmid:#ff2f4b;
     --accent:#ff7a9a;
-    --card: rgba(255,255,255,0.06);
+    --card: rgba(255,255,255,0.08);
     --gold: #ffd700;
     --light-pink: #ffd6dc;
   }
-  *{box-sizing:border-box}
+  *{box-sizing:border-box; margin:0; padding:0;}
   body{
     margin:0;padding:0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(180deg,var(--dark), #330006, #1a0004);
+    background: linear-gradient(135deg, #1a0004, #330006, #1a0004);
     color:#fff;text-align:center;overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
     background-attachment: fixed;
+    min-height: 100vh;
   }
 
-  .wrap{max-width:900px;margin:0 auto;padding:20px}
+  .wrap{max-width:900px;margin:0 auto;padding:20px; position: relative; z-index: 10;}
   .center{display:flex;flex-direction:column;align-items:center;justify-content:center}
 
   /* password page */
-  #passPage{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px;position:relative;overflow:hidden;}
-  #passPage::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path fill="rgba(255,122,154,0.1)" d="M10,3.3C9,1.5,7.2,0.3,5.2,0.3c-2.9,0-5.2,2.3-5.2,5.2c0,1.3,0.5,2.5,1.3,3.4c0,0,0,0,0,0L10,15l8.7-6.1c0.8-0.9,1.3-2.1,1.3-3.4c0-2.9-2.3-5.2-5.2-5.2C12.8,0.3,11,1.5,10,3.3z"/></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
-    z-index: -1;
-    animation: float 20s infinite linear;
+  #passPage{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    padding:20px;
+    position:relative;
+    overflow:hidden;
+    background: linear-gradient(135deg, rgba(26,0,4,0.9), rgba(51,0,6,0.9));
   }
   
-  @keyframes float {
-    0% { transform: translateY(0) translateX(0); }
-    100% { transform: translateY(-20px) translateX(-20px); }
+  #passBox{
+    background: var(--card);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.7), 0 0 40px rgba(255,47,75,0.3);
+    max-width: 450px;
+    width: 100%;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.15);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
   }
   
-  #passBox{background:var(--card);padding:30px;border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,47,75,0.3);max-width:420px;width:100%;backdrop-filter: blur(10px);border: 1px solid rgba(255,255,255,0.1);position:relative;overflow:hidden;}
-  #passBox::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    animation: rotate 15s linear infinite;
-    z-index: -1;
+  #passBox:hover {
+    transform: translateY(-5px);
   }
   
-  h1.small{margin:0 0 12px 0;color:var(--accent);font-size:26px;text-shadow:0 2px 10px rgba(0,0,0,0.5);}
-  .mira-name {color: var(--gold); font-weight: bold; text-shadow: 0 0 10px rgba(255,215,0,0.5);}
-  input[type="password"]{width:100%;padding:12px;border-radius:12px;border:none;font-size:18px;text-align:center;margin-top:8px;background:rgba(255,255,255,0.1);color:#fff;border: 1px solid rgba(255,255,255,0.2);transition: all 0.3s ease;}
-  input[type="password"]:focus{outline:none;box-shadow:0 0 15px rgba(255,47,75,0.5);background:rgba(255,255,255,0.15);}
-  .btn{margin-top:12px;padding:12px 18px;border-radius:12px;border:none;background:var(--redmid);color:#fff;font-size:17px;cursor:pointer;box-shadow:0 6px 20px rgba(255,0,60,0.12);transition: all 0.3s ease;position:relative;overflow:hidden;}
-  .btn:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(255,0,60,0.3);}
-  .btn:active{transform:scale(.97);}
-  .btn::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);transform:translateX(-100%);}
-  .btn:hover::after{animation: shine 1.5s ease;}
-
-  @keyframes shine {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+  h1.small{
+    margin:0 0 20px 0;
+    color:var(--accent);
+    font-size:28px;
+    text-shadow:0 2px 15px rgba(0,0,0,0.5);
+    line-height: 1.4;
+  }
+  
+  .mira-name {
+    color: var(--gold); 
+    font-weight: bold; 
+    text-shadow: 0 0 15px rgba(255,215,0,0.7);
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  input[type="password"]{
+    width:100%;
+    padding:15px;
+    border-radius:15px;
+    border:none;
+    font-size:20px;
+    text-align:center;
+    margin:15px 0;
+    background:rgba(255,255,255,0.12);
+    color:#fff;
+    border: 2px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+    font-weight: bold;
+  }
+  
+  input[type="password"]:focus{
+    outline:none;
+    box-shadow:0 0 20px rgba(255,47,75,0.6);
+    background:rgba(255,255,255,0.18);
+    border-color: var(--accent);
+  }
+  
+  .btn{
+    margin-top:20px;
+    padding:15px 25px;
+    border-radius:15px;
+    border:none;
+    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
+    color:#fff;
+    font-size:18px;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(255,0,60,0.25);
+    transition: all 0.3s ease;
+    position:relative;
+    overflow:hidden;
+    font-weight: bold;
+    width: 100%;
+  }
+  
+  .btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(255,0,60,0.4);
+    background: linear-gradient(45deg, var(--redmid), var(--accent));
+  }
+  
+  .btn:active{
+    transform:scale(0.98);
   }
 
   /* main content */
-  #mainContent{display:none;padding:40px 10px 80px}
-  .hero{font-size:30px;margin-bottom:10px;color:var(--accent);text-shadow:0 6px 25px rgba(0,0,0,0.6);position:relative;padding:10px;}
-  .hero::after {
-    content: 'لميرا ❤️';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 16px;
-    color: var(--gold);
-    background: rgba(0,0,0,0.5);
-    padding: 2px 10px;
-    border-radius: 10px;
+  #mainContent{
+    display:none;
+    padding:40px 10px 80px;
+    animation: fadeIn 1s ease;
+  }
+  
+  .hero{
+    font-size:36px;
+    margin-bottom:20px;
+    color:var(--accent);
+    text-shadow:0 6px 25px rgba(0,0,0,0.6);
+    position:relative;
+    padding:15px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   }
   
   /* Special message section */
   .special-message {
     background: linear-gradient(135deg, #8b0000, #ff2f4b, #ff7a9a);
-    padding: 40px 30px;
-    border-radius: 20px;
-    margin: 30px auto;
-    max-width: 800px;
-    box-shadow: 0 20px 60px rgba(255,47,75,0.4), 0 0 0 1px rgba(255,255,255,0.1);
-    border: 2px solid rgba(255,255,255,0.1);
+    padding: 50px 30px;
+    border-radius: 25px;
+    margin: 40px auto;
+    max-width: 850px;
+    box-shadow: 0 25px 70px rgba(255,47,75,0.5), 0 0 0 2px rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.15);
     position: relative;
     overflow: hidden;
+    animation: glow 3s infinite alternate;
   }
   
-  .special-message::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    animation: rotate 15s linear infinite;
-  }
-  
-  @keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  @keyframes glow {
+    0% { box-shadow: 0 25px 70px rgba(255,47,75,0.5), 0 0 0 2px rgba(255,255,255,0.1); }
+    100% { box-shadow: 0 25px 80px rgba(255,47,75,0.7), 0 0 0 2px rgba(255,255,255,0.15); }
   }
   
   .message-content {
@@ -125,44 +175,72 @@
   }
   
   .message-text {
-    font-size: 22px;
+    font-size: 24px;
     line-height: 1.8;
     color: white;
     text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     font-weight: bold;
   }
   
   .final-note {
-    font-size: 20px;
+    font-size: 22px;
     color: var(--gold);
     text-shadow: 0 2px 10px rgba(0,0,0,0.7);
-    margin-top: 20px;
+    margin-top: 25px;
     font-weight: bold;
-    padding: 15px;
-    background: rgba(0,0,0,0.2);
-    border-radius: 15px;
-    border: 1px solid rgba(255,215,0,0.3);
+    padding: 20px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 18px;
+    border: 2px solid rgba(255,215,0,0.4);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
   }
   
-  .card{width:92%;max-width:760px;margin:18px auto;background:var(--card);border-radius:18px;padding:14px;box-shadow:0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);backdrop-filter: blur(5px);border: 1px solid rgba(255,255,255,0.05);transition: transform 0.3s ease, box-shadow 0.3s ease;}
-  .card:hover {transform: translateY(-5px); box-shadow: 0 12px 50px rgba(0,0,0,0.6), 0 0 15px rgba(255,47,75,0.2);}
+  .card{
+    width:95%;
+    max-width:780px;
+    margin:25px auto;
+    background:var(--card);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 12px 45px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--reddeep), var(--redmid), var(--accent));
+  }
+  
+  .card:hover {
+    transform: translateY(-8px); 
+    box-shadow: 0 18px 55px rgba(0,0,0,0.7), 0 0 20px rgba(255,47,75,0.25);
+  }
   
   /* SIMPLE FLIP EFFECT - WORKING */
   .flip-container {
     width: 100%;
-    height: 400px;
+    height: 420px;
     position: relative;
-    margin: 10px 0;
+    margin: 15px 0;
     cursor: pointer;
-    perspective: 1000px;
+    perspective: 1200px;
   }
   
   .flipper {
     width: 100%;
     height: 100%;
     position: relative;
-    transition: transform 0.8s;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform-style: preserve-3d;
   }
   
@@ -171,46 +249,51 @@
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: 14px;
+    border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 20px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+    padding: 25px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.5);
   }
   
   .front {
-    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
+    background: linear-gradient(135deg, var(--reddeep), var(--redmid), #ff5c7a);
     color: white;
-    font-size: 24px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    font-size: 26px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
     position: relative;
     overflow: hidden;
   }
   
   .front::before {
-    content: 'ميرا';
+    content: 'لميرا ❤️';
     position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-size: 14px;
-    color: rgba(255,255,255,0.7);
+    bottom: 15px;
+    left: 15px;
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    font-weight: bold;
   }
   
   .back {
-    background: #222;
+    background: #1a1a1a;
     transform: rotateY(180deg);
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .back::before {
-    content: 'لميرا ❤️';
+    content: 'ذكريات ميرا ويوسف ❤️';
     position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 14px;
-    color: rgba(255,255,255,0.7);
+    top: 15px;
+    left: 15px;
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    font-weight: bold;
     z-index: 2;
   }
   
@@ -218,7 +301,28 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 14px;
+    border-radius: 18px;
+  }
+  
+  .image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2a0a10, #1a0004);
+    border-radius: 18px;
+    color: white;
+    font-size: 22px;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .image-placeholder .icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: var(--accent);
   }
   
   .flip-container.flipped .flipper {
@@ -226,90 +330,156 @@
   }
   
   .flip-text {
-    margin-top: 15px;
-    font-size: 16px;
-    color: rgba(255,255,255,0.8);
+    margin-top: 20px;
+    font-size: 18px;
+    color: rgba(255,255,255,0.9);
+    background: rgba(0,0,0,0.3);
+    padding: 8px 15px;
+    border-radius: 10px;
   }
   
-  .caption{font-size:20px;margin:10px 0;color:#ffeef3;line-height:1.6;text-shadow:0 4px 20px rgba(0,0,0,0.6);padding: 10px; border-radius: 10px; background: rgba(0,0,0,0.2);}
-  .play-toggle{margin-top:20px;padding:12px 20px;border-radius:16px;border:none;background:var(--reddeep);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 8px 30px rgba(139,0,0,0.35);transition: all 0.3s ease;}
-  .play-toggle:hover{background:var(--redmid);transform: translateY(-3px); box-shadow: 0 10px 35px rgba(255,47,75,0.4);}
+  .caption{
+    font-size:22px;
+    margin:15px 0;
+    color:#ffeef3;
+    line-height:1.7;
+    text-shadow:0 4px 20px rgba(0,0,0,0.6);
+    padding: 15px; 
+    border-radius: 12px; 
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  
+  .play-toggle{
+    margin-top:25px;
+    padding:15px 25px;
+    border-radius:18px;
+    border:none;
+    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 10px 35px rgba(139,0,0,0.4);
+    transition: all 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .play-toggle:hover{
+    background: linear-gradient(45deg, var(--redmid), var(--accent));
+    transform: translateY(-4px); 
+    box-shadow: 0 14px 40px rgba(255,47,75,0.5);
+  }
 
   /* Special audio section */
   .audio-section {
-    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
-    padding: 40px 20px;
-    border-radius: 18px;
-    margin: 30px auto;
-    max-width: 600px;
-    box-shadow: 0 15px 50px rgba(255,47,75,0.3), 0 0 0 1px rgba(255,255,255,0.1);
+    background: linear-gradient(135deg, var(--reddeep), var(--redmid), #ff5c7a);
+    padding: 45px 25px;
+    border-radius: 22px;
+    margin: 35px auto;
+    max-width: 650px;
+    box-shadow: 0 18px 55px rgba(255,47,75,0.4), 0 0 0 2px rgba(255,255,255,0.12);
     position: relative;
     overflow: hidden;
-  }
-  
-  .audio-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="music" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path fill="rgba(255,255,255,0.1)" d="M10,1v18M5,5v10M15,3v14"/></pattern></defs><rect width="100" height="100" fill="url(%23music)"/></svg>');
-    z-index: 0;
+    border: 2px solid rgba(255,255,255,0.12);
   }
   
   .audio-title {
-    font-size: 28px;
+    font-size: 30px;
     color: white;
-    margin-bottom: 20px;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    margin-bottom: 25px;
+    text-shadow: 0 4px 18px rgba(0,0,0,0.5);
     position: relative;
     z-index: 1;
+    font-weight: bold;
   }
   
   .continue-btn {
     margin-top: 30px;
-    padding: 15px 30px;
-    border-radius: 25px;
+    padding: 18px 35px;
+    border-radius: 28px;
     border: none;
     background: rgba(255,255,255,0.2);
     color: white;
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     transition: all 0.3s ease;
     position: relative;
     z-index: 1;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255,255,255,0.25);
+    font-weight: bold;
   }
   
   .continue-btn:hover {
     background: rgba(255,255,255,0.3);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
   }
 
-  #rememberHeader{font-size:34px;color:#ffd6dc;margin-top:36px;margin-bottom:8px;text-shadow:0 6px 25px rgba(0,0,0,0.6);position:relative;padding:15px;background:rgba(0,0,0,0.3);border-radius:15px;border:1px solid rgba(255,255,255,0.1);}
-  #rememberHeader::before {content: '❤️'; margin-left: 10px;}
-  #rememberHeader::after {content: '❤️'; margin-right: 10px;}
-  
-  #finalMsgBox{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); padding:20px;border-radius:16px;margin-top:16px;box-shadow:0 10px 40px rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.05);position:relative;}
-  #finalMsgBox::before {
-    content: 'رسالة خاصة لميرا';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--redmid);
-    color: white;
-    padding: 5px 15px;
-    border-radius: 10px;
-    font-size: 14px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  #rememberHeader{
+    font-size:36px;
+    color:#ffd6dc;
+    margin-top:40px;
+    margin-bottom:15px;
+    text-shadow:0 6px 25px rgba(0,0,0,0.6);
+    position:relative;
+    padding:20px;
+    background:rgba(0,0,0,0.35);
+    border-radius:18px;
+    border:2px solid rgba(255,255,255,0.12);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   }
   
-  #finalMsg{white-space:pre-wrap;text-align:right;font-size:18px;line-height:1.8;color:#ffeef3;padding:10px;}
+  #rememberHeader::before {
+    content: '❤️'; 
+    margin-left: 15px;
+    font-size: 40px;
+  }
+  
+  #rememberHeader::after {
+    content: '❤️'; 
+    margin-right: 15px;
+    font-size: 40px;
+  }
+  
+  #finalMsgBox{
+    background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03)); 
+    padding:25px;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 12px 45px rgba(0,0,0,0.6);
+    border:2px solid rgba(255,255,255,0.08);
+    position:relative;
+  }
+  
+  #finalMsgBox::before {
+    content: 'رسالة خاصة لميرا من يوسف';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
+    color: white;
+    padding: 8px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    font-weight: bold;
+    z-index: 5;
+  }
+  
+  #finalMsg{
+    white-space:pre-wrap;
+    text-align:right;
+    font-size:20px;
+    line-height:1.8;
+    color:#ffeef3;
+    padding:15px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 15px;
+    margin-top: 10px;
+  }
 
   /* Floating hearts background */
   .floating-hearts {
@@ -319,29 +489,30 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: -1;
+    z-index: 1;
   }
   
   .heart {
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     background: transparent;
-    opacity: 0.7;
+    opacity: 0;
+    animation: floatHeart 15s linear infinite;
   }
   
   .heart::before,
   .heart::after {
     content: '';
     position: absolute;
-    width: 10px;
-    height: 16px;
+    width: 12px;
+    height: 20px;
     background: var(--accent);
     border-radius: 50px 50px 0 0;
   }
   
   .heart::before {
-    left: 10px;
+    left: 12px;
     transform: rotate(-45deg);
     transform-origin: 0 100%;
   }
@@ -351,46 +522,86 @@
     transform: rotate(45deg);
     transform-origin: 100% 100%;
   }
+  
+  @keyframes floatHeart {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.7;
+    }
+    90% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-100px) rotate(360deg);
+      opacity: 0;
+    }
+  }
 
   /* Signature at the bottom */
   .signature {
-    margin-top: 40px;
-    padding: 20px;
+    margin-top: 50px;
+    padding: 25px;
     font-style: italic;
     color: var(--light-pink);
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    border-top: 1px solid rgba(255,255,255,0.1);
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    border-top: 2px solid rgba(255,255,255,0.1);
     position: relative;
+    background: rgba(0,0,0,0.25);
+    border-radius: 15px;
+    font-size: 22px;
   }
   
   .signature::before {
     content: '"';
-    font-size: 40px;
+    font-size: 50px;
     color: var(--gold);
     position: absolute;
-    top: 0;
-    left: 20px;
+    top: 10px;
+    left: 25px;
+    line-height: 1;
   }
   
   .signature::after {
     content: '"';
-    font-size: 40px;
+    font-size: 50px;
     color: var(--gold);
     position: absolute;
-    bottom: -20px;
-    right: 20px;
+    bottom: -10px;
+    right: 25px;
+    line-height: 1;
   }
 
   @media(min-width:700px){ 
-    .hero{font-size:40px} 
-    #finalMsg{font-size:20px} 
-    input[type="password"]{font-size:20px} 
-    .caption{font-size:22px} 
-    .message-text { font-size: 26px; }
+    .hero{font-size:44px} 
+    #finalMsg{font-size:22px} 
+    input[type="password"]{font-size:22px} 
+    .caption{font-size:24px} 
+    .message-text { font-size: 28px; }
   }
 
-  .fadeIn{animation:fadeIn 700ms ease both}
-  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .fadeIn{animation:fadeIn 1s ease both}
+  @keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px)}
+    to{opacity:1; transform:none}
+  }
+  
+  /* تحسينات للجوال */
+  @media (max-width: 600px) {
+    .wrap { padding: 15px; }
+    .hero { font-size: 28px; padding: 12px; }
+    .special-message { padding: 30px 20px; margin: 25px auto; }
+    .message-text { font-size: 20px; }
+    .final-note { font-size: 18px; padding: 15px; }
+    .flip-container { height: 350px; }
+    .audio-title { font-size: 24px; }
+    .continue-btn { font-size: 18px; padding: 15px 25px; }
+    #rememberHeader { font-size: 28px; padding: 15px; }
+    #finalMsg { font-size: 18px; }
+    .signature { font-size: 18px; padding: 20px; }
+  }
 </style>
 </head>
 <body>
@@ -404,9 +615,9 @@
   <section id="passPage" class="center">
     <div id="passBox" class="fadeIn">
       <h1 class="small">✍️ اكتبى تاريخ ارتباطنا يا <span class="mira-name">ميرا</span> ❤️</h1>
-      <input id="passInput" type="password" placeholder="هنا..." autocomplete="off" autofocus>
+      <input id="passInput" type="password" placeholder="أدخلي التاريخ هنا..." autocomplete="off" autofocus>
       <button class="btn" onclick="checkPass()">أدخلي عالم <span class="mira-name">ميرا</span> ويوسف ✨</button>
-      <p style="font-size:13px;margin-top:10px;color:#ffd7dd">التاريخ: <strong>962025</strong> - تاريخ حب <span class="mira-name">ميرا</span> ويوسف</p>
+      <p style="font-size:15px;margin-top:15px;color:#ffd7dd">التاريخ: <strong>962025</strong> - تاريخ حب <span class="mira-name">ميرا</span> ويوسف</p>
     </div>
   </section>
 
@@ -438,12 +649,12 @@
       <div class="audio-title">🎵 اسمعي رسالتي لقلبك يا <span class="mira-name">ميرا</span> ❤️</div>
       
       <!-- الأغنية الجديدة -->
-      <audio id="specialSong2" controls style="width:100%; max-width:400px; margin:20px auto; display:block;">
+      <audio id="specialSong2" controls style="width:100%; max-width:450px; margin:25px auto; display:block; border-radius:15px; box-shadow:0 8px 25px rgba(0,0,0,0.4);">
         <source src="song2.mp3" type="audio/mpeg">
         المتصفح لا يدعم تشغيل الصوتيات
       </audio>
       
-      <div style="color:rgba(255,255,255,0.9); font-size:18px; margin:15px 0; position:relative; z-index:1;">
+      <div style="color:rgba(255,255,255,0.95); font-size:20px; margin:20px 0; position:relative; z-index:1; background:rgba(0,0,0,0.2); padding:12px; border-radius:12px;">
         كل كلمة في الأغنية دي من قلبي لقلبك يا <span class="mira-name">ميرا</span> 💖
       </div>
       
@@ -458,20 +669,20 @@
 
       <!-- الأغنية الأولى -->
       <div class="audio-section">
-        <div class="audio-title">🎵 اسمعيني وافهميني يا <span class="mira-name">ميرا</span> وافهمي انى بحبك وغيران عليكى مش اكتر ❤️</div>
+        <div class="audio-title">🎵 اسمعيني وافهميني يا <span class="mira-name">ميرا</span> ❤️</div>
         
         <!-- الأغنية الأولى -->
-        <audio id="specialSong1" controls style="width:100%; max-width:400px; margin:20px auto; display:block;">
+        <audio id="specialSong1" controls style="width:100%; max-width:450px; margin:25px auto; display:block; border-radius:15px; box-shadow:0 8px 25px rgba(0,0,0,0.4);">
           <source src="song1.mp3" type="audio/mpeg">
           المتصفح لا يدعم تشغيل الصوتيات
         </audio>
         
-        <div style="color:rgba(255,255,255,0.9); font-size:18px; margin:15px 0; position:relative; z-index:1;">
+        <div style="color:rgba(255,255,255,0.95); font-size:20px; margin:20px 0; position:relative; z-index:1; background:rgba(0,0,0,0.2); padding:12px; border-radius:12px;">
           استمعي للصوت ده علشان تفهميني أكتر يا <span class="mira-name">ميرا</span> ❤️
         </div>
       </div>
 
-      <!-- نموذج لصورة واحدة (يمكن إضافة الباقي بنفس الطريقة) -->
+      <!-- نموذج للصور -->
       <div class="card">
         <div class="flip-container" onclick="flipCard(this)">
           <div class="flipper">
@@ -481,14 +692,16 @@
               <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
             </div>
             <div class="back">
-              <img src="image1.jpg" alt="أول صورة لـ ميرا ويوسف" onerror="showPlaceholder(this)">
+              <div class="image-placeholder">
+                <div class="icon">💕</div>
+                <div>هنا بتكون صورة <span class="mira-name">ميرا</span> ويوسف</div>
+                <div style="font-size:16px; margin-top:10px; opacity:0.8;">الصورة مش متوفرة حالياً</div>
+              </div>
             </div>
           </div>
         </div>
         <div class="caption">❤️ أول ما شفتك يا <span class="mira-name">ميرا</span> عرفت إن قلبي لقي صاحبه… إنتي فرحتي وبهجتي</div>
       </div>
-
-      <!-- يمكن إضافة باقي الصور هنا بنفس النمط -->
 
       <!-- PLAY BUTTON -->
       <div style="display:flex;justify-content:center;">
@@ -507,54 +720,6 @@
 كل يوم بحبك اكتر يا <span class="mira-name">ميرا</span> بحس بيكى اكتر واكتر مش بشوفك زى باقى البنات شايفك حاجه تانيه لانى فعلا معنتش شايف غيرك 
 بحب كل نقطه فيكى يا <span class="mira-name">ميرا</span> بجد كل حته فيكى بحبها مش بقرف منها حتى تصرفاتك اللى كنت بشوفها زمان غريبه الوقتى مقدرش اعيش من غيرها 
 يا <span class="mira-name">ميرا</span> انتي انسانه بيضا من جوا بتتصرف معايا ع طبيعتها طول الوقت وبيبان اوى ف طريقه كلامهك يحبيبتى لو تعرفى اد ايه انا مبسوط اننا سوى ونفسى نبقى لبعض بجد هتفهمى اد ايه انا بحبك 
-كميه الثقه اللى انتى ادتيهالى يا <span class="mira-name">ميرا</span> مخليانى عاوز اكل الدنيا عشانك عشان احسسك ان ثقتك كانت ف محلها انك انتى اختارتى صح 
-ان انا الاختيار المناسب ليكى 
-يمكن حاليا عشان تبقى حلالى الموضوع صعب شويه بس صعب ماديا بس بالنسبالى 
-وحاسس ان نقطه الماديات دى هتخلص قريب ان شاء الله وهتبقى ليا بجد كل يوم بسمع منك فيه كلمه بحبك يا <span class="mira-name">ميرا</span> نشاطى بيتجدد وببقى عاوز اقوم اسافر الوقتى اعمل اللى عليا وزياده 
-ومتأكد انى هعمل كدا هموت نفسى شغل مش مشكله عشانك يا <span class="mira-name">ميرا</span> عشان انتى تستاهلى كل حاجه واحلى حاجه حرفيا الكلام ده بكتبه ودموعى خلاص هتنزل من عنيا لانى بكتبه بقلبى مش بعقلى ومع كل كلمه بكتبهالك بفتكر شكلك فيها يا <span class="mira-name">ميرا</span> وبفتكرلك مواقف كتير او ضحكه او ابتسامه صغيره دخلت قلبى 
-اول مره اكتب اللى بحس بيه كدا طول عمرى كنت بحس واكتم وازعل واكتم وافرح وبردو اكتم 
-الكتمان بالنسبالى كان شغلانه تقريبا لحد مجالى الضغط  بس الكلام دا كان قبل 6/9 
-من بدايه التاريخ دا عرفت يعنى ايه حب عرفت يعنى ايه تحب انسانه وتحاول عشان توصلها 
-عرفت يعنى ايه انسانه تحبك وتفرح لفرحك وتزعل لزعلك 
-عرفت يعنى ايه ثقه 
-بجد عرفت يعنى ايه ثقه عمرى موثقت ف حد كدا ابدا دايما عاطى خوانه يمكن انتى ساعات بتحسى انى مش بثق فيكى يا <span class="mira-name">ميرا</span> بس والله محصل طول م انا بسمعك واعرف وجهه نظرك او الموضوع عامل ازاى من منظورك يبقى بثق فيكى يروحى ببقى غيران عليكى بس مش اكتر ومتستهونيش بغيرتى عليكى انا لو عليا احطك ف قلبى واقفل عليكى عشان محدش يشوفك او يكلمك ربع كلمه 
-بحبك اوى يا <span class="mira-name">ميرا</span> بحد بحب اى حاجه من ناحيتك برتاح وانتى معايا وقدامى بفرح لما ابقى شايف ان ف حاجه بتضايقنى والاقيكى بتتجنبيها لاجل بس مكونش متضايق 
-ومن اكتر الحاجات اللى فرحت بيها انهارده انك فتحتيلى قلبك يا <span class="mira-name">ميرا</span> كنت مستنيها من زمان وعمال اقول اصبر مع انى مش صبور خاااالص بس صبرت يمكن الوقت اللى صبرت فيه قليل لانه شهر واحد بس عدى عليا اكنه سنه مش شهر مكنتش قادر استحمل بجد انى ابقى حاسس او متأكد ان قلبك فيه حاجه ومش بتقوليلى عليا مش قادره تحكيهالى او توصفهالى 
-سواء حاجه مفرحاكى او حاجه مضيقاكى مش حابه تقولى وتفضلى انك تسكتى عن انك تحكيلى وقتها كنت بزعل اويييييي بس كنت بسكت مع انى كنت بفضل اتحايل عليكى عشان تتكلمى اه ساعات كنت بزهق واقفل بس عشانى مش متعود ع الصبر دا كله 
-بس حتى لما بسيبك وقتها واقفل مبفكرش غير فيكى يا <span class="mira-name">ميرا</span> وانى عاوز اراضيكى بحس انك بنتى مش حبيبتى محتاج اطبطب عليكى واخدك ف حضنى وابوسك واطمنك وهتبقى كويسه محتاجه حنيه وانا عمرى مكنت حنين كدا معاكى عرفت حاجات كتير اوى عنى مكنتش اعرفها شوفت حاجات كتيره وشوفت ناس كتيره ع حقيقتها
-بزعل لما بفتكر اى مره كنت ظالمك فيها فى اى حاجه عموما 
-مش محتاجه ادور وراكى ف حاجه حتى اكونتاتك حاليا بفتحها يدوب اشوف الريبوستات لو حد بعتلك فولو معجبنيش ابلكه وكدا 
-حاسس انى فعلا مفيش حاجه بتطلبيها منى الا وبرفض وبدأت اتضايق منى بس كل حاجه بجد كان ليها سبب للرفض مبتطمنش عليكى غير وانتى ادام عنيا 
-حتى لما بتنزلى بفضل افكر ي ترى حد كلمها ي ترى حد بصلها بصه مش حلوه ي ترى ي ترى
-بس برتاح اول متطلعى وابص ف عينك يا <span class="mira-name">ميرا</span> لان بقيت بعرف منها لو ف حاجه او لا 
-برتاح وانا ببوسك وبوقك ف بوقى حسيت اننا بقينا واحد وصلنا لمرحله فعلا زى م انتى قولتى الناس بتقعد شهور او سنين عشان يوصلولها 
-برتاح وانتى ف حضنى بتطمن برتاح لما بشوفك مرتاحه ومتطمنه يحبيبتى مبزهقش منك ولا من انى ابوسك او احضنك نفسى ف كدا طول الوقت يحبيبتى نفسى ابوسك حته حته 
-ومصدقك يحبيبتى من غير متقولى انك اول مره ولد يبوسك كدا باين عليكى فعلا انك مش فاهمه حاجه كل اللى كنتى حاسله بيه انك بتحبينى اوى 
-ووالله انا كمان اول مره ابوس بنت او بنت تبوسنى 
-كل دا كان ارتجال منى انهارده كنت عاوز نندمج اوى زى م انتى شوفتى كدا والحمد لله انها عدت ع خير وربنا ستر  لان الموضوع اكبر من ما تتخيلى 
-بس وقتها حبك ليا مخليكى مش حاسه بقلق او بخوف 
-وانا حبى ليكى مقلقنى ومخوفنى عليكى و ع سمعتك وسط الناس يحبيبتى 
-احساس انك سيبالى نفسك وواثقه فيا كدا بيخلينى اتمسك بيكى اكتر واكتر يروحي بقيت مصدقك حتى لو مكدبك قلبى مصدقك وبيخلقلك الاعذار ف كل حاجه يمكن ده مش بقوله لكن بحس بيه بس 
-كل اللى قولتهولك دا ميجيش نقطه ف بحر حبى ليكى يا <span class="mira-name">ميرا</span> او نقطه بالنسبه لكميه التفكير اللى بفكره فيكى حى وشى بقى باين عليه الارهاق من قله النوم والتفكير طول الوقت بفكر فيكى بنام واصحى الاقينى بكمل تفكير فيكى 
-بحترم الصراحه اوى يا <span class="mira-name">ميرا</span> ان يحصل حاجه وتقوليلى عليا حتى لو انتى خايفه من رد فعلى ده بيكبرك ف نظرى اوى اوى 
-بكره الكدب كره العمى الكدب بالنسبالى شكل من اشكال الخيانه مش بقولك الكلام دا انى اقصد بيه حاجه معينه لا والله انا بس بشرحلك الحاجات دى بالنسبالى ايه 
-مراتى المستقبليه خلاص 
-<span class="mira-name">ميرا</span> حرم يوسف فرح 
-<span class="mira-name">ميرا</span> فرح 
-بحبك يا <span class="mira-name">ميرا</span> بجد ونفسى اسعدك وافرحك بحب اشوف الفرحه فى عنيكى مع انك بتفرحى من اقل حاجه حتى لو شوكولاتايه 
-بس انا فرحتى وسعادتى انى اشوفك بتضحكى ومبسوطه 
-مكنتش عاوز اقفل انهارده كنت عاوز افضل صاحى واكلمك  بس المواعيد اللى امين بعتهالى ضايقتنى بس قولت مش هقعد كل يوم اعارض فيه بكرا نبقى نشوف 
-انا بكتب الرساله دى حرفيا بقالى ساعه او ساعه الا حاجه بسيطه 
-بجد محسيتش بالوقت لانه كله عدى وانا بفكر فيكى 
-واخيرا وليس اخرا 
-بحبك اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى 
-بدعى ربنا اننا نكون سوى نكون لبعض ربنا ميجعل بينا اى مشاكل خالص بعد الايام عشان تطلعى م المكان الملعون دا 
-وبعد الايام عشان اطلع انا كمان م البلد دى 
-بعد الايام اللى بعدها هنبقى سوى ي رب تقدرى تستحملى وتستنينى يا <span class="mira-name">ميرا</span> مهما طولت
-ربنا يقدرنى واعمل كل حاجه بسرعه عشانك 
-احى واحده شافتها عيونى واحلى الوحيده اللى حركت قلبى 
-من قبل متخبطى قلبى فتحلك وقالك ادخلى وانتى فعلا دخلتى وسكنتى جواه ومن وقتها وهو متطمن بوجودك وعمره مهيفتح ويخرجك ابداااا 
-بحبك ي كل حاجه ي احلى حاجه  ي اغلى حاجه ♥💋💞
         </div>
       </div>
 
@@ -581,31 +746,16 @@
   // إنشاء القلوب العائمة
   function createHearts() {
     const container = document.getElementById('heartsContainer');
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 20; i++) {
       const heart = document.createElement('div');
       heart.className = 'heart';
       heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      heart.style.animationDuration = (Math.random() * 10 + 15) + 's';
       heart.style.animationDelay = Math.random() * 5 + 's';
       heart.style.opacity = Math.random() * 0.5 + 0.3;
       heart.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
       container.appendChild(heart);
     }
-  }
-
-  // دالة لعرض بديل إذا الصورة غير موجودة
-  function showPlaceholder(img) {
-    img.style.display = 'none';
-    const back = img.parentElement;
-    const placeholder = document.createElement('div');
-    placeholder.innerHTML = `
-      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; color:white;">
-        <div style="font-size: 60px; margin-bottom: 20px;">💕</div>
-        <div style="font-size: 20px;">ذكريات <span class="mira-name">ميرا</span> ويوسف</div>
-        <div style="font-size: 16px; margin-top: 10px; opacity: 0.8;">الصورة مش متوفرة حالياً</div>
-      </div>
-    `;
-    back.appendChild(placeholder);
   }
 
   // دالة التحقق من الباسوورد
@@ -620,16 +770,20 @@
       // تشغيل الأغنية الجديدة song2.mp3 تلقائياً أول شيء
       setTimeout(() => {
         const specialSong2 = document.getElementById('specialSong2');
-        specialSong2.play().then(() => {
-          console.log('الأغنية الجديدة song2.mp3 شغالة!');
-        }).catch(error => {
-          console.log('مشكلة في تشغيل الأغنية الجديدة:', error);
-        });
-      }, 500);
+        if(specialSong2) {
+          specialSong2.play().then(() => {
+            console.log('الأغنية الجديدة song2.mp3 شغالة!');
+          }).catch(error => {
+            console.log('مشكلة في تشغيل الأغنية الجديدة:', error);
+            // عرض رسالة للمستخدم
+            alert('اضغطي تشغيل على الأغنية يا ميرا علشان تسمعيها ❤️');
+          });
+        }
+      }, 1000);
       
       window.scrollTo({top:0,behavior:'smooth'});
     } else {
-      alert('التاريخ غلط يا عمري — جربي تاني يا <span class="mira-name">ميرا</span> ❤️');
+      alert('التاريخ غلط يا عمري — جربي تاني يا ميرا ❤️');
     }
   }
 
@@ -652,17 +806,20 @@
   function toggleSong(){
     if(song.paused){
       song.play().catch(error => {
-        alert('اضغطي موافق ثم اضغطي على الزر مرة تانيه يا <span class="mira-name">ميرا</span> ❤️');
+        alert('اضغطي موافق ثم اضغطي على الزر مرة تانيه يا ميرا ❤️');
       });
-      playBtn.textContent = '⏸ أوقفي الأغنية يا <span class="mira-name">ميرا</span>';
+      playBtn.textContent = '⏸ أوقفي الأغنية يا ميرا';
     } else {
       song.pause();
-      playBtn.textContent = '▶ استمعي لأغنية حب <span class="mira-name">ميرا</span> ويوسف 🎵';
+      playBtn.textContent = '▶ استمعي لأغنية حب ميرا ويوسف 🎵';
     }
   }
 
   // الأحداث
-  document.getElementById('playBtn').addEventListener('click', toggleSong);
+  if(document.getElementById('playBtn')) {
+    document.getElementById('playBtn').addEventListener('click', toggleSong);
+  }
+  
   document.getElementById('passInput').addEventListener('keydown',(e)=>{
     if(e.key === 'Enter') checkPass();
   });
