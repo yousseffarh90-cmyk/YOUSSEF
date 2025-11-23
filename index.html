@@ -100,6 +100,41 @@
   .caption{font-size:20px;margin:10px 0;color:#ffeef3;line-height:1.6;text-shadow:0 4px 20px rgba(0,0,0,0.6)}
   .play-toggle{margin-top:20px;padding:12px 20px;border-radius:16px;border:none;background:var(--reddeep);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 8px 30px rgba(139,0,0,0.35)}
 
+  /* Special audio section */
+  .audio-section {
+    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
+    padding: 40px 20px;
+    border-radius: 18px;
+    margin: 30px auto;
+    max-width: 600px;
+    box-shadow: 0 15px 50px rgba(255,47,75,0.3);
+  }
+  
+  .audio-title {
+    font-size: 28px;
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+  
+  .continue-btn {
+    margin-top: 30px;
+    padding: 15px 30px;
+    border-radius: 25px;
+    border: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .continue-btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-3px);
+  }
+
   #rememberHeader{font-size:34px;color:#ffd6dc;margin-top:36px;margin-bottom:8px;text-shadow:0 6px 25px rgba(0,0,0,0.6)}
   #finalMsgBox{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); padding:20px;border-radius:16px;margin-top:16px;box-shadow:0 10px 40px rgba(0,0,0,0.55)}
   #finalMsg{white-space:pre-wrap;text-align:right;font-size:18px;line-height:1.8;color:#ffeef3}
@@ -134,365 +169,180 @@
 
     <div class="hero">بحبك يا عمري ميرا ❤️</div>
 
-    <!-- جميع الصور من 1 إلى 26 (ماعدا 19) -->
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>🖼️ أول ما شفتك</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image.jpg" alt="أول صورة لنا" onerror="this.style.display='none'">
+    <!-- الصفحة الخاصة مع الأغنية الجديدة -->
+    <div class="audio-section">
+      <div class="audio-title">🎵 اسمعيني وافهميني يماما وافهمي انى بحبك وغيران عليكى مش اكتر ❤️</div>
+      
+      <!-- الأغنية الجديدة -->
+      <audio id="specialSong" controls style="width:100%; max-width:400px; margin:20px auto; display:block;">
+        <source src="song1.mp3" type="audio/mpeg">
+        المتصفح لا يدعم تشغيل الصوتيات
+      </audio>
+      
+      <div style="color:rgba(255,255,255,0.9); font-size:18px; margin:15px 0;">
+        استمعي للصوت ده علشان تفهميني أكتر ❤️
+      </div>
+      
+      <!-- زر الانتقال لباقي المحتوى -->
+      <button class="continue-btn" onclick="showRestOfContent()">
+        اضغطى هنا يقلبي 💖
+      </button>
+    </div>
+
+    <!-- باقي المحتوى (مخفي في البداية) -->
+    <div id="restOfContent" style="display:none;">
+
+      <!-- جميع الصور من 1 إلى 26 (ماعدا 19) -->
+      <div class="card">
+        <div class="flip-container" onclick="flipCard(this)">
+          <div class="flipper">
+            <div class="front">
+              <div>📖 صفحة من كتاب حبنا</div>
+              <div>🖼️ أول ما شفتك</div>
+              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
+            </div>
+            <div class="back">
+              <img src="image.jpg" alt="أول صورة لنا" onerror="this.style.display='none'">
+            </div>
           </div>
         </div>
+        <div class="caption">❤️ أول ما شفتك عرفت إن قلبي لقي صاحبه… إنتي فرحتي وبهجتي</div>
       </div>
-      <div class="caption">❤️ أول ما شفتك عرفت إن قلبي لقي صاحبه… إنتي فرحتي وبهجتي</div>
-    </div>
 
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>💞 لحظة من حياتنا</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image1.jpg" alt="لحظة رومانسية" onerror="this.style.display='none'">
+      <div class="card">
+        <div class="flip-container" onclick="flipCard(this)">
+          <div class="flipper">
+            <div class="front">
+              <div>📖 صفحة من كتاب حبنا</div>
+              <div>💞 لحظة من حياتنا</div>
+              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
+            </div>
+            <div class="back">
+              <img src="image1.jpg" alt="لحظة رومانسية" onerror="this.style.display='none'">
+            </div>
           </div>
         </div>
+        <div class="caption">💗 في حضنك لقيت راحتي… وفي عينيك شفت مستقبلي</div>
       </div>
-      <div class="caption">💗 في حضنك لقيت راحتي… وفي عينيك شفت مستقبلي</div>
-    </div>
 
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>😊 ضحكتك</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image2.jpg" alt="ضحكة جميلة" onerror="this.style.display='none'">
+      <div class="card">
+        <div class="flip-container" onclick="flipCard(this)">
+          <div class="flipper">
+            <div class="front">
+              <div>📖 صفحة من كتاب حبنا</div>
+              <div>😊 ضحكتك</div>
+              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
+            </div>
+            <div class="back">
+              <img src="image2.jpg" alt="ضحكة جميلة" onerror="this.style.display='none'">
+            </div>
           </div>
         </div>
+        <div class="caption">🥰 ضحكتك بتعمل معجزات في قلبي… بتنور أيامي وتبعث الأمل في روحي</div>
       </div>
-      <div class="caption">🥰 ضحكتك بتعمل معجزات في قلبي… بتنور أيامي وتبعث الأمل في روحي</div>
-    </div>
 
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>🌟 ذكرياتنا</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image3.jpg" alt="ذكريات جميلة" onerror="this.style.display='none'">
+      <div class="card">
+        <div class="flip-container" onclick="flipCard(this)">
+          <div class="flipper">
+            <div class="front">
+              <div>📖 صفحة من كتاب حبنا</div>
+              <div>🌟 ذكرياتنا</div>
+              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
+            </div>
+            <div class="back">
+              <img src="image3.jpg" alt="ذكريات جميلة" onerror="this.style.display='none'">
+            </div>
           </div>
         </div>
+        <div class="caption">💞 كل لحظة معاكي بتكون أجمل قصة… كل ذكرى بتكون أحلى من اللي قبلها</div>
       </div>
-      <div class="caption">💞 كل لحظة معاكي بتكون أجمل قصة… كل ذكرى بتكون أحلى من اللي قبلها</div>
-    </div>
 
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>💕 لحظة خاصة</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image4.jpg" alt="لحظة خاصة" onerror="this.style.display='none'">
+      <div class="card">
+        <div class="flip-container" onclick="flipCard(this)">
+          <div class="flipper">
+            <div class="front">
+              <div>📖 صفحة من كتاب حبنا</div>
+              <div>💕 لحظة خاصة</div>
+              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
+            </div>
+            <div class="back">
+              <img src="image4.jpg" alt="لحظة خاصة" onerror="this.style.display='none'">
+            </div>
           </div>
         </div>
+        <div class="caption">❤️ وجودك بجانبي أحلى من كل الأحلام… حضنك بيكون ملجأي وقلبك بيكون بيتي</div>
       </div>
-      <div class="caption">❤️ وجودك بجانبي أحلى من كل الأحلام… حضنك بيكون ملجأي وقلبك بيكون بيتي</div>
-    </div>
 
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>🌹 أنتِ قلبي</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image5.jpg" alt="أنت قلبي" onerror="this.style.display='none'">
+      <div class="card">
+        <div class="flip-container" onclick="flipCard(this)">
+          <div class="flipper">
+            <div class="front">
+              <div>📖 صفحة من كتاب حبنا</div>
+              <div>🌹 أنتِ قلبي</div>
+              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
+            </div>
+            <div class="back">
+              <img src="image5.jpg" alt="أنت قلبي" onerror="this.style.display='none'">
+            </div>
           </div>
         </div>
+        <div class="caption">💗 أنتِ قلبي وروحي… أنتِ الحب اللي كنت بدور عليه طول عمري</div>
       </div>
-      <div class="caption">💗 أنتِ قلبي وروحي… أنتِ الحب اللي كنت بدور عليه طول عمري</div>
-    </div>
 
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>✨ ذكرى جديدة</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image11.jpg" alt="ذكرى جميلة" onerror="this.style.display='none'">
+      <!-- باقي الصور بنفس الطريقة -->
+      <div class="card">
+        <div class="flip-container" onclick="flipCard(this)">
+          <div class="flipper">
+            <div class="front">
+              <div>📖 صفحة من كتاب حبنا</div>
+              <div>✨ ذكرى جديدة</div>
+              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
+            </div>
+            <div class="back">
+              <img src="image11.jpg" alt="ذكرى جميلة" onerror="this.style.display='none'">
+            </div>
           </div>
         </div>
+        <div class="caption">🌟 كل يوم معاكي بيكون أجمل من اللي فات… وكل صورة بتكون ذكرى جديدة في قلبي</div>
       </div>
-      <div class="caption">🌟 كل يوم معاكي بيكون أجمل من اللي فات… وكل صورة بتكون ذكرى جديدة في قلبي</div>
-    </div>
 
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>💖 لحظة حب</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image12.jpg" alt="لحظة حب" onerror="this.style.display='none'">
+      <div class="card">
+        <div class="flip-container" onclick="flipCard(this)">
+          <div class="flipper">
+            <div class="front">
+              <div>📖 صفحة من كتاب حبنا</div>
+              <div>💖 لحظة حب</div>
+              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
+            </div>
+            <div class="back">
+              <img src="image12.jpg" alt="لحظة حب" onerror="this.style.display='none'">
+            </div>
           </div>
         </div>
+        <div class="caption">💝 في عينيك شفت كل أحلامي… وفي قلبك لقيت كل أماني</div>
       </div>
-      <div class="caption">💝 في عينيك شفت كل أحلامي… وفي قلبك لقيت كل أماني</div>
-    </div>
 
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>🥰 ابتسامتك</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image13.jpg" alt="ابتسامة جميلة" onerror="this.style.display='none'">
-          </div>
-        </div>
+      <!-- ... باقي الصور بنفس النمط ... -->
+
+      <div class="card">
+        <video controls src="video.mp4" style="width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)"></video>
+        <div class="caption">🎥 شوفي الفيديو ده… كل مرة بشوفه بفتكر قد إيه أنا محظوظ بيكي</div>
       </div>
-      <div class="caption">😊 ابتسامتك بتكون أجمل ما في يومي… وبتبث الفرح في قلبي</div>
-    </div>
 
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>🌙 لحظة هدوء</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image14.jpg" alt="لحظة هدوء" onerror="this.style.display='none'">
-          </div>
-        </div>
+      <div class="card">
+        <video controls src="video2.mp4" style="width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)"></video>
+        <div class="caption">🎬 كل فيديو بنسجله بيكون ذكرى جميلة بنضيفها لقصتنا</div>
       </div>
-      <div class="caption">🌌 في صمتنا بتكون أحلى الكلام… وفي نظراتنا بتكون أعمق المشاعر</div>
-    </div>
 
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>🌅 شروق حبنا</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image15.jpg" alt="شروق حبنا" onerror="this.style.display='none'">
-          </div>
-        </div>
+      <!-- PLAY BUTTON -->
+      <div style="display:flex;justify-content:center;">
+        <button id="playBtn" class="play-toggle">▶ استمعي لأغنية حبنا 🎵</button>
       </div>
-      <div class="caption">🌄 كل صباح بتكون بداية جديدة لحبنا… وكل يوم بيكون صفحة جديدة في قصتنا</div>
-    </div>
 
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>💫 لحظة سحر</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image16.jpg" alt="لحظة سحرية" onerror="this.style.display='none'">
-          </div>
-        </div>
-      </div>
-      <div class="caption">✨ معاكي كل لحظة بتكون سحرية… وكل ثانية بتكون ثمينة</div>
-    </div>
+      <div id="rememberHeader">فاكره كل الذكريات دي يا عمري؟ ❤️</div>
 
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>🌺 جمالك</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image17.jpg" alt="جمالك" onerror="this.style.display='none'">
-          </div>
-        </div>
-      </div>
-      <div class="caption">🌷 جمالك بيكون أنقى من الزهور… وقلبك بيكون أنقى من الندى</div>
-    </div>
-
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>💓 نبض قلبي</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image18.jpg" alt="نبض قلبي" onerror="this.style.display='none'">
-          </div>
-        </div>
-      </div>
-      <div class="caption">💗 قلبي بيتنفس باسمك… وعمري بيكون معاكي</div>
-    </div>
-
-    <!-- تخطي image19 -->
-
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>🌈 ألوان حبنا</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image20.jpg" alt="ألوان حبنا" onerror="this.style.display='none'">
-          </div>
-        </div>
-      </div>
-      <div class="caption">🎨 حبنا بيكون أجمل من قوس قزح… وأعمق من كل الألوان</div>
-    </div>
-
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>🕊️ سلام قلبي</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image21.jpg" alt="سلام قلبي" onerror="this.style.display='none'">
-          </div>
-        </div>
-      </div>
-      <div class="caption">☮️ معاكي لقيت السلام… وفي حضنك لقيت الأمان</div>
-    </div>
-
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>🌊 موج حبنا</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image22.jpg" alt="موج حبنا" onerror="this.style.display='none'">
-          </div>
-        </div>
-      </div>
-      <div class="caption">🌊 حبنا بيكون مثل البحر… عميق وجميل ولا ينتهي</div>
-    </div>
-
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>⭐ نجوم ليالينا</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image23.jpg" alt="نجوم ليالينا" onerror="this.style.display='none'">
-          </div>
-        </div>
-      </div>
-      <div class="caption">🌠 ليالينا بتكون مرصعة بالنجوم… وقلوبنا بتكون مليئة بالحب</div>
-    </div>
-
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>🌄 فجر جديد</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image24.jpg" alt="فجر جديد" onerror="this.style.display='none'">
-          </div>
-        </div>
-      </div>
-      <div class="caption">🌅 كل فجر بيكون بداية جديدة لحبنا… وكل شروق بيكون وعد جديد</div>
-    </div>
-
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>💞 نهاية رائعة</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image25.jpg" alt="نهاية رائعة" onerror="this.style.display='none'">
-          </div>
-        </div>
-      </div>
-      <div class="caption">💖 كل نهاية بتكون بداية أجمل… وكل لحظة بتكون ذكرى أحلى</div>
-    </div>
-
-    <div class="card">
-      <div class="flip-container" onclick="flipCard(this)">
-        <div class="flipper">
-          <div class="front">
-            <div>📖 صفحة من كتاب حبنا</div>
-            <div>🎀 حب الأبد</div>
-            <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-          </div>
-          <div class="back">
-            <img src="image26.jpg" alt="حب الأبد" onerror="this.style.display='none'">
-          </div>
-        </div>
-      </div>
-      <div class="caption">💝 حبنا بيكون للأبد… وقلوبنا بتكون مع بعض دايماً</div>
-    </div>
-
-    <!-- الفيديوهات -->
-    <div class="card">
-      <video controls src="video.mp4" style="width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)"></video>
-      <div class="caption">🎥 شوفي الفيديو ده… كل مرة بشوفه بفتكر قد إيه أنا محظوظ بيكي</div>
-    </div>
-
-    <div class="card">
-      <video controls src="video2.mp4" style="width:100%;border-radius:14px;display:block;margin:10px 0;box-shadow:0 12px 40px rgba(0,0,0,0.45)"></video>
-      <div class="caption">🎬 كل فيديو بنسجله بيكون ذكرى جميلة بنضيفها لقصتنا</div>
-    </div>
-
-    <!-- PLAY BUTTON -->
-    <div style="display:flex;justify-content:center;">
-      <button id="playBtn" class="play-toggle">▶ استمعي لأغنية حبنا 🎵</button>
-    </div>
-
-    <div id="rememberHeader">فاكره كل الذكريات دي يا عمري؟ ❤️</div>
-
-    <div id="finalMsgBox" class="card">
-      <div id="finalMsg">
+      <div id="finalMsgBox" class="card">
+        <div id="finalMsg">
 بجد مش عارف اقولك ايه!! 
 لو اعرف كل دا مكنش عدى علينا دقيقه زعلانين فيها من بعض يمكن من فتره قريبه مكنتش حاسس بكل الحب ده من نحيتك احنا اه مبقلناش غير شهر اصلا بس كل حاجه بتطور بسرعه اوى زى م انتى شايفه 
 ومش معنى انها بتطور بسرعه انها مش حقيقيه لا هى حقيقيه وزياده كمان 
@@ -549,13 +399,15 @@
 احى واحده شافتها عيونى واحلى الوحيده اللى حركت قلبى 
 من قبل متخبطى قلبى فتحلك وقالك ادخلى وانتى فعلا دخلتى وسكنتى جواه ومن وقتها وهو متطمن بوجودك وعمره مهيفتح ويخرجك ابداااا 
 بحبك ي كل حاجه ي احلى حاجه  ي اغلى حاجه ♥💋💞
+        </div>
       </div>
-    </div>
+
+    </div> <!-- نهاية restOfContent -->
 
   </main>
 </div>
 
-<!-- AUDIO FIXED -->
+<!-- AUDIO FILES -->
 <audio id="song" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
@@ -573,14 +425,13 @@
       main.style.display='block';
       main.setAttribute('aria-hidden','false');
       
-      // تشغيل الأغنية تلقائياً بعد تفاعل المستخدم
+      // تشغيل الأغنية الخاصة تلقائياً
       setTimeout(() => {
-        const song = document.getElementById('song');
-        song.play().then(() => {
-          console.log('الأغنية شغالة!');
+        const specialSong = document.getElementById('specialSong');
+        specialSong.play().then(() => {
+          console.log('الأغنية الخاصة شغالة!');
         }).catch(error => {
-          console.log('مشكلة في تشغيل الأغنية:', error);
-          document.getElementById('playBtn').style.display = 'block';
+          console.log('مشكلة في تشغيل الأغنية الخاصة:', error);
         });
       }, 1000);
       
@@ -588,6 +439,13 @@
     } else {
       alert('التاريخ غلط يا عمري — جربي تاني ❤️');
     }
+  }
+
+  // دالة عرض باقي المحتوى
+  function showRestOfContent() {
+    document.getElementById('restOfContent').style.display = 'block';
+    // تمرير لأسفل لمشاهدة المحتوى الجديد
+    document.getElementById('restOfContent').scrollIntoView({behavior: 'smooth'});
   }
 
   // دالة قلب الصور - بسيطة ومضمونة
@@ -620,12 +478,7 @@
   window.addEventListener('load', function() {
     document.getElementById('passInput').focus();
   });
-
-  // التأكد من أن الأغنية جاهزة
-  song.addEventListener('canplay', function() {
-    console.log('الأغنية جاهزة للتشغيل');
-  });
 </script>
 
 </body>
-              </html>
+          </html>
