@@ -21,38 +21,6 @@
     -webkit-font-smoothing:antialiased;
   }
 
-  /* Floating mini images */
-  .floating-image {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    object-fit: cover;
-    pointer-events: none;
-    z-index: 1000;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-    border: 2px solid var(--accent);
-    animation: floatAround 15s linear infinite;
-    opacity: 0.8;
-  }
-
-  @keyframes floatAround {
-    0% {
-      transform: translateY(100vh) translateX(0) rotate(0deg);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.8;
-    }
-    90% {
-      opacity: 0.8;
-    }
-    100% {
-      transform: translateY(-100px) translateX(calc(100vw - 100px)) rotate(360deg);
-      opacity: 0;
-    }
-  }
-
   .wrap{max-width:900px;margin:0 auto;padding:20px}
   .center{display:flex;flex-direction:column;align-items:center;justify-content:center}
 
@@ -236,8 +204,6 @@
 </style>
 </head>
 <body>
-
-<!-- Floating images will be added here by JavaScript -->
 
 <div class="wrap">
 
@@ -439,43 +405,6 @@
   // الباسوورد
   const PASS = "962025";
 
-  // قائمة الصور المتطايرة
-  const floatingImages = [
-    'image.jpg', 'image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg',
-    'image11.jpg', 'image12.jpg', 'image13.jpg', 'image14.jpg', 'image15.jpg', 'image16.jpg',
-    'image17.jpg', 'image18.jpg', 'image20.jpg', 'image21.jpg', 'image22.jpg', 'image23.jpg',
-    'image24.jpg', 'image25.jpg', 'image26.jpg'
-  ];
-
-  // دالة إنشاء الصور المتطايرة
-  function createFloatingImages() {
-    floatingImages.forEach((imageSrc, index) => {
-      setTimeout(() => {
-        const img = document.createElement('img');
-        img.className = 'floating-image';
-        img.src = imageSrc;
-        img.alt = 'ذكرى جميلة';
-        
-        // مواضع عشوائية
-        const startX = Math.random() * window.innerWidth;
-        const delay = Math.random() * 5;
-        
-        img.style.left = startX + 'px';
-        img.style.animationDelay = delay + 's';
-        img.style.animationDuration = (15 + Math.random() * 10) + 's';
-        
-        document.body.appendChild(img);
-        
-        // إزالة الصورة بعد انتهاء الأنيميشن
-        setTimeout(() => {
-          if (img.parentNode) {
-            img.parentNode.removeChild(img);
-          }
-        }, 25000);
-      }, index * 800); // تأخير بين كل صورة وأخرى
-    });
-  }
-
   // دالة التحقق من الباسوورد
   function checkPass(){
     const v = document.getElementById('passInput').value.trim();
@@ -494,11 +423,6 @@
           console.log('مشكلة في تشغيل الأغنية الجديدة:', error);
         });
       }, 500);
-      
-      // بدء إنشاء الصور المتطايرة
-      createFloatingImages();
-      // استمرار إنشاء الصور كل 30 ثانية
-      setInterval(createFloatingImages, 30000);
       
       window.scrollTo({top:0,behavior:'smooth'});
     } else {
