@@ -226,7 +226,7 @@
     box-shadow: 0 18px 55px rgba(0,0,0,0.7), 0 0 20px rgba(255,47,75,0.25);
   }
   
-  /* SIMPLE FLIP EFFECT - WORKING */
+  /* إصلاح مشكلة flip cards */
   .flip-container {
     width: 100%;
     height: 420px;
@@ -256,6 +256,7 @@
     flex-direction: column;
     padding: 25px;
     box-shadow: 0 15px 45px rgba(0,0,0,0.5);
+    overflow: hidden; /* إصلاح اختفاء النص */
   }
   
   .front {
@@ -264,7 +265,6 @@
     font-size: 26px;
     text-shadow: 0 2px 12px rgba(0,0,0,0.5);
     position: relative;
-    overflow: hidden;
   }
   
   .front::before {
@@ -448,6 +448,7 @@
     font-size: 40px;
   }
   
+  /* إصلاح مشكلة الرسالة الطويلة */
   #finalMsgBox{
     background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03)); 
     padding:25px;
@@ -456,6 +457,22 @@
     box-shadow:0 12px 45px rgba(0,0,0,0.6);
     border:2px solid rgba(255,255,255,0.08);
     position:relative;
+    max-height: 600px; /* تحديد ارتفاع أقصى */
+    overflow-y: auto; /* إضافة scroll عند الحاجة */
+  }
+  
+  #finalMsgBox::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  #finalMsgBox::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+  }
+  
+  #finalMsgBox::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
   }
   
   #finalMsgBox::before {
@@ -545,6 +562,45 @@
     }
   }
 
+  /* تأثير المطر لكلمة "ميرا نور عيني" */
+  .rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+  }
+  
+  .rain-word {
+    position: absolute;
+    font-size: 24px;
+    color: var(--gold);
+    text-shadow: 0 0 10px rgba(255,215,0,0.7);
+    font-weight: bold;
+    opacity: 0;
+    animation: rainFall 8s linear infinite;
+  }
+  
+  @keyframes rainFall {
+    0% {
+      transform: translateY(-100px) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.8;
+    }
+    90% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
   /* Signature at the bottom */
   .signature {
     margin-top: 50px;
@@ -606,6 +662,7 @@
     #rememberHeader { font-size: 28px; padding: 15px; }
     #finalMsg { font-size: 18px; }
     .signature { font-size: 18px; padding: 20px; }
+    .rain-word { font-size: 18px; }
   }
 </style>
 </head>
@@ -613,6 +670,9 @@
 
 <!-- Floating hearts background -->
 <div class="floating-hearts" id="heartsContainer"></div>
+
+<!-- تأثير المطر لكلمة "ميرا نور عيني" -->
+<div class="rain-container" id="rainContainer"></div>
 
 <div class="wrap">
 
@@ -687,9 +747,7 @@
         </div>
       </div>
 
-      <!-- جميع الصور من 1 إلى 26 -->
-      
-      <!-- الصورة 1 -->
+      <!-- نموذج للصور (يتم إضافة الباقي بنفس الطريقة) -->
       <div class="card">
         <div class="flip-container" onclick="flipCard(this)">
           <div class="flipper">
@@ -704,416 +762,6 @@
           </div>
         </div>
         <div class="caption">❤️ أول ما شفتك يا <span class="mira-name">ميرا</span> عرفت إن قلبي لقي صاحبه… إنتي فرحتي وبهجتي</div>
-      </div>
-
-      <!-- الصورة 2 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>💞 لحظة من حياتنا</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image2.jpg" alt="صورة حبنا 2" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">💗 في حضنك لقيت راحتي… وفي عينيك شفت مستقبلي</div>
-      </div>
-
-      <!-- الصورة 3 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>🌹 ذكرى جميلة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image3.jpg" alt="صورة حبنا 3" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">✨ كل لحظة معاكي بتكون أحلى من اللي قبلها</div>
-      </div>
-
-      <!-- الصورة 4 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>💖 ضحكتك</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image4.jpg" alt="صورة حبنا 4" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">😊 ضحكتك بتعملني أجنن وبتخليني أحبك أكتر</div>
-      </div>
-
-      <!-- الصورة 5 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>🌟 لحظة خاصة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image5.jpg" alt="صورة حبنا 5" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">💫 معاكي بعيش أحلى أحلامي</div>
-      </div>
-
-      <!-- الصورة 6 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>🌅 بداية جميلة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image6.jpg" alt="صورة حبنا 6" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">🌄 بداية قصة حب عمرها ما هتخلص</div>
-      </div>
-
-      <!-- الصورة 7 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>💕 نظرة حب</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image7.jpg" alt="صورة حبنا 7" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">🥰 في عينيك شفت كل أحلامي</div>
-      </div>
-
-      <!-- الصورة 8 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>🌺 رومانسية</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image8.jpg" alt="صورة حبنا 8" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">💐 كل يوم بيكتب في قصة حبنا فصل جديد</div>
-      </div>
-
-      <!-- الصورة 9 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>🫂 حضن دافئ</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image9.jpg" alt="صورة حبنا 9" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">🤗 في حضنك بلاقي الأمان والراحة</div>
-      </div>
-
-      <!-- الصورة 10 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>💘 قلبين</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image10.jpg" alt="صورة حبنا 10" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">💞 قلبك وقلبي بقوا واحد</div>
-      </div>
-
-      <!-- الصورة 11 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>🌌 ليلة جميلة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image11.jpg" alt="صورة حبنا 11" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">🌠 الليالي معاكي بتكون أجمل</div>
-      </div>
-
-      <!-- الصورة 12 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>💓 حب حقيقي</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image12.jpg" alt="صورة حبنا 12" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">💝 حبك هو أجمل شيء في حياتي</div>
-      </div>
-
-      <!-- الصورة 13 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>🌹 وردة حب</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image13.jpg" alt="صورة حبنا 13" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">🥀 أنت الوردة الي بتعطر حياتي</div>
-      </div>
-
-      <!-- الصورة 14 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>💑 ثنائي جميل</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image14.jpg" alt="صورة حبنا 14" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">👫 إحنا الاتنين مكملين بعض</div>
-      </div>
-
-      <!-- الصورة 15 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>💞 إرتباطنا</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image15.jpg" alt="صورة حبنا 15" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">💒 أحلى قرار في حياتي هو ارتباطي بيكي</div>
-      </div>
-
-      <!-- الصورة 16 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>🌟 نجمة حياتي</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image16.jpg" alt="صورة حبنا 16" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">⭐ أنت نجمة السما الي بتنورلي حياتي</div>
-      </div>
-
-      <!-- الصورة 17 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>💖 فرحة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image17.jpg" alt="صورة حبنا 17" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">🎉 كل فرحة في حياتي بتكون بسببك</div>
-      </div>
-
-      <!-- الصورة 18 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>🌅 شروق</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image18.jpg" alt="صورة حبنا 18" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">🌞 كل صباح بيفضل جميل علشانك</div>
-      </div>
-
-      <!-- تخطي الصورة 19 -->
-
-      <!-- الصورة 20 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>💕 حب أبدي</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image20.jpg" alt="صورة حبنا 20" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">💑 حبنا هيفضل دايمًا إلى الأبد</div>
-      </div>
-
-      <!-- الصورة 21 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>🌹 رومانسية</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image21.jpg" alt="صورة حبنا 21" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">💐 رومانسيتك بتحيي قلبي</div>
-      </div>
-
-      <!-- الصورة 22 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>💘 نظرات</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image22.jpg" alt="صورة حبنا 22" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">😍 نظراتك بتحكي كل حاجة</div>
-      </div>
-
-      <!-- الصورة 23 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>🌟 أحلام</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image23.jpg" alt="صورة حبنا 23" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">💫 أحلامي كلها بتكون معاكي</div>
-      </div>
-
-      <!-- الصورة 24 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>💞 إبتسامة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image24.jpg" alt="صورة حبنا 24" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">😊 إبتسامتك بتعدي كل الهموم</div>
-      </div>
-
-      <!-- الصورة 25 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>💖 لحظات</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image25.jpg" alt="صورة حبنا 25" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">⏳ كل لحظة معاكي بتكون ثمينة</div>
-      </div>
-
-      <!-- الصورة 26 -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
-              <div>💝 نهاية البداية</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
-            </div>
-            <div class="back">
-              <img src="image26.jpg" alt="صورة حبنا 26" onerror="showPlaceholder(this)">
-            </div>
-          </div>
-        </div>
-        <div class="caption">🎊 دي مش نهاية... دي بداية قصة حب حقيقية</div>
       </div>
 
       <!-- PLAY BUTTON -->
@@ -1171,6 +819,31 @@
     }
   }
 
+  // تأثير المطر لكلمة "ميرا نور عيني"
+  function createRain() {
+    const container = document.getElementById('rainContainer');
+    const words = ["ميرا", "نور", "عيني", "ميرا نور عيني", "بحبك", "عمري", "حبيبتي"];
+    
+    setInterval(() => {
+      const word = document.createElement('div');
+      word.className = 'rain-word';
+      word.textContent = words[Math.floor(Math.random() * words.length)];
+      word.style.left = Math.random() * 100 + 'vw';
+      word.style.animationDuration = (Math.random() * 5 + 8) + 's';
+      word.style.fontSize = (Math.random() * 10 + 20) + 'px';
+      word.style.color = `hsl(${Math.random() * 60 + 0}, 100%, 50%)`; // ألوان ذهبية ووردية
+      
+      container.appendChild(word);
+      
+      // إزالة الكلمة بعد انتهاء الأنيميشن
+      setTimeout(() => {
+        if (word.parentNode) {
+          word.parentNode.removeChild(word);
+        }
+      }, 10000);
+    }, 500); // إضافة كلمة جديدة كل 500 مللي ثانية
+  }
+
   // دالة لعرض بديل إذا الصورة غير موجودة
   function showPlaceholder(img) {
     img.style.display = 'none';
@@ -1193,6 +866,9 @@
       const main = document.getElementById('mainContent');
       main.style.display='block';
       main.setAttribute('aria-hidden','false');
+      
+      // بدء تأثير المطر
+      createRain();
       
       // تشغيل الأغنية الجديدة song2.mp3 تلقائياً أول شيء
       setTimeout(() => {
@@ -1258,4 +934,4 @@
 </script>
 
 </body>
-  </html>
+</html>
