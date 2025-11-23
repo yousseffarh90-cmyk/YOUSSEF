@@ -35,6 +35,58 @@
   /* main content */
   #mainContent{display:none;padding:40px 10px 80px}
   .hero{font-size:30px;margin-bottom:10px;color:var(--accent);text-shadow:0 6px 25px rgba(0,0,0,0.6)}
+  
+  /* Special message section */
+  .special-message {
+    background: linear-gradient(135deg, #8b0000, #ff2f4b, #ff7a9a);
+    padding: 40px 30px;
+    border-radius: 20px;
+    margin: 30px auto;
+    max-width: 800px;
+    box-shadow: 0 20px 60px rgba(255,47,75,0.4);
+    border: 2px solid rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .special-message::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: rotate 15s linear infinite;
+  }
+  
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .message-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .message-text {
+    font-size: 22px;
+    line-height: 1.8;
+    color: white;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    margin-bottom: 25px;
+    font-weight: bold;
+  }
+  
+  .final-note {
+    font-size: 20px;
+    color: #ffd700;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
   .card{width:92%;max-width:760px;margin:18px auto;background:var(--card);border-radius:18px;padding:14px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
   
   /* SIMPLE FLIP EFFECT - WORKING */
@@ -144,6 +196,7 @@
     #finalMsg{font-size:20px} 
     input[type="password"]{font-size:20px} 
     .caption{font-size:22px} 
+    .message-text { font-size: 26px; }
   }
 
   .fadeIn{animation:fadeIn 700ms ease both}
@@ -169,28 +222,60 @@
 
     <div class="hero">بحبك يا عمري ميرا ❤️</div>
 
-    <!-- الصفحة الخاصة مع الأغنية الجديدة -->
+    <!-- الرسالة الخاصة أول شيء -->
+    <div class="special-message">
+      <div class="message-content">
+        <div class="message-text">
+          ميرا انا بحبك اكتر من اي حاجه اكتر من نفسي ومن اي حد<br>
+          مش عايز اخسرك لأي سبب أياً كان<br>
+          خليكي معايا ع طول ينور عيني متسيبينيش مهما حصل<br>
+          اسمعيني ينور عيني محدش هيحبك ولا هيخاف عليكى قدي اقسم بالله
+        </div>
+        
+        <div class="final-note">
+          انتي اغلي حاجه في حياتي يماما ✨<br>
+          خليكي فاكره الجمله دي كويس اغلي حاجه يعمري ♥
+        </div>
+      </div>
+    </div>
+
+    <!-- الأغنية الجديدة song2.mp3 -->
     <div class="audio-section">
-      <div class="audio-title">🎵 اسمعيني وافهميني يماما وافهمي انى بحبك وغيران عليكى مش اكتر ❤️</div>
+      <div class="audio-title">🎵 اسمعي رسالتي لقلبك يماما ❤️</div>
       
       <!-- الأغنية الجديدة -->
-      <audio id="specialSong" controls style="width:100%; max-width:400px; margin:20px auto; display:block;">
-        <source src="song1.mp3" type="audio/mpeg">
+      <audio id="specialSong2" controls style="width:100%; max-width:400px; margin:20px auto; display:block;">
+        <source src="song2.mp3" type="audio/mpeg">
         المتصفح لا يدعم تشغيل الصوتيات
       </audio>
       
       <div style="color:rgba(255,255,255,0.9); font-size:18px; margin:15px 0;">
-        استمعي للصوت ده علشان تفهميني أكتر ❤️
+        كل كلمة في الأغنية دي من قلبي لقلبك 💖
       </div>
       
       <!-- زر الانتقال لباقي المحتوى -->
       <button class="continue-btn" onclick="showRestOfContent()">
-        اضغطى هنا يقلبي 💖
+        اضغطى هنا يقلبي علشان تشوفي باقي الذكريات 💕
       </button>
     </div>
 
     <!-- باقي المحتوى (مخفي في البداية) -->
     <div id="restOfContent" style="display:none;">
+
+      <!-- الأغنية الأولى -->
+      <div class="audio-section">
+        <div class="audio-title">🎵 اسمعيني وافهميني يماما وافهمي انى بحبك وغيران عليكى مش اكتر ❤️</div>
+        
+        <!-- الأغنية الأولى -->
+        <audio id="specialSong1" controls style="width:100%; max-width:400px; margin:20px auto; display:block;">
+          <source src="song1.mp3" type="audio/mpeg">
+          المتصفح لا يدعم تشغيل الصوتيات
+        </audio>
+        
+        <div style="color:rgba(255,255,255,0.9); font-size:18px; margin:15px 0;">
+          استمعي للصوت ده علشان تفهميني أكتر ❤️
+        </div>
+      </div>
 
       <!-- جميع الصور من 1 إلى 26 (ماعدا 19) -->
       <div class="card">
@@ -209,6 +294,7 @@
         <div class="caption">❤️ أول ما شفتك عرفت إن قلبي لقي صاحبه… إنتي فرحتي وبهجتي</div>
       </div>
 
+      <!-- باقي الصور بنفس النمط -->
       <div class="card">
         <div class="flip-container" onclick="flipCard(this)">
           <div class="flipper">
@@ -223,103 +309,6 @@
           </div>
         </div>
         <div class="caption">💗 في حضنك لقيت راحتي… وفي عينيك شفت مستقبلي</div>
-      </div>
-
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حبنا</div>
-              <div>😊 ضحكتك</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-            </div>
-            <div class="back">
-              <img src="image2.jpg" alt="ضحكة جميلة" onerror="this.style.display='none'">
-            </div>
-          </div>
-        </div>
-        <div class="caption">🥰 ضحكتك بتعمل معجزات في قلبي… بتنور أيامي وتبعث الأمل في روحي</div>
-      </div>
-
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حبنا</div>
-              <div>🌟 ذكرياتنا</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-            </div>
-            <div class="back">
-              <img src="image3.jpg" alt="ذكريات جميلة" onerror="this.style.display='none'">
-            </div>
-          </div>
-        </div>
-        <div class="caption">💞 كل لحظة معاكي بتكون أجمل قصة… كل ذكرى بتكون أحلى من اللي قبلها</div>
-      </div>
-
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حبنا</div>
-              <div>💕 لحظة خاصة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-            </div>
-            <div class="back">
-              <img src="image4.jpg" alt="لحظة خاصة" onerror="this.style.display='none'">
-            </div>
-          </div>
-        </div>
-        <div class="caption">❤️ وجودك بجانبي أحلى من كل الأحلام… حضنك بيكون ملجأي وقلبك بيكون بيتي</div>
-      </div>
-
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حبنا</div>
-              <div>🌹 أنتِ قلبي</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-            </div>
-            <div class="back">
-              <img src="image5.jpg" alt="أنت قلبي" onerror="this.style.display='none'">
-            </div>
-          </div>
-        </div>
-        <div class="caption">💗 أنتِ قلبي وروحي… أنتِ الحب اللي كنت بدور عليه طول عمري</div>
-      </div>
-
-      <!-- باقي الصور بنفس الطريقة -->
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حبنا</div>
-              <div>✨ ذكرى جديدة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-            </div>
-            <div class="back">
-              <img src="image11.jpg" alt="ذكرى جميلة" onerror="this.style.display='none'">
-            </div>
-          </div>
-        </div>
-        <div class="caption">🌟 كل يوم معاكي بيكون أجمل من اللي فات… وكل صورة بتكون ذكرى جديدة في قلبي</div>
-      </div>
-
-      <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
-              <div>📖 صفحة من كتاب حبنا</div>
-              <div>💖 لحظة حب</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة</div>
-            </div>
-            <div class="back">
-              <img src="image12.jpg" alt="لحظة حب" onerror="this.style.display='none'">
-            </div>
-          </div>
-        </div>
-        <div class="caption">💝 في عينيك شفت كل أحلامي… وفي قلبك لقيت كل أماني</div>
       </div>
 
       <!-- ... باقي الصور بنفس النمط ... -->
@@ -425,15 +414,15 @@
       main.style.display='block';
       main.setAttribute('aria-hidden','false');
       
-      // تشغيل الأغنية الخاصة تلقائياً
+      // تشغيل الأغنية الجديدة song2.mp3 تلقائياً أول شيء
       setTimeout(() => {
-        const specialSong = document.getElementById('specialSong');
-        specialSong.play().then(() => {
-          console.log('الأغنية الخاصة شغالة!');
+        const specialSong2 = document.getElementById('specialSong2');
+        specialSong2.play().then(() => {
+          console.log('الأغنية الجديدة song2.mp3 شغالة!');
         }).catch(error => {
-          console.log('مشكلة في تشغيل الأغنية الخاصة:', error);
+          console.log('مشكلة في تشغيل الأغنية الجديدة:', error);
         });
-      }, 1000);
+      }, 500);
       
       window.scrollTo({top:0,behavior:'smooth'});
     } else {
@@ -481,4 +470,4 @@
 </script>
 
 </body>
-          </html>
+</html>
