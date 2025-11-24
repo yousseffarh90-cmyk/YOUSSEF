@@ -226,19 +226,19 @@
     box-shadow: 0 18px 55px rgba(0,0,0,0.7), 0 0 20px rgba(255,47,75,0.25);
   }
   
-  /* تحسين كامل لبطاقات الصور */
-  .flip-container {
+  /* تحسين كامل لبطاقات الصور - تأثير الانزلاق بدلاً من القلب */
+  .slide-container {
     width: 100%;
     height: 420px;
     position: relative;
     margin: 15px 0;
     cursor: pointer;
-    perspective: 1200px;
     border-radius: 18px;
     overflow: hidden;
+    perspective: 1200px;
   }
   
-  .flipper {
+  .slider {
     width: 100%;
     height: 100%;
     position: relative;
@@ -246,7 +246,7 @@
     transform-style: preserve-3d;
   }
   
-  .front, .back {
+  .top, .bottom {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -261,7 +261,7 @@
     overflow: hidden;
   }
   
-  .front {
+  .top {
     background: linear-gradient(135deg, var(--reddeep), var(--redmid), #ff5c7a);
     color: white;
     font-size: 26px;
@@ -269,9 +269,11 @@
     position: relative;
     z-index: 2;
     text-align: center;
+    transform: translateY(0);
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
   
-  .front::before {
+  .top::before {
     content: 'لميرا ❤️';
     position: absolute;
     bottom: 15px;
@@ -281,17 +283,18 @@
     font-weight: bold;
   }
   
-  .back {
+  .bottom {
     background: #1a1a1a;
-    transform: rotateY(180deg);
+    transform: translateY(100%);
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
   
-  .back::before {
+  .bottom::before {
     content: 'ذكريات ميرا ويوسف ❤️';
     position: absolute;
     top: 15px;
@@ -302,7 +305,7 @@
     z-index: 3;
   }
   
-  .back img {
+  .bottom img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -312,7 +315,7 @@
     transition: transform 0.5s ease;
   }
   
-  .back img:hover {
+  .bottom img:hover {
     transform: scale(1.05);
   }
   
@@ -339,11 +342,15 @@
     color: var(--accent);
   }
   
-  .flip-container.flipped .flipper {
-    transform: rotateY(180deg);
+  .slide-container.slided .top {
+    transform: translateY(-100%);
   }
   
-  .flip-text {
+  .slide-container.slided .bottom {
+    transform: translateY(0);
+  }
+  
+  .slide-text {
     margin-top: 20px;
     font-size: 18px;
     color: rgba(255,255,255,0.9);
@@ -667,7 +674,7 @@
     .special-message { padding: 30px 20px; margin: 25px auto; }
     .message-text { font-size: 20px; }
     .final-note { font-size: 18px; padding: 15px; }
-    .flip-container { height: 350px; }
+    .slide-container { height: 350px; }
     .audio-title { font-size: 24px; }
     .continue-btn { font-size: 18px; padding: 15px 25px; }
     #rememberHeader { font-size: 28px; padding: 15px; }
@@ -676,22 +683,22 @@
     .rain-word { font-size: 18px; }
     
     /* تحسينات إضافية للجوال */
-    .flip-container {
+    .slide-container {
       height: 300px;
     }
     
-    .front {
+    .top {
       font-size: 20px;
       padding: 15px;
     }
     
-    .front::before {
+    .top::before {
       font-size: 14px;
       bottom: 10px;
       left: 10px;
     }
     
-    .back::before {
+    .bottom::before {
       font-size: 14px;
       top: 10px;
       left: 10px;
@@ -784,14 +791,14 @@
       
       <!-- الصورة 1 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>🖼️ أول ما شفتك يا <span class="mira-name">ميرا</span></div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image1.jpg" alt="صورة حبنا 1" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -801,14 +808,14 @@
 
       <!-- الصورة 2 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>💞 لحظة من حياتنا</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image2.jpg" alt="صورة حبنا 2" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -818,14 +825,14 @@
 
       <!-- الصورة 3 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>🌹 ذكرى جميلة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image3.jpg" alt="صورة حبنا 3" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -835,14 +842,14 @@
 
       <!-- الصورة 4 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>💖 ضحكتك</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image4.jpg" alt="صورة حبنا 4" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -852,14 +859,14 @@
 
       <!-- الصورة 5 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>🌟 لحظة خاصة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image5.jpg" alt="صورة حبنا 5" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -869,14 +876,14 @@
 
       <!-- الصورة 6 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>🌅 بداية جميلة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image6.jpg" alt="صورة حبنا 6" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -886,14 +893,14 @@
 
       <!-- الصورة 7 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>💕 نظرة حب</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image7.jpg" alt="صورة حبنا 7" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -903,14 +910,14 @@
 
       <!-- الصورة 8 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>🌺 رومانسية</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image8.jpg" alt="صورة حبنا 8" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -920,14 +927,14 @@
 
       <!-- الصورة 9 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>🫂 حضن دافئ</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image9.jpg" alt="صورة حبنا 9" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -937,14 +944,14 @@
 
       <!-- الصورة 10 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>💘 قلبين</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image10.jpg" alt="صورة حبنا 10" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -954,14 +961,14 @@
 
       <!-- الصورة 11 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>🌌 ليلة جميلة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image11.jpg" alt="صورة حبنا 11" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -971,14 +978,14 @@
 
       <!-- الصورة 12 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>💓 حب حقيقي</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image12.jpg" alt="صورة حبنا 12" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -988,14 +995,14 @@
 
       <!-- الصورة 13 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>🌹 وردة حب</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image13.jpg" alt="صورة حبنا 13" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -1005,14 +1012,14 @@
 
       <!-- الصورة 14 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>💑 ثنائي جميل</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image14.jpg" alt="صورة حبنا 14" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -1022,14 +1029,14 @@
 
       <!-- الصورة 15 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>💞 إرتباطنا</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image15.jpg" alt="صورة حبنا 15" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -1039,14 +1046,14 @@
 
       <!-- الصورة 16 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>🌟 نجمة حياتي</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image16.jpg" alt="صورة حبنا 16" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -1056,14 +1063,14 @@
 
       <!-- الصورة 17 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>💖 فرحة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image17.jpg" alt="صورة حبنا 17" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -1073,14 +1080,14 @@
 
       <!-- الصورة 18 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>🌅 شروق</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image18.jpg" alt="صورة حبنا 18" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -1092,14 +1099,14 @@
 
       <!-- الصورة 20 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>💕 حب أبدي</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image20.jpg" alt="صورة حبنا 20" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -1109,14 +1116,14 @@
 
       <!-- الصورة 21 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>🌹 رومانسية</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image21.jpg" alt="صورة حبنا 21" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -1126,14 +1133,14 @@
 
       <!-- الصورة 22 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>💘 نظرات</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image22.jpg" alt="صورة حبنا 22" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -1143,14 +1150,14 @@
 
       <!-- الصورة 23 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>🌟 أحلام</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image23.jpg" alt="صورة حبنا 23" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -1160,14 +1167,14 @@
 
       <!-- الصورة 24 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>💞 إبتسامة</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image24.jpg" alt="صورة حبنا 24" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -1177,14 +1184,14 @@
 
       <!-- الصورة 25 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>💖 لحظات</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image25.jpg" alt="صورة حبنا 25" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -1194,14 +1201,14 @@
 
       <!-- الصورة 26 -->
       <div class="card">
-        <div class="flip-container" onclick="flipCard(this)">
-          <div class="flipper">
-            <div class="front">
+        <div class="slide-container" onclick="slideCard(this)">
+          <div class="slider">
+            <div class="top">
               <div>📖 صفحة من كتاب حب <span class="mira-name">ميرا</span> ويوسف</div>
               <div>💝 نهاية البداية</div>
-              <div class="flip-text">إضغطي لتقلبي الصفحة يا <span class="mira-name">ميرا</span></div>
+              <div class="slide-text">إضغطي لتشوفي الصورة يا <span class="mira-name">ميرا</span></div>
             </div>
-            <div class="back">
+            <div class="bottom">
               <img src="image26.jpg" alt="صورة حبنا 26" onerror="showPlaceholder(this)">
             </div>
           </div>
@@ -1388,9 +1395,9 @@
     document.getElementById('restOfContent').scrollIntoView({behavior: 'smooth'});
   }
 
-  // دالة قلب الصور - معدلة تماماً
-  function flipCard(element) {
-    element.classList.toggle('flipped');
+  // دالة انزلاق الصور - معدلة تماماً
+  function slideCard(element) {
+    element.classList.toggle('slided');
   }
 
   // دالة تشغيل/إيقاف الأغنية
@@ -1425,4 +1432,4 @@
 </script>
 
 </body>
-                                                  </html>
+        </html>
