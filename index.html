@@ -25,7 +25,7 @@
     min-height: 100vh;
   }
 
-  .wrap{max-width:1200px;margin:0 auto;padding:20px; position: relative; z-index: 10;}
+  .wrap{max-width:1400px;margin:0 auto;padding:20px; position: relative; z-index: 10;}
   .center{display:flex;flex-direction:column;align-items:center;justify-content:center}
 
   /* password page */
@@ -156,7 +156,7 @@
     padding: 50px 30px;
     border-radius: 25px;
     margin: 40px auto;
-    max-width: 1100px;
+    max-width: 1300px;
     box-shadow: 0 25px 70px rgba(255,47,75,0.5), 0 0 0 2px rgba(255,255,255,0.1);
     border: 2px solid rgba(255,255,255,0.15);
     position: relative;
@@ -198,7 +198,7 @@
   
   .card{
     width:100%;
-    max-width:1150px;
+    max-width:1350px;
     margin:35px auto;
     background:var(--card);
     border-radius:25px;
@@ -229,7 +229,7 @@
   /* تحسين كامل لبطاقات الصور - حل مشكلة النص المغطى */
   .image-container {
     width: 100%;
-    height: 750px; /* زيادة ارتفاع الصور */
+    height: 850px; /* زيادة ارتفاع الصور */
     position: relative;
     margin: 25px 0;
     border-radius: 25px;
@@ -252,29 +252,8 @@
     transform: scale(1.1);
   }
   
-  /* تحسين رأس الصورة - إزالة النص الزائد */
+  /* إزالة رأس الصورة بالكامل */
   .image-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(135deg, rgba(139,0,0,0.9), rgba(255,47,75,0.9), rgba(255,92,122,0.9));
-    color: white;
-    font-size: 32px;
-    text-shadow: 0 3px 15px rgba(0,0,0,0.6);
-    text-align: center;
-    padding: 30px;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(5px);
-    border-bottom: 3px solid rgba(255,255,255,0.2);
-  }
-  
-  /* إزالة النص "لميرا ❤️" من الأعلى */
-  .image-header::before {
     display: none;
   }
   
@@ -376,7 +355,7 @@
     padding: 55px 35px;
     border-radius: 28px;
     margin: 45px auto;
-    max-width: 900px;
+    max-width: 1000px;
     box-shadow: 0 25px 60px rgba(255,47,75,0.6), 0 0 0 2px rgba(255,255,255,0.2);
     position: relative;
     overflow: hidden;
@@ -651,7 +630,7 @@
     .special-message { padding: 40px 25px; margin: 35px auto; }
     .message-text { font-size: 24px; }
     .final-note { font-size: 22px; padding: 20px; }
-    .image-container { height: 500px; } /* تكبير الصور في الجوال */
+    .image-container { height: 550px; } /* تكبير الصور في الجوال */
     .audio-title { font-size: 28px; }
     .continue-btn { font-size: 22px; padding: 20px 35px; }
     #rememberHeader { font-size: 32px; padding: 25px; }
@@ -661,12 +640,7 @@
     
     /* تحسينات إضافية للجوال */
     .image-container {
-      height: 450px;
-    }
-    
-    .image-header {
-      font-size: 24px;
-      padding: 25px;
+      height: 500px;
     }
     
     .image-footer {
@@ -771,9 +745,6 @@
       <!-- الصورة 1 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>🖼️ أول ما شفتك يا <span class="mira-name">ميرا</span></div>
-          </div>
           <img src="image1.jpg" alt="صورة حبنا 1" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -783,9 +754,6 @@
       <!-- الصورة 2 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>💞 لحظة من حياتنا</div>
-          </div>
           <img src="image2.jpg" alt="صورة حبنا 2" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -795,9 +763,6 @@
       <!-- الصورة 3 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>🌹 ذكرى جميلة</div>
-          </div>
           <img src="image3.jpg" alt="صورة حبنا 3" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -807,9 +772,6 @@
       <!-- الصورة 4 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>💖 ضحكتك</div>
-          </div>
           <img src="image4.jpg" alt="صورة حبنا 4" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -819,9 +781,6 @@
       <!-- الصورة 5 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>🌟 لحظة خاصة</div>
-          </div>
           <img src="image5.jpg" alt="صورة حبنا 5" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -831,9 +790,6 @@
       <!-- الصورة 6 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>🌅 بداية جميلة</div>
-          </div>
           <img src="image6.jpg" alt="صورة حبنا 6" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -843,9 +799,6 @@
       <!-- الصورة 7 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>💕 نظرة حب</div>
-          </div>
           <img src="image7.jpg" alt="صورة حبنا 7" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -855,9 +808,6 @@
       <!-- الصورة 8 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>🌺 رومانسية</div>
-          </div>
           <img src="image8.jpg" alt="صورة حبنا 8" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -867,9 +817,6 @@
       <!-- الصورة 9 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>🫂 حضن دافئ</div>
-          </div>
           <img src="image9.jpg" alt="صورة حبنا 9" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -879,9 +826,6 @@
       <!-- الصورة 10 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>💘 قلبين</div>
-          </div>
           <img src="image10.jpg" alt="صورة حبنا 10" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -891,9 +835,6 @@
       <!-- الصورة 11 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>🌌 ليلة جميلة</div>
-          </div>
           <img src="image11.jpg" alt="صورة حبنا 11" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -903,9 +844,6 @@
       <!-- الصورة 12 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>💓 حب حقيقي</div>
-          </div>
           <img src="image12.jpg" alt="صورة حبنا 12" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -915,9 +853,6 @@
       <!-- الصورة 13 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>🌹 وردة حب</div>
-          </div>
           <img src="image13.jpg" alt="صورة حبنا 13" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -927,9 +862,6 @@
       <!-- الصورة 14 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>💑 ثنائي جميل</div>
-          </div>
           <img src="image14.jpg" alt="صورة حبنا 14" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -939,9 +871,6 @@
       <!-- الصورة 15 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>💞 إرتباطنا</div>
-          </div>
           <img src="image15.jpg" alt="صورة حبنا 15" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -951,9 +880,6 @@
       <!-- الصورة 16 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>🌟 نجمة حياتي</div>
-          </div>
           <img src="image16.jpg" alt="صورة حبنا 16" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -963,9 +889,6 @@
       <!-- الصورة 17 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>💖 فرحة</div>
-          </div>
           <img src="image17.jpg" alt="صورة حبنا 17" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -975,9 +898,6 @@
       <!-- الصورة 18 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>🌅 شروق</div>
-          </div>
           <img src="image18.jpg" alt="صورة حبنا 18" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -989,9 +909,6 @@
       <!-- الصورة 20 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>💕 حب أبدي</div>
-          </div>
           <img src="image20.jpg" alt="صورة حبنا 20" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -1001,9 +918,6 @@
       <!-- الصورة 21 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>🌹 رومانسية</div>
-          </div>
           <img src="image21.jpg" alt="صورة حبنا 21" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -1013,9 +927,6 @@
       <!-- الصورة 22 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>💘 نظرات</div>
-          </div>
           <img src="image22.jpg" alt="صورة حبنا 22" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -1025,9 +936,6 @@
       <!-- الصورة 23 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>🌟 أحلام</div>
-          </div>
           <img src="image23.jpg" alt="صورة حبنا 23" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -1037,9 +945,6 @@
       <!-- الصورة 24 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>💞 إبتسامة</div>
-          </div>
           <img src="image24.jpg" alt="صورة حبنا 24" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -1049,9 +954,6 @@
       <!-- الصورة 25 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>💖 لحظات</div>
-          </div>
           <img src="image25.jpg" alt="صورة حبنا 25" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -1061,9 +963,6 @@
       <!-- الصورة 26 -->
       <div class="card">
         <div class="image-container">
-          <div class="image-header">
-            <div>💝 نهاية البداية</div>
-          </div>
           <img src="image26.jpg" alt="صورة حبنا 26" onerror="showPlaceholder(this)">
           <div class="image-footer">ذكريات ميرا ويوسف ❤️</div>
         </div>
@@ -1288,4 +1187,4 @@
 </script>
 
 </body>
-        </html>
+  </html>
