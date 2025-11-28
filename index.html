@@ -860,6 +860,68 @@
     text-shadow: 0 2px 8px rgba(0,0,0,0.5);
   }
 
+  /* معرض الصور */
+  .gallery-section {
+    background: linear-gradient(135deg, var(--reddeep), var(--redmid), #ff5c7a);
+    padding: 40px 30px;
+    border-radius: 25px;
+    margin: 40px auto;
+    max-width: 1400px;
+    box-shadow: 0 20px 50px rgba(255,47,75,0.4);
+  }
+  
+  .gallery-title {
+    font-size: 36px;
+    color: white;
+    margin-bottom: 40px;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+  }
+  
+  .gallery-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 300px;
+  }
+  
+  .gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(255,47,75,0.3);
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .gallery-item:hover img {
+    transform: scale(1.1);
+  }
+  
+  .gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    backdrop-filter: blur(5px);
+  }
+
   @media(min-width:700px){ 
     .hero{font-size:48px} 
     #finalMsg{font-size:28px} 
@@ -954,6 +1016,16 @@
     
     .combined-result {
       font-size: 28px;
+    }
+    
+    /* تعديلات معرض الصور للجوال */
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .gallery-item {
+      height: 250px;
     }
   }
 </style>
@@ -1089,6 +1161,14 @@
       <div class="compatibility">🎯 نسبة التوافق: 100%</div>
       <div style="color: rgba(255,255,255,0.8); margin-top: 15px; font-size: 18px;">
         قلوب متحدة في حب أبدي لا ينتهي
+      </div>
+    </div>
+
+    <!-- معرض الصور -->
+    <div class="gallery-section">
+      <div class="gallery-title">📸 معرض ذكريات <span class="mira-name">ميرا</span> ويوسف</div>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- سيتم إضافة الصور ديناميكياً بواسطة JavaScript -->
       </div>
     </div>
 
@@ -1258,6 +1338,60 @@
     }, 500);
   }
 
+  // إنشاء معرض الصور
+  function createGallery() {
+    const galleryGrid = document.getElementById('galleryGrid');
+    const captions = [
+      "أول صورة لنا معاً",
+      "يوم سعيد معاً",
+      "ذكريات لا تنسى",
+      "ضحكاتنا معاً",
+      "لحظات خاصة",
+      "رحلة حبنا",
+      "أجمل الأوقات",
+      "قلوب متحدة",
+      "حب حقيقي",
+      "فرحتنا معاً",
+      "لحظات ثمينة",
+      "ذكريات جميلة",
+      "ابتساماتنا",
+      "حب لا ينتهي",
+      "أيام سعيدة",
+      "قلوب متحدة",
+      "فرحتنا الدائمة",
+      "حبنا الأبدي",
+      "لحظات سعيدة",
+      "ذكريات حلوة",
+      "أجمل الذكريات",
+      "فرحتنا معاً",
+      "حبنا الكبير",
+      "لحظات لا تنسى",
+      "سعادة دائمة",
+      "حب لا ينتهي"
+    ];
+    
+    for (let i = 1; i <= 26; i++) {
+      const galleryItem = document.createElement('div');
+      galleryItem.className = 'gallery-item';
+      
+      const img = document.createElement('img');
+      img.src = `image${i}.jpg`;
+      img.alt = `صورة ${i} لـ ميرا ويوسف`;
+      img.onerror = function() {
+        this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMWEwMDA0Ii8+CjxwYXRoIGQ9Ik0xNTAgODBDMTE5LjI4OCA4MCA5NSAxMDQuMjg4IDk1IDEzNUM5NSAxNjUuNzEyIDExOS4yODggMTkwIDE1MCAxOTBDMTgwLjcxMiAxOTAgMjA1IDE2NS43MTIgMjA1IDEzNUMyMDUgMTA0LjI4OCAxODAuNzEyIDgwIDE1MCA4MFoiIGZpbGw9IiNGRjJGNEMiLz4KPHBhdGggZD0iTTE0MCAxMjBMMTYwIDEyMEwxNjAgMTUwTDE0MCAxNTBWMTIwWiIgZmlsbD0iIzFGMEYwRiIvPgo8cGF0aCBkPSJNMTMwIDE2MEwxNzAgMTYwVjE3MEwxMzAgMTcwVjE2MFoiIGZpbGw9IiMxRjBGMEYiLz4KPC9zdmc+';
+        this.onerror = null;
+      };
+      
+      const caption = document.createElement('div');
+      caption.className = 'gallery-caption';
+      caption.textContent = captions[i-1] || `صورة ${i}`;
+      
+      galleryItem.appendChild(img);
+      galleryItem.appendChild(caption);
+      galleryGrid.appendChild(galleryItem);
+    }
+  }
+
   // دالة محسنة لعرض بديل إذا الصورة غير موجودة
   function showPlaceholder(img) {
     img.style.display = 'none';
@@ -1328,7 +1462,6 @@
       "بحبك يا ميرا", 
       "عمري يا ميرا",
       "قلبي يا ميرا",
-      "حبيبتي ميرا",
       "روحي يا ميرا",
       "غالية يا ميرا",
       "يوسف يعشق ميرا"
@@ -1375,6 +1508,15 @@
       // بدء عداد الحب
       setInterval(updateLoveCounter, 1000);
       updateLoveCounter();
+      
+      // إنشاء معرض الصور
+      createGallery();
+      
+      // تشغيل الأغنية الثانية تلقائياً
+      const song2 = document.getElementById('specialSong2');
+      song2.play().catch(error => {
+        console.log('لم يتمكن المتصفح من تشغيل الأغنية تلقائياً:', error);
+      });
       
       window.scrollTo({top:0,behavior:'smooth'});
     } else {
@@ -1428,4 +1570,4 @@
 </script>
 
 </body>
-  </html>
+                    </html>
