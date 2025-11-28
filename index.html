@@ -1456,6 +1456,23 @@
   // الباسوورد
   const PASS = "962025";
 
+  // التحقق من الباسوورد - هذه هي الدالة الرئيسية
+  function checkPass() {
+    const input = document.getElementById('passInput').value;
+    if (input === PASS) {
+      document.getElementById('passPage').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+      document.getElementById('mainContent').setAttribute('aria-hidden', 'false');
+      
+      // تهيئة جميع الميزات بعد فتح المحتوى الرئيسي
+      initializeFeatures();
+    } else {
+      alert('التاريخ خطأ! حاولي مرة أخرى ❤️');
+      document.getElementById('passInput').value = '';
+      document.getElementById('passInput').focus();
+    }
+  }
+
   // إنشاء القلوب العائمة
   function createHearts() {
     const container = document.getElementById('heartsContainer');
@@ -1520,46 +1537,6 @@
         }
       }, 8000);
     }
-  }
-
-  // التحقق من الباسوورد
-  function checkPass() {
-    const input = document.getElementById('passInput').value;
-    if (input === PASS) {
-      document.getElementById('passPage').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
-      document.getElementById('mainContent').setAttribute('aria-hidden', 'false');
-      
-      // تهيئة جميع الميزات بعد فتح المحتوى الرئيسي
-      initializeFeatures();
-    } else {
-      alert('التاريخ خطأ! حاولي مرة أخرى ❤️');
-      document.getElementById('passInput').value = '';
-      document.getElementById('passInput').focus();
-    }
-  }
-
-  // تهيئة جميع الميزات
-  function initializeFeatures() {
-    createHearts();
-    createRain();
-    createCarousel();
-    createGridGallery();
-    setupCarouselControls();
-    startLoveCounter();
-    
-    // إعداد الأزرار والميزات التفاعلية
-    document.getElementById('randomMessageBtn').addEventListener('click', showRandomLoveMessage);
-    document.getElementById('specialRainBtn').addEventListener('click', createSpecialRain);
-    document.getElementById('playBtn').addEventListener('click', toggleSong);
-    setupQuizReveal();
-    
-    // السماح بإدخال الباسوورد بالضغط على Enter
-    document.getElementById('passInput').addEventListener('keyup', function(event) {
-      if (event.key === 'Enter') {
-        checkPass();
-      }
-    });
   }
 
   // رسائل الحب العشوائية
@@ -1699,4 +1676,32 @@
   }
 
   // إنشاء معرض الصور الشبكي مع جميع الصور
-  function createGridGallery(
+  function createGridGallery() {
+    const gridGallery = document.getElementById('gridGallery');
+    const captions = [
+      "أول صورة لنا معاً ❤️",
+      "يوم سعيد معاً 😊",
+      "ذكريات لا تنسى 💕",
+      "ضحكاتنا معاً 😄",
+      "لحظات خاصة 🤗",
+      "رحلة حبنا 🚀",
+      "أجمل الأوقات 🌟",
+      "قلوب متحدة 💞",
+      "حب حقيقي 💖",
+      "فرحتنا معاً 🎉",
+      "لحظات ثمينة 💎",
+      "ذكريات جميلة 🌸",
+      "ابتساماتنا 😊",
+      "حب لا ينتهي ♾️",
+      "أيام سعيدة ☀️",
+      "قلوب متحدة 💑",
+      "فرحتنا الدائمة 🎊",
+      "حبنا الأبدي 💘",
+      "لحظات سعيدة 😍",
+      "ذكريات حلوة 🍬",
+      "أجمل الذكريات 📸",
+      "فرحتنا معاً 💃",
+      "حبنا الكبير 🌹",
+      "لحظات لا تنسى ⭐",
+      "سعادة دائمة 🌈",
+      "حب لا ينتهي 💕
