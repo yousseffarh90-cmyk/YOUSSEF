@@ -1284,7 +1284,7 @@
       </div>
     </div>
 
-    <!-- محول الأسماء -->
+    <!-- محول الأاسماء -->
     <div class="name-combiner">
       <div class="combiner-title">💞 محول أسماء الحب</div>
       <div class="name-display">يوسف + ميرا</div>
@@ -1496,6 +1496,159 @@
     }, 500);
   }
 
+  // تأثير المطر الخاص بالزر العائم
+  function createSpecialRain() {
+    const container = document.getElementById('specialRainContainer');
+    const words = ["ميرا", "بحبك", "عمري", "حبيبتي", "نور عيني", "فرحتي", "غالية", "روحي"];
+    
+    // إنشاء 50 كلمة للمطر الخاص
+    for (let i = 0; i < 50; i++) {
+      const word = document.createElement('div');
+      word.className = 'special-rain-word';
+      word.textContent = words[Math.floor(Math.random() * words.length)];
+      word.style.left = Math.random() * 100 + 'vw';
+      word.style.animationDuration = (Math.random() * 3 + 5) + 's';
+      word.style.fontSize = (Math.random() * 15 + 20) + 'px';
+      word.style.color = `hsl(${Math.random() * 60 + 0}, 100%, 50%)`;
+      
+      container.appendChild(word);
+      
+      // إزالة الكلمة بعد انتهاء الأنيميشن
+      setTimeout(() => {
+        if (word.parentNode) {
+          word.parentNode.removeChild(word);
+        }
+      }, 8000);
+    }
+  }
+
+  // التحقق من الباسوورد
+  function checkPass() {
+    const input = document.getElementById('passInput').value;
+    if (input === PASS) {
+      document.getElementById('passPage').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+      document.getElementById('mainContent').setAttribute('aria-hidden', 'false');
+      
+      // تهيئة جميع الميزات بعد فتح المحتوى الرئيسي
+      initializeFeatures();
+    } else {
+      alert('التاريخ خطأ! حاولي مرة أخرى ❤️');
+      document.getElementById('passInput').value = '';
+      document.getElementById('passInput').focus();
+    }
+  }
+
+  // تهيئة جميع الميزات
+  function initializeFeatures() {
+    createHearts();
+    createRain();
+    createCarousel();
+    createGridGallery();
+    setupCarouselControls();
+    startLoveCounter();
+    
+    // إعداد الأزرار والميزات التفاعلية
+    document.getElementById('randomMessageBtn').addEventListener('click', showRandomLoveMessage);
+    document.getElementById('specialRainBtn').addEventListener('click', createSpecialRain);
+    document.getElementById('playBtn').addEventListener('click', toggleSong);
+    setupQuizReveal();
+    
+    // السماح بإدخال الباسوورد بالضغط على Enter
+    document.getElementById('passInput').addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        checkPass();
+      }
+    });
+  }
+
+  // رسائل الحب العشوائية
+  const loveMessages = [
+    "بحبك ينور عيني ♥",
+    "بحبك يروح قلبي ♥",
+    "بحبك يا قلب بابا 🥺",
+    "ربنا يخليكي ليا وميحرمنيش منك ابدا يعمري♥",
+    "نور عيون يوسف انتى♥💋",
+    "ميرا يوسف فرح ♥💋🥺",
+    "بعشقك يبطتى🦆♥",
+    "بموت فيكي يمُزه♥💋"
+  ];
+
+  function showRandomLoveMessage() {
+    const randomIndex = Math.floor(Math.random() * loveMessages.length);
+    const messageDisplay = document.getElementById('loveMessageDisplay');
+    messageDisplay.textContent = loveMessages[randomIndex];
+    messageDisplay.style.animation = 'none';
+    setTimeout(() => {
+      messageDisplay.style.animation = 'fadeIn 0.5s ease';
+    }, 10);
+  }
+
+  // عداد الحب
+  function startLoveCounter() {
+    const startDate = new Date('2025-06-09').getTime();
+    
+    function updateCounter() {
+      const now = new Date().getTime();
+      const distance = now - startDate;
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      document.getElementById('daysCount').textContent = days;
+      document.getElementById('hoursCount').textContent = hours;
+      document.getElementById('minutesCount').textContent = minutes;
+      document.getElementById('secondsCount').textContent = seconds;
+    }
+    
+    setInterval(updateCounter, 1000);
+    updateCounter();
+  }
+
+  // إظهار إجابات الأسئلة
+  function setupQuizReveal() {
+    const revealButtons = document.querySelectorAll('.reveal-btn');
+    
+    revealButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const answer = this.nextElementSibling;
+        answer.classList.toggle('revealed');
+        
+        if (answer.classList.contains('revealed')) {
+          this.textContent = 'إخفاء الإجابة 🙈';
+        } else {
+          this.textContent = 'اضغط للكشف عن الإجابة 😁';
+        }
+      });
+    });
+  }
+
+  // تشغيل/إيقاف الأغنية
+  function toggleSong() {
+    const song = document.getElementById('song');
+    const playBtn = document.getElementById('playBtn');
+    
+    if (song.paused) {
+      song.play();
+      playBtn.textContent = '⏸ إيقاف الأغنية';
+    } else {
+      song.pause();
+      playBtn.textContent = '▶ استمعي لأغنية حب ميرا ويوسف 🎵';
+    }
+  }
+
+  // إظهار باقي المحتوى
+  function showRestOfContent() {
+    document.getElementById('restOfContent').style.display = 'block';
+    
+    // التمرير للنهاية بسلاسة
+    setTimeout(() => {
+      document.getElementById('restOfContent').scrollIntoView({ behavior: 'smooth' });
+    }, 300);
+  }
+
   // إنشاء معرض الصور الدوار مع صور ميرا ويوسف الحقيقية
   function createCarousel() {
     const carousel = document.getElementById('carousel');
@@ -1531,7 +1684,7 @@
       
       // إضافة معالج خطأ للصور المفقودة
       img.onerror = function() {
-        this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjUyMCIgdmlld0JveD0iMCAwIDYwMCA1MjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNTIwIiBmaWxsPSIjMWEwMDA0Ii8+CjxwYXRoIGQ9Ik0zMDAgMTYwQzIzOC41NzYgMTYwIDE5MCAyMDguNTc2IDE5MCAyNzBDMTkwIDMzMS40MjQgMjM4LjU3NiAzODAgMzAwIDM4MEMzNjEuNDI0IDM4MCA0MTAgMzMxLjQyNCA0MTAgMjcwQzQxMCAyMDguNTc2IDM2MS40MjQgMTYwIDMwMCAxNjBaIiBmaWxsPSIjRkYyRjRDIi8+CjxwYXRoIGQ9Ik0yODAgMjQwTDMxMCAyNDBMMzEwIDMwMEwyODAgMzAwVjI0MFoiIGZpbGw9IiMxRjBGMEYiLz4KPHBhdGggZD0iTTI2MCAzMjBMMzQwIDMyMFYzNDBMMjYwIDM0MFYzMjBaIiBmaWxsPSIjMUYwRjBGIi8+Cjx0ZXh0IHg9IjMwMCIgeT0iNDUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjRkY3QTlBIiBmb250LXNpemU9IjI0IiBmb250LWZhbWlseT0iQXJpYWwiPum7keWwj+W+oeWnk+WQjSA8L3RleHQ+Cjx0ZXh0IHg9IjMwMCIgeT0iNDgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjRkY3QTlBIiBmb250LXNpemU9IjE4IiBmb250LWZhbWlseT0iQXJpYWwiPuWcqOaTjeS9nOWPkeW4g+W+oeWnkzwvdGV4dD4KPC9zdmc+';
+        this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjUyMCIgdmlld0JveD0iMCAwIDYwMCA1MjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNTIwIiBmaWxsPSIjMWEwMDA0Ii8+CjxwYXRoIGQ9Ik0zMDAgMTYwQzIzOC41NzYgMTYwIDE5MCAyMDguNTc2IDE5MCAyNzBDMTkwIDMzMS40MjQgMjM4LjU3NiAzODAgMzAwIDM4MEMzNjEuNDI0IDM4MCA0MTAgMzMxLjQyNCA0MTAgMjcwQzQxMCAyMDguNTc2IDM2MS40MjQgMTYwIDMwMCAxNjBaIiBmaWxsPSIjRkYyRjRCIi8+CjxwYXRoIGQ9Ik0yODAgMjQwTDMxMCAyNDBMMzEwIDMwMEwyODAgMzAwVjI0MFoiIGZpbGw9IiMxRjBGMEYiLz4KPHBhdGggZD0iTTI2MCAzMjBMMzQwIDMyMFYzNDBMMjYwIDM0MFYzMjBaIiBmaWxsPSIjMUYwRjBGIi8+Cjx0ZXh0IHg9IjMwMCIgeT0iNDUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjRkY3QTlBIiBmb250LXNpemU9IjI0IiBmb250LWZhbWlseT0iQXJpYWwiPum7keWwj+W+oeWnk+WQjSA8L3RleHQ+Cjx0ZXh0IHg9IjMwMCIgeT0iNDgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjRkY3QTlBIiBmb250LXNpemU9IjE4IiBmb250LWZhbWlseT0iQXJpYWwiPuWcqOaTjeS9nOWPkeW4g+W+oeWnkzwvdGV4dD4KPC9zdmc+';
         this.onerror = null;
       };
       
@@ -1546,148 +1699,4 @@
   }
 
   // إنشاء معرض الصور الشبكي مع جميع الصور
-  function createGridGallery() {
-    const gridGallery = document.getElementById('gridGallery');
-    const captions = [
-      "أول صورة لنا معاً ❤️",
-      "يوم سعيد معاً 😊",
-      "ذكريات لا تنسى 💕",
-      "ضحكاتنا معاً 😄",
-      "لحظات خاصة 🤗",
-      "رحلة حبنا 🚀",
-      "أجمل الأوقات 🌟",
-      "قلوب متحدة 💞",
-      "حب حقيقي 💖",
-      "فرحتنا معاً 🎉",
-      "لحظات ثمينة 💎",
-      "ذكريات جميلة 🌸",
-      "ابتساماتنا 😊",
-      "حب لا ينتهي ♾️",
-      "أيام سعيدة ☀️",
-      "قلوب متحدة 💑",
-      "فرحتنا الدائمة 🎊",
-      "حبنا الأبدي 💘",
-      "لحظات سعيدة 😍",
-      "ذكريات حلوة 🍬",
-      "أجمل الذكريات 📸",
-      "فرحتنا معاً 💃",
-      "حبنا الكبير 🌹",
-      "لحظات لا تنسى ⭐",
-      "سعادة دائمة 🌈",
-      "حب لا ينتهي 💕"
-    ];
-    
-    // استخدام جميع الصور من image1.jpg إلى image26.jpg
-    for (let i = 1; i <= 26; i++) {
-      const gridItem = document.createElement('div');
-      gridItem.className = 'grid-item';
-      
-      const img = document.createElement('img');
-      img.className = 'grid-img';
-      img.src = `image${i}.jpg`;
-      img.alt = `صورة ${i} لـ ميرا ويوسف`;
-      img.loading = 'lazy'; // تحميل متأخر لتحسين الأداء
-      
-      // إضافة معالج خطأ للصور المفقودة
-      img.onerror = function() {
-        this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDM1MCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzNTAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMWEwMDA0Ii8+CjxwYXRoIGQ9Ik0xNzUgODBDMTM5LjI4OCA4MCAxMTUgMTA0LjI4OCAxMTUgMTM1QzExNSAxNjUuNzEyIDEzOS4yODggMTkwIDE3NSAxOTBDMjEwLjcxMiAxOTAgMjM1IDE2NS43MTIgMjM1IDEzNUMyMzUgMTA0LjI4OCAyMTAuNzEyIDgwIDE3NSA4MFoiIGZpbGw9IiNGRjJGNEMiLz4KPHBhdGggZD0iTTE0MCAxMjBMMTkwIDEyMEwxOTAgMTcwTDE0MCAxNzBWMTIwWiIgZmlsbD0iIzFGMEYwRiIvPgo8cGF0aCBkPSJNMTMwIDIwMEwyMTAgMjAwVjIxMEwxMzAgMjEwVjIwMFoiIGZpbGw9IiMxRjBGMEYiLz4KPHRleHQgeD0iMTc1IiB5PSIyNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNGRjdBOUEiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtZmFtaWx5PSJBcmlhbCI+6buR5bCP5b6h5aeT5ZCNIDwvdGV4dD4KPHRleHQgeD0iMTc1IiB5PSIyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNGRjdBOUEiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJBcmlhbCI+5Zyo5pON5L2c5Y+R5biD5b6h5aeTPC90ZXh0Pgo8L3N2Zz4=';
-        this.onerror = null;
-      };
-      
-      const caption = document.createElement('div');
-      caption.className = 'grid-caption';
-      caption.textContent = captions[i-1] || `صورة ${i}`;
-      
-      gridItem.appendChild(img);
-      gridItem.appendChild(caption);
-      gridGallery.appendChild(gridItem);
-    }
-  }
-
-  // التحكم في معرض الصور الدوار
-  function setupCarouselControls() {
-    const carousel = document.getElementById('carousel');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const pauseBtn = document.getElementById('pauseBtn');
-    const playBtn = document.getElementById('playBtnCarousel');
-    
-    let rotation = 0;
-    let isPlaying = true;
-    let animationId;
-    
-    // دورة الدوران
-    function rotateCarousel() {
-      if (isPlaying) {
-        rotation += 0.3;
-        carousel.style.transform = `rotateY(${rotation}deg)`;
-      }
-      animationId = requestAnimationFrame(rotateCarousel);
-    }
-    
-    // بدء الدوران
-    rotateCarousel();
-    
-    // التحكم بالأزرار
-    prevBtn.addEventListener('click', () => {
-      rotation += 30;
-      carousel.style.transform = `rotateY(${rotation}deg)`;
-    });
-    
-    nextBtn.addEventListener('click', () => {
-      rotation -= 30;
-      carousel.style.transform = `rotateY(${rotation}deg)`;
-    });
-    
-    pauseBtn.addEventListener('click', () => {
-      isPlaying = false;
-    });
-    
-    playBtn.addEventListener('click', () => {
-      isPlaying = true;
-    });
-    
-    // إيقاف الأنيميشن عند إغلاق الصفحة
-    window.addEventListener('beforeunload', () => {
-      cancelAnimationFrame(animationId);
-    });
-  }
-
-  // رسائل الحب العشوائية
-  const loveMessages = [
-    "بحبك ينور عيني ♥",
-    "بحبك يروح قلبي ♥",
-    "بحبك يا قلب بابا 🥺",
-    "ربنا يخليكي ليا وميحرمنيش منك ابدا يعمري♥",
-    "نور عيون يوسف انتى♥💋",
-    "ميرا يوسف فرح ♥💋🥺",
-    "بعشقك يبطتى🦆♥",
-    "بموت فيكي يمُزه♥💋"
-  ];
-
-  function showRandomLoveMessage() {
-    const randomIndex = Math.floor(Math.random() * loveMessages.length);
-    const messageDisplay = document.getElementById('loveMessageDisplay');
-    messageDisplay.textContent = loveMessages[randomIndex];
-    messageDisplay.style.animation = 'none';
-    setTimeout(() => {
-      messageDisplay.style.animation = 'fadeIn 0.5s ease';
-    }, 10);
-  }
-
-  // إظهار إجابات الأسئلة
-  function setupQuizReveal() {
-    const revealButtons = document.querySelectorAll('.reveal-btn');
-    
-    revealButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const answer = this.nextElementSibling;
-        answer.classList.toggle('revealed');
-        
-        if (answer.classList.contains('revealed')) {
-          this.textContent = 'إخفاء الإجابة 🙈';
-        } else {
-          this.textContent = 'اضغط للكشف عن الإجابة 😁';
-        }
-      });
-   
+  function createGridGallery
