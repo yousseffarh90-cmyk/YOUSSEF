@@ -225,56 +225,132 @@
     transform: translateY(-8px); 
     box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 25px rgba(255,47,75,0.3);
   }
-  
-  /* تحسين كامل لبطاقات الصور - حل مشكلة النص المغطى */
-  .image-container {
-    width: 100%;
-    height: 550px;
-    position: relative;
-    margin: 25px 0;
+
+  /* معرض الصور الدوار */
+  .gallery-section {
+    background: linear-gradient(135deg, var(--reddeep), var(--redmid), #ff5c7a);
+    padding: 40px 30px;
     border-radius: 25px;
+    margin: 40px auto;
+    max-width: 1400px;
+    box-shadow: 0 20px 50px rgba(255,47,75,0.4);
+    position: relative;
     overflow: hidden;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+  }
+  
+  .gallery-title {
+    font-size: 36px;
+    color: white;
+    margin-bottom: 40px;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    z-index: 2;
+    position: relative;
+  }
+  
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    perspective: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  .carousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    animation: rotate 40s infinite linear;
+  }
+  
+  .carousel:hover {
+    animation-play-state: paused;
+  }
+  
+  .carousel-item {
+    position: absolute;
+    width: 300px;
+    height: 350px;
+    left: 50%;
+    top: 50%;
+    margin-left: -150px;
+    margin-top: -175px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
     background: linear-gradient(135deg, #2a0a10, #1a0004);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border: 3px solid rgba(255,255,255,0.1);
   }
   
-  .image-container img {
+  .carousel-item:hover {
+    transform: scale(1.1) translateZ(50px);
+    box-shadow: 0 25px 50px rgba(255,47,75,0.5);
+    z-index: 10;
+  }
+  
+  .carousel-img {
     width: 100%;
-    height: 100%;
+    height: 70%;
     object-fit: cover;
-    border-radius: 22px;
-    transition: transform 0.6s ease;
-    display: block;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
   }
   
-  .image-container img:hover {
-    transform: scale(1.1);
-  }
-  
-  /* إزالة رأس الصورة بالكامل */
-  .image-header {
-    display: none;
-  }
-  
-  /* تحسين تذييل الصورة */
-  .image-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.85);
+  .carousel-caption {
+    height: 30%;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
     color: white;
-    padding: 20px;
-    font-size: 22px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
     text-align: center;
-    z-index: 5;
-    font-weight: bold;
     backdrop-filter: blur(5px);
-    border-top: 3px solid rgba(255,255,255,0.2);
   }
   
-  /* تحسين تصميم رسالة "غير متوفر حالياً" */
+  @keyframes rotate {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+  
+  .carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  
+  .carousel-btn {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.3);
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    font-weight: bold;
+  }
+  
+  .carousel-btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  }
+  
+  /* تصميم بديل للصور المفقودة */
   .image-placeholder {
     width: 100%;
     height: 100%;
@@ -283,37 +359,32 @@
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #2a0a10, #1a0004);
-    border-radius: 22px;
     color: white;
-    font-size: 32px;
+    font-size: 22px;
     text-align: center;
-    padding: 40px;
-    position: relative;
-    border: 3px dashed rgba(255,122,154,0.3);
-    z-index: 2;
+    padding: 20px;
   }
   
   .image-placeholder .icon {
-    font-size: 100px;
-    margin-bottom: 30px;
+    font-size: 70px;
+    margin-bottom: 20px;
     color: var(--accent);
     animation: bounce 2s infinite;
   }
   
   .image-placeholder .message {
-    font-size: 28px;
-    margin-top: 20px;
+    font-size: 18px;
+    margin-top: 15px;
     color: var(--light-pink);
     background: rgba(0,0,0,0.5);
-    padding: 15px 25px;
-    border-radius: 15px;
-    border: 1px solid rgba(255,255,255,0.2);
+    padding: 10px 15px;
+    border-radius: 10px;
   }
   
   @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-20px);}
-    60% {transform: translateY(-10px);}
+    40% {transform: translateY(-15px);}
+    60% {transform: translateY(-7px);}
   }
   
   .caption{
@@ -773,7 +844,7 @@
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
   }
   
-  /* أسئلة وأجوبة */
+  /* أسئلة وأجوبة محسنة */
   .love-quiz {
     background: linear-gradient(135deg, var(--reddeep), #ff2f4b, #ff5c7a);
     padding: 40px 30px;
@@ -797,6 +868,12 @@
     margin: 20px 0;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.3s ease;
+  }
+  
+  .quiz-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
   }
   
   .quiz-question {
@@ -806,15 +883,41 @@
     text-shadow: 0 2px 8px rgba(0,0,0,0.5);
   }
   
+  .reveal-btn {
+    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 15px 0;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  
+  .reveal-btn:hover {
+    background: linear-gradient(45deg, var(--redmid), var(--accent));
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  }
+  
   .quiz-answer {
     font-size: 24px;
     color: var(--gold);
     font-weight: bold;
     text-shadow: 0 0 10px rgba(255,215,0,0.5);
-    padding: 10px 20px;
+    padding: 15px 20px;
     background: rgba(0,0,0,0.3);
     border-radius: 15px;
-    display: inline-block;
+    margin-top: 15px;
+    display: none;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .quiz-answer.revealed {
+    display: block;
   }
   
   /* محول الأسماء */
@@ -860,66 +963,15 @@
     text-shadow: 0 2px 8px rgba(0,0,0,0.5);
   }
 
-  /* معرض الصور */
-  .gallery-section {
-    background: linear-gradient(135deg, var(--reddeep), var(--redmid), #ff5c7a);
-    padding: 40px 30px;
-    border-radius: 25px;
-    margin: 40px auto;
-    max-width: 1400px;
-    box-shadow: 0 20px 50px rgba(255,47,75,0.4);
-  }
-  
-  .gallery-title {
-    font-size: 36px;
-    color: white;
-    margin-bottom: 40px;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  }
-  
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
-  }
-  
-  .gallery-item {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 300px;
-  }
-  
-  .gallery-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 50px rgba(255,47,75,0.3);
-  }
-  
-  .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-  
-  .gallery-item:hover img {
-    transform: scale(1.1);
-  }
-  
-  .gallery-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.8);
-    color: white;
-    padding: 15px;
-    text-align: center;
+  /* رسالة توضيحية للصور */
+  .image-info {
+    background: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+    border: 1px solid rgba(255,255,255,0.2);
     font-size: 18px;
-    backdrop-filter: blur(5px);
+    color: var(--light-pink);
   }
 
   @media(min-width:700px){ 
@@ -943,7 +995,6 @@
     .special-message { padding: 40px 25px; margin: 35px auto; }
     .message-text { font-size: 24px; }
     .final-note { font-size: 22px; padding: 20px; }
-    .image-container { height: 450px; }
     .audio-title { font-size: 28px; }
     .continue-btn { font-size: 22px; padding: 20px 35px; }
     #rememberHeader { font-size: 32px; padding: 25px; }
@@ -952,22 +1003,15 @@
     .rain-word { font-size: 18px; }
     
     /* تحسينات إضافية للجوال */
-    .image-container {
+    .carousel-container {
       height: 400px;
     }
     
-    .image-footer {
-      font-size: 18px;
-      padding: 15px;
-    }
-    
-    .image-placeholder {
-      font-size: 24px;
-      padding: 30px;
-    }
-    
-    .image-placeholder .icon {
-      font-size: 70px;
+    .carousel-item {
+      width: 250px;
+      height: 300px;
+      margin-left: -125px;
+      margin-top: -150px;
     }
     
     /* تعديلات للزر العائم في الجوال */
@@ -1016,16 +1060,6 @@
     
     .combined-result {
       font-size: 28px;
-    }
-    
-    /* تعديلات معرض الصور للجوال */
-    .gallery-grid {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    
-    .gallery-item {
-      height: 250px;
     }
   }
 </style>
@@ -1118,37 +1152,43 @@
       </div>
     </div>
 
-    <!-- أسئلة وأجوبة -->
+    <!-- أسئلة وأجوبة محسنة -->
     <div class="love-quiz">
       <div class="quiz-title">❓ أسئلة عن يوسف</div>
       
       <div class="quiz-item">
         <div class="quiz-question">ايه اكتر حاجه يوسف بيحبها؟</div>
+        <button class="reveal-btn">اضغط للكشف عن الإجابة 😁</button>
         <div class="quiz-answer">ميرا ❤️</div>
       </div>
       
       <div class="quiz-item">
         <div class="quiz-question">ايه اكتر اكله يوسف بيحبها؟</div>
+        <button class="reveal-btn">اضغط للكشف عن الإجابة 😁</button>
         <div class="quiz-answer">ميرا ❤️</div>
       </div>
       
       <div class="quiz-item">
         <div class="quiz-question">المشروب المفضل ليوسف؟</div>
+        <button class="reveal-btn">اضغط للكشف عن الإجابة 😁</button>
         <div class="quiz-answer">ميرا ❤️</div>
       </div>
       
       <div class="quiz-item">
         <div class="quiz-question">ايه احلى حاجه في حياة يوسف؟</div>
+        <button class="reveal-btn">اضغط للكشف عن الإجابة 😁</button>
         <div class="quiz-answer">ميرا ❤️</div>
       </div>
       
       <div class="quiz-item">
         <div class="quiz-question">مين اللي بيخلي يوسف سعيد؟</div>
+        <button class="reveal-btn">اضغط للكشف عن الإجابة 😁</button>
         <div class="quiz-answer">ميرا ❤️</div>
       </div>
       
       <div class="quiz-item">
         <div class="quiz-question">ايه احلى اسم في الدنيا عند يوسف؟</div>
+        <button class="reveal-btn">اضغط للكشف عن الإجابة 😁</button>
         <div class="quiz-answer">ميرا ❤️</div>
       </div>
     </div>
@@ -1164,11 +1204,25 @@
       </div>
     </div>
 
-    <!-- معرض الصور -->
+    <!-- معرض الصور الدوار -->
     <div class="gallery-section">
-      <div class="gallery-title">📸 معرض ذكريات <span class="mira-name">ميرا</span> ويوسف</div>
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- سيتم إضافة الصور ديناميكياً بواسطة JavaScript -->
+      <div class="gallery-title">📸 ألبوم ذكريات <span class="mira-name">ميرا</span> ويوسف</div>
+      
+      <div class="image-info">
+        💕 <strong>ملاحظة:</strong> مرري على الصور لإبطاء الدوران أو اضغطي على الأزرار للتحكم 💕
+      </div>
+      
+      <div class="carousel-container">
+        <div class="carousel" id="carousel">
+          <!-- سيتم إضافة الصور ديناميكياً بواسطة JavaScript -->
+        </div>
+      </div>
+      
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="prevBtn">⬅️ السابق</button>
+        <button class="carousel-btn" id="nextBtn">التالي ➡️</button>
+        <button class="carousel-btn" id="pauseBtn">⏸ إيقاف</button>
+        <button class="carousel-btn" id="playBtnCarousel">▶ تشغيل</button>
       </div>
     </div>
 
@@ -1338,79 +1392,112 @@
     }, 500);
   }
 
-  // إنشاء معرض الصور
-  function createGallery() {
-    const galleryGrid = document.getElementById('galleryGrid');
+  // إنشاء معرض الصور الدوار
+  function createCarousel() {
+    const carousel = document.getElementById('carousel');
     const captions = [
-      "أول صورة لنا معاً",
-      "يوم سعيد معاً",
-      "ذكريات لا تنسى",
-      "ضحكاتنا معاً",
-      "لحظات خاصة",
-      "رحلة حبنا",
-      "أجمل الأوقات",
-      "قلوب متحدة",
-      "حب حقيقي",
-      "فرحتنا معاً",
-      "لحظات ثمينة",
-      "ذكريات جميلة",
-      "ابتساماتنا",
-      "حب لا ينتهي",
-      "أيام سعيدة",
-      "قلوب متحدة",
-      "فرحتنا الدائمة",
-      "حبنا الأبدي",
-      "لحظات سعيدة",
-      "ذكريات حلوة",
-      "أجمل الذكريات",
-      "فرحتنا معاً",
-      "حبنا الكبير",
-      "لحظات لا تنسى",
-      "سعادة دائمة",
-      "حب لا ينتهي"
+      "أول صورة لنا معاً ❤️",
+      "يوم سعيد معاً 😊",
+      "ذكريات لا تنسى 💕",
+      "ضحكاتنا معاً 😄",
+      "لحظات خاصة 🤗",
+      "رحلة حبنا 🚀",
+      "أجمل الأوقات 🌟",
+      "قلوب متحدة 💞",
+      "حب حقيقي 💖",
+      "فرحتنا معاً 🎉",
+      "لحظات ثمينة 💎",
+      "ذكريات جميلة 🌸",
+      "ابتساماتنا 😊",
+      "حب لا ينتهي ♾️",
+      "أيام سعيدة ☀️",
+      "قلوب متحدة 💑",
+      "فرحتنا الدائمة 🎊",
+      "حبنا الأبدي 💘",
+      "لحظات سعيدة 😍",
+      "ذكريات حلوة 🍬",
+      "أجمل الذكريات 📸",
+      "فرحتنا معاً 💃",
+      "حبنا الكبير 🌹",
+      "لحظات لا تنسى ⭐",
+      "سعادة دائمة 🌈",
+      "حب لا ينتهي 💕"
     ];
     
-    for (let i = 1; i <= 26; i++) {
-      const galleryItem = document.createElement('div');
-      galleryItem.className = 'gallery-item';
+    // صور بديلة رمزية جميلة بدلاً من الصور المفقودة
+    const placeholderImages = [
+      "💑", "❤️", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "🎀",
+      "🌸", "🌹", "🥀", "🌺", "🌷", "💐", "🌼", "🏵️", "🔆", "🌟",
+      "✨", "⚡", "💫", "⭐", "🔥", "💥"
+    ];
+    
+    for (let i = 0; i < 12; i++) {
+      const carouselItem = document.createElement('div');
+      carouselItem.className = 'carousel-item';
       
-      const img = document.createElement('img');
-      img.src = `image${i}.jpg`;
-      img.alt = `صورة ${i} لـ ميرا ويوسف`;
-      img.onerror = function() {
-        this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMWEwMDA0Ii8+CjxwYXRoIGQ9Ik0xNTAgODBDMTE5LjI4OCA4MCA5NSAxMDQuMjg4IDk1IDEzNUM5NSAxNjUuNzEyIDExOS4yODggMTkwIDE1MCAxOTBDMTgwLjcxMiAxOTAgMjA1IDE2NS43MTIgMjA1IDEzNUMyMDUgMTA0LjI4OCAxODAuNzEyIDgwIDE1MCA4MFoiIGZpbGw9IiNGRjJGNEMiLz4KPHBhdGggZD0iTTE0MCAxMjBMMTYwIDEyMEwxNjAgMTUwTDE0MCAxNTBWMTIwWiIgZmlsbD0iIzFGMEYwRiIvPgo8cGF0aCBkPSJNMTMwIDE2MEwxNzAgMTYwVjE3MEwxMzAgMTcwVjE2MFoiIGZpbGw9IiMxRjBGMEYiLz4KPC9zdmc+';
-        this.onerror = null;
-      };
+      // حساب الزاوية لكل عنصر في الدائرة
+      const angle = (i / 12) * 360;
+      carouselItem.style.transform = `rotateY(${angle}deg) translateZ(500px)`;
+      
+      const imgContainer = document.createElement('div');
+      imgContainer.className = 'image-placeholder';
+      imgContainer.innerHTML = `
+        <div class="icon">${placeholderImages[i] || "💕"}</div>
+        <div>صورة ${i+1}</div>
+        <div class="message">${captions[i] || "ذكريات جميلة"}</div>
+      `;
       
       const caption = document.createElement('div');
-      caption.className = 'gallery-caption';
-      caption.textContent = captions[i-1] || `صورة ${i}`;
+      caption.className = 'carousel-caption';
+      caption.textContent = captions[i] || `صورة ${i+1}`;
       
-      galleryItem.appendChild(img);
-      galleryItem.appendChild(caption);
-      galleryGrid.appendChild(galleryItem);
+      carouselItem.appendChild(imgContainer);
+      carouselItem.appendChild(caption);
+      carousel.appendChild(carouselItem);
     }
   }
 
-  // دالة محسنة لعرض بديل إذا الصورة غير موجودة
-  function showPlaceholder(img) {
-    img.style.display = 'none';
-    const container = img.parentElement;
+  // التحكم في معرض الصور الدوار
+  function setupCarouselControls() {
+    const carousel = document.getElementById('carousel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const playBtn = document.getElementById('playBtnCarousel');
     
-    // إزالة أي عناصر بديلة موجودة مسبقاً
-    const existingPlaceholder = container.querySelector('.image-placeholder');
-    if (existingPlaceholder) {
-      existingPlaceholder.remove();
+    let rotation = 0;
+    let isPlaying = true;
+    
+    // دورة الدوران
+    function rotateCarousel() {
+      if (isPlaying) {
+        rotation += 0.5;
+        carousel.style.transform = `rotateY(${rotation}deg)`;
+      }
+      requestAnimationFrame(rotateCarousel);
     }
     
-    const placeholder = document.createElement('div');
-    placeholder.className = 'image-placeholder';
-    placeholder.innerHTML = `
-      <div class="icon">💕</div>
-      <div>هنا بتكون صورة <span class="mira-name">ميرا</span> ويوسف</div>
-      <div class="message">غير متوفر حالياً</div>
-    `;
-    container.appendChild(placeholder);
+    // بدء الدوران
+    rotateCarousel();
+    
+    // التحكم بالأزرار
+    prevBtn.addEventListener('click', () => {
+      rotation += 30;
+      carousel.style.transform = `rotateY(${rotation}deg)`;
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      rotation -= 30;
+      carousel.style.transform = `rotateY(${rotation}deg)`;
+    });
+    
+    pauseBtn.addEventListener('click', () => {
+      isPlaying = false;
+    });
+    
+    playBtn.addEventListener('click', () => {
+      isPlaying = true;
+    });
   }
 
   // رسائل الحب العشوائية
@@ -1433,6 +1520,24 @@
     setTimeout(() => {
       messageDisplay.style.animation = 'fadeIn 0.5s ease';
     }, 10);
+  }
+
+  // إظهار إجابات الأسئلة
+  function setupQuizReveal() {
+    const revealButtons = document.querySelectorAll('.reveal-btn');
+    
+    revealButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const answer = this.nextElementSibling;
+        answer.classList.toggle('revealed');
+        
+        if (answer.classList.contains('revealed')) {
+          this.textContent = 'إخفاء الإجابة 🙈';
+        } else {
+          this.textContent = 'اضغط للكشف عن الإجابة 😁';
+        }
+      });
+    });
   }
 
   // عداد الحب من 9 يونيو 2025
@@ -1509,13 +1614,19 @@
       setInterval(updateLoveCounter, 1000);
       updateLoveCounter();
       
-      // إنشاء معرض الصور
-      createGallery();
+      // إنشاء معرض الصور الدوار
+      createCarousel();
+      setupCarouselControls();
+      
+      // إعداد إظهار إجابات الأسئلة
+      setupQuizReveal();
       
       // تشغيل الأغنية الثانية تلقائياً
       const song2 = document.getElementById('specialSong2');
       song2.play().catch(error => {
         console.log('لم يتمكن المتصفح من تشغيل الأغنية تلقائياً:', error);
+        // عرض رسالة للمستخدم
+        alert('اضغطي على زر التشغيل في مشغل الصوت يا ميرا ❤️');
       });
       
       window.scrollTo({top:0,behavior:'smooth'});
@@ -1570,4 +1681,4 @@
 </script>
 
 </body>
-                    </html>
+        </html>
