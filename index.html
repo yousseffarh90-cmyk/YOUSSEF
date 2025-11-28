@@ -250,8 +250,8 @@
   .carousel-container {
     position: relative;
     width: 100%;
-    height: 500px;
-    perspective: 1000px;
+    height: 700px;
+    perspective: 1200px;
     margin: 0 auto;
     overflow: hidden;
   }
@@ -270,49 +270,56 @@
   
   .carousel-item {
     position: absolute;
-    width: 300px;
-    height: 350px;
+    width: 600px;
+    height: 650px;
     left: 50%;
     top: 50%;
-    margin-left: -150px;
-    margin-top: -175px;
-    border-radius: 20px;
+    margin-left: -300px;
+    margin-top: -325px;
+    border-radius: 25px;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
     background: linear-gradient(135deg, #2a0a10, #1a0004);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 3px solid rgba(255,255,255,0.1);
+    border: 4px solid rgba(255,255,255,0.15);
   }
   
   .carousel-item:hover {
-    transform: scale(1.1) translateZ(50px);
-    box-shadow: 0 25px 50px rgba(255,47,75,0.5);
+    transform: scale(1.15) translateZ(80px);
+    box-shadow: 0 30px 70px rgba(255,47,75,0.6);
     z-index: 10;
   }
   
   .carousel-img {
     width: 100%;
-    height: 70%;
+    height: 80%;
     object-fit: cover;
-    border-bottom: 2px solid rgba(255,255,255,0.2);
+    border-bottom: 3px solid rgba(255,255,255,0.2);
+    transition: transform 0.5s ease;
+  }
+  
+  .carousel-item:hover .carousel-img {
+    transform: scale(1.05);
   }
   
   .carousel-caption {
-    height: 30%;
+    height: 20%;
     width: 100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.9);
     color: white;
-    padding: 15px;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 22px;
     text-align: center;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
+    font-weight: bold;
+    border-top: 3px solid rgba(255,255,255,0.2);
   }
   
   @keyframes rotate {
@@ -328,26 +335,28 @@
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
   }
   
   .carousel-btn {
     background: rgba(255,255,255,0.2);
     color: white;
     border: 2px solid rgba(255,255,255,0.3);
-    padding: 12px 25px;
+    padding: 15px 30px;
     border-radius: 50px;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     font-weight: bold;
+    min-width: 150px;
   }
   
   .carousel-btn:hover {
     background: rgba(255,255,255,0.3);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
   }
   
   /* تصميم بديل للصور المفقودة */
@@ -360,31 +369,90 @@
     justify-content: center;
     background: linear-gradient(135deg, #2a0a10, #1a0004);
     color: white;
-    font-size: 22px;
+    font-size: 28px;
     text-align: center;
-    padding: 20px;
+    padding: 40px;
   }
   
   .image-placeholder .icon {
-    font-size: 70px;
-    margin-bottom: 20px;
+    font-size: 100px;
+    margin-bottom: 30px;
     color: var(--accent);
     animation: bounce 2s infinite;
   }
   
   .image-placeholder .message {
-    font-size: 18px;
-    margin-top: 15px;
+    font-size: 24px;
+    margin-top: 20px;
     color: var(--light-pink);
     background: rgba(0,0,0,0.5);
-    padding: 10px 15px;
-    border-radius: 10px;
+    padding: 15px 25px;
+    border-radius: 15px;
   }
   
   @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-15px);}
-    60% {transform: translateY(-7px);}
+    40% {transform: translateY(-20px);}
+    60% {transform: translateY(-10px);}
+  }
+  
+  /* معرض الصور الشبكي */
+  .grid-gallery-section {
+    background: linear-gradient(135deg, var(--reddeep), var(--redmid), #ff5c7a);
+    padding: 40px 30px;
+    border-radius: 25px;
+    margin: 40px auto;
+    max-width: 1400px;
+    box-shadow: 0 20px 50px rgba(255,47,75,0.4);
+  }
+  
+  .grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+  }
+  
+  .grid-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 400px;
+    background: linear-gradient(135deg, #2a0a10, #1a0004);
+    border: 3px solid rgba(255,255,255,0.1);
+  }
+  
+  .grid-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(255,47,75,0.5);
+  }
+  
+  .grid-img {
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .grid-item:hover .grid-img {
+    transform: scale(1.1);
+  }
+  
+  .grid-caption {
+    height: 15%;
+    width: 100%;
+    background: rgba(0,0,0,0.9);
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    font-weight: bold;
   }
   
   .caption{
@@ -1004,14 +1072,27 @@
     
     /* تحسينات إضافية للجوال */
     .carousel-container {
-      height: 400px;
+      height: 500px;
     }
     
     .carousel-item {
-      width: 250px;
-      height: 300px;
-      margin-left: -125px;
-      margin-top: -150px;
+      width: 350px;
+      height: 400px;
+      margin-left: -175px;
+      margin-top: -200px;
+    }
+    
+    .carousel-caption {
+      font-size: 18px;
+      padding: 15px;
+    }
+    
+    .grid-gallery {
+      grid-template-columns: 1fr;
+    }
+    
+    .grid-item {
+      height: 350px;
     }
     
     /* تعديلات للزر العائم في الجوال */
@@ -1060,6 +1141,16 @@
     
     .combined-result {
       font-size: 28px;
+    }
+    
+    .carousel-controls {
+      gap: 10px;
+    }
+    
+    .carousel-btn {
+      padding: 12px 20px;
+      font-size: 16px;
+      min-width: 120px;
     }
   }
 </style>
@@ -1226,6 +1317,19 @@
       </div>
     </div>
 
+    <!-- معرض الصور الشبكي -->
+    <div class="grid-gallery-section">
+      <div class="gallery-title">🖼️ معرض الصور الكامل لـ <span class="mira-name">ميرا</span> ويوسف</div>
+      
+      <div class="image-info">
+        💕 <strong>اضغطي على الصور لتكبيرها ومشاهدة التفاصيل الجميلة!</strong> 💕
+      </div>
+      
+      <div class="grid-gallery" id="gridGallery">
+        <!-- سيتم إضافة الصور ديناميكياً بواسطة JavaScript -->
+      </div>
+    </div>
+
     <!-- الأغنية الجديدة song2.mp3 -->
     <div class="audio-section">
       <div class="audio-title">🎵 اسمعي رسالتي لقلبك يا <span class="mira-name">ميرا</span> ❤️</div>
@@ -1352,6 +1456,23 @@
   // الباسوورد
   const PASS = "962025";
 
+  // التحقق من الباسوورد - هذه هي الدالة الرئيسية
+  function checkPass() {
+    const input = document.getElementById('passInput').value;
+    if (input === PASS) {
+      document.getElementById('passPage').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+      document.getElementById('mainContent').setAttribute('aria-hidden', 'false');
+      
+      // تهيئة جميع الميزات بعد فتح المحتوى الرئيسي
+      initializeFeatures();
+    } else {
+      alert('التاريخ خطأ! حاولي مرة أخرى ❤️');
+      document.getElementById('passInput').value = '';
+      document.getElementById('passInput').focus();
+    }
+  }
+
   // إنشاء القلوب العائمة
   function createHearts() {
     const container = document.getElementById('heartsContainer');
@@ -1392,9 +1513,171 @@
     }, 500);
   }
 
-  // إنشاء معرض الصور الدوار
+  // تأثير المطر الخاص بالزر العائم
+  function createSpecialRain() {
+    const container = document.getElementById('specialRainContainer');
+    const words = ["ميرا", "بحبك", "عمري", "حبيبتي", "نور عيني", "فرحتي", "غالية", "روحي"];
+    
+    // إنشاء 50 كلمة للمطر الخاص
+    for (let i = 0; i < 50; i++) {
+      const word = document.createElement('div');
+      word.className = 'special-rain-word';
+      word.textContent = words[Math.floor(Math.random() * words.length)];
+      word.style.left = Math.random() * 100 + 'vw';
+      word.style.animationDuration = (Math.random() * 3 + 5) + 's';
+      word.style.fontSize = (Math.random() * 15 + 20) + 'px';
+      word.style.color = `hsl(${Math.random() * 60 + 0}, 100%, 50%)`;
+      
+      container.appendChild(word);
+      
+      // إزالة الكلمة بعد انتهاء الأنيميشن
+      setTimeout(() => {
+        if (word.parentNode) {
+          word.parentNode.removeChild(word);
+        }
+      }, 8000);
+    }
+  }
+
+  // رسائل الحب العشوائية
+  const loveMessages = [
+    "بحبك ينور عيني ♥",
+    "بحبك يروح قلبي ♥",
+    "بحبك يا قلب بابا 🥺",
+    "ربنا يخليكي ليا وميحرمنيش منك ابدا يعمري♥",
+    "نور عيون يوسف انتى♥💋",
+    "ميرا يوسف فرح ♥💋🥺",
+    "بعشقك يبطتى🦆♥",
+    "بموت فيكي يمُزه♥💋"
+  ];
+
+  function showRandomLoveMessage() {
+    const randomIndex = Math.floor(Math.random() * loveMessages.length);
+    const messageDisplay = document.getElementById('loveMessageDisplay');
+    messageDisplay.textContent = loveMessages[randomIndex];
+    messageDisplay.style.animation = 'none';
+    setTimeout(() => {
+      messageDisplay.style.animation = 'fadeIn 0.5s ease';
+    }, 10);
+  }
+
+  // عداد الحب
+  function startLoveCounter() {
+    const startDate = new Date('2025-06-09').getTime();
+    
+    function updateCounter() {
+      const now = new Date().getTime();
+      const distance = now - startDate;
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      document.getElementById('daysCount').textContent = days;
+      document.getElementById('hoursCount').textContent = hours;
+      document.getElementById('minutesCount').textContent = minutes;
+      document.getElementById('secondsCount').textContent = seconds;
+    }
+    
+    setInterval(updateCounter, 1000);
+    updateCounter();
+  }
+
+  // إظهار إجابات الأسئلة
+  function setupQuizReveal() {
+    const revealButtons = document.querySelectorAll('.reveal-btn');
+    
+    revealButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const answer = this.nextElementSibling;
+        answer.classList.toggle('revealed');
+        
+        if (answer.classList.contains('revealed')) {
+          this.textContent = 'إخفاء الإجابة 🙈';
+        } else {
+          this.textContent = 'اضغط للكشف عن الإجابة 😁';
+        }
+      });
+    });
+  }
+
+  // تشغيل/إيقاف الأغنية
+  function toggleSong() {
+    const song = document.getElementById('song');
+    const playBtn = document.getElementById('playBtn');
+    
+    if (song.paused) {
+      song.play();
+      playBtn.textContent = '⏸ إيقاف الأغنية';
+    } else {
+      song.pause();
+      playBtn.textContent = '▶ استمعي لأغنية حب ميرا ويوسف 🎵';
+    }
+  }
+
+  // إظهار باقي المحتوى
+  function showRestOfContent() {
+    document.getElementById('restOfContent').style.display = 'block';
+    
+    // التمرير للنهاية بسلاسة
+    setTimeout(() => {
+      document.getElementById('restOfContent').scrollIntoView({ behavior: 'smooth' });
+    }, 300);
+  }
+
+  // إنشاء معرض الصور الدوار مع صور ميرا ويوسف الحقيقية
   function createCarousel() {
     const carousel = document.getElementById('carousel');
+    const captions = [
+      "أول صورة لنا معاً ❤️",
+      "يوم سعيد معاً 😊",
+      "ذكريات لا تنسى 💕",
+      "ضحكاتنا معاً 😄",
+      "لحظات خاصة 🤗",
+      "رحلة حبنا 🚀",
+      "أجمل الأوقات 🌟",
+      "قلوب متحدة 💞",
+      "حب حقيقي 💖",
+      "فرحتنا معاً 🎉",
+      "لحظات ثمينة 💎",
+      "ذكريات جميلة 🌸"
+    ];
+    
+    // استخدام الصور الحقيقية من image1.jpg إلى image12.jpg للمعرض الدوار
+    for (let i = 1; i <= 12; i++) {
+      const carouselItem = document.createElement('div');
+      carouselItem.className = 'carousel-item';
+      
+      // حساب الزاوية لكل عنصر في الدائرة
+      const angle = (i / 12) * 360;
+      carouselItem.style.transform = `rotateY(${angle}deg) translateZ(900px)`;
+      
+      const img = document.createElement('img');
+      img.className = 'carousel-img';
+      img.src = `image${i}.jpg`;
+      img.alt = `صورة ${i} لـ ميرا ويوسف`;
+      img.loading = 'eager'; // لتحميل الصور بسرعة
+      
+      // إضافة معالج خطأ للصور المفقودة
+      img.onerror = function() {
+        this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjUyMCIgdmlld0JveD0iMCAwIDYwMCA1MjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNTIwIiBmaWxsPSIjMWEwMDA0Ii8+CjxwYXRoIGQ9Ik0zMDAgMTYwQzIzOC41NzYgMTYwIDE5MCAyMDguNTc2IDE5MCAyNzBDMTkwIDMzMS40MjQgMjM4LjU3NiAzODAgMzAwIDM4MEMzNjEuNDI0IDM4MCA0MTAgMzMxLjQyNCA0MTAgMjcwQzQxMCAyMDguNTc2IDM2MS40MjQgMTYwIDMwMCAxNjBaIiBmaWxsPSIjRkYyRjRCIi8+CjxwYXRoIGQ9Ik0yODAgMjQwTDMxMCAyNDBMMzEwIDMwMEwyODAgMzAwVjI0MFoiIGZpbGw9IiMxRjBGMEYiLz4KPHBhdGggZD0iTTI2MCAzMjBMMzQwIDMyMFYzNDBMMjYwIDM0MFYzMjBaIiBmaWxsPSIjMUYwRjBGIi8+Cjx0ZXh0IHg9IjMwMCIgeT0iNDUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjRkY3QTlBIiBmb250LXNpemU9IjI0IiBmb250LWZhbWlseT0iQXJpYWwiPum7keWwj+W+oeWnk+WQjSA8L3RleHQ+Cjx0ZXh0IHg9IjMwMCIgeT0iNDgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjRkY3QTlBIiBmb250LXNpemU9IjE4IiBmb250LWZhbWlseT0iQXJpYWwiPuWcqOaTjeS9nOWPkeW4g+W+oeWnkzwvdGV4dD4KPC9zdmc+';
+        this.onerror = null;
+      };
+      
+      const caption = document.createElement('div');
+      caption.className = 'carousel-caption';
+      caption.textContent = captions[i-1] || `صورة ${i}`;
+      
+      carouselItem.appendChild(img);
+      carouselItem.appendChild(caption);
+      carousel.appendChild(carouselItem);
+    }
+  }
+
+  // إنشاء معرض الصور الشبكي مع جميع الصور
+  function createGridGallery() {
+    const gridGallery = document.getElementById('gridGallery');
     const captions = [
       "أول صورة لنا معاً ❤️",
       "يوم سعيد معاً 😊",
@@ -1421,264 +1704,4 @@
       "حبنا الكبير 🌹",
       "لحظات لا تنسى ⭐",
       "سعادة دائمة 🌈",
-      "حب لا ينتهي 💕"
-    ];
-    
-    // صور بديلة رمزية جميلة بدلاً من الصور المفقودة
-    const placeholderImages = [
-      "💑", "❤️", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "🎀",
-      "🌸", "🌹", "🥀", "🌺", "🌷", "💐", "🌼", "🏵️", "🔆", "🌟",
-      "✨", "⚡", "💫", "⭐", "🔥", "💥"
-    ];
-    
-    for (let i = 0; i < 12; i++) {
-      const carouselItem = document.createElement('div');
-      carouselItem.className = 'carousel-item';
-      
-      // حساب الزاوية لكل عنصر في الدائرة
-      const angle = (i / 12) * 360;
-      carouselItem.style.transform = `rotateY(${angle}deg) translateZ(500px)`;
-      
-      const imgContainer = document.createElement('div');
-      imgContainer.className = 'image-placeholder';
-      imgContainer.innerHTML = `
-        <div class="icon">${placeholderImages[i] || "💕"}</div>
-        <div>صورة ${i+1}</div>
-        <div class="message">${captions[i] || "ذكريات جميلة"}</div>
-      `;
-      
-      const caption = document.createElement('div');
-      caption.className = 'carousel-caption';
-      caption.textContent = captions[i] || `صورة ${i+1}`;
-      
-      carouselItem.appendChild(imgContainer);
-      carouselItem.appendChild(caption);
-      carousel.appendChild(carouselItem);
-    }
-  }
-
-  // التحكم في معرض الصور الدوار
-  function setupCarouselControls() {
-    const carousel = document.getElementById('carousel');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const pauseBtn = document.getElementById('pauseBtn');
-    const playBtn = document.getElementById('playBtnCarousel');
-    
-    let rotation = 0;
-    let isPlaying = true;
-    
-    // دورة الدوران
-    function rotateCarousel() {
-      if (isPlaying) {
-        rotation += 0.5;
-        carousel.style.transform = `rotateY(${rotation}deg)`;
-      }
-      requestAnimationFrame(rotateCarousel);
-    }
-    
-    // بدء الدوران
-    rotateCarousel();
-    
-    // التحكم بالأزرار
-    prevBtn.addEventListener('click', () => {
-      rotation += 30;
-      carousel.style.transform = `rotateY(${rotation}deg)`;
-    });
-    
-    nextBtn.addEventListener('click', () => {
-      rotation -= 30;
-      carousel.style.transform = `rotateY(${rotation}deg)`;
-    });
-    
-    pauseBtn.addEventListener('click', () => {
-      isPlaying = false;
-    });
-    
-    playBtn.addEventListener('click', () => {
-      isPlaying = true;
-    });
-  }
-
-  // رسائل الحب العشوائية
-  const loveMessages = [
-    "بحبك ينور عيني ♥",
-    "بحبك يروح قلبي ♥",
-    "بحبك يا قلب بابا 🥺",
-    "ربنا يخليكي ليا وميحرمنيش منك ابدا يعمري♥",
-    "نور عيون يوسف انتى♥💋",
-    "ميرا يوسف فرح ♥💋🥺",
-    "بعشقك يبطتى🦆♥",
-    "بموت فيكي يمُزه♥💋"
-  ];
-
-  function showRandomLoveMessage() {
-    const randomIndex = Math.floor(Math.random() * loveMessages.length);
-    const messageDisplay = document.getElementById('loveMessageDisplay');
-    messageDisplay.textContent = loveMessages[randomIndex];
-    messageDisplay.style.animation = 'none';
-    setTimeout(() => {
-      messageDisplay.style.animation = 'fadeIn 0.5s ease';
-    }, 10);
-  }
-
-  // إظهار إجابات الأسئلة
-  function setupQuizReveal() {
-    const revealButtons = document.querySelectorAll('.reveal-btn');
-    
-    revealButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const answer = this.nextElementSibling;
-        answer.classList.toggle('revealed');
-        
-        if (answer.classList.contains('revealed')) {
-          this.textContent = 'إخفاء الإجابة 🙈';
-        } else {
-          this.textContent = 'اضغط للكشف عن الإجابة 😁';
-        }
-      });
-    });
-  }
-
-  // عداد الحب من 9 يونيو 2025
-  function updateLoveCounter() {
-    const startDate = new Date('2025-06-09T00:00:00'); // 9 يونيو 2025
-    const now = new Date();
-    const diff = now - startDate;
-    
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-    
-    document.getElementById('daysCount').textContent = days;
-    document.getElementById('hoursCount').textContent = hours;
-    document.getElementById('minutesCount').textContent = minutes;
-    document.getElementById('secondsCount').textContent = seconds;
-  }
-
-  // دالة تأثير المطر الخاص بالزر العائم
-  function createSpecialRain() {
-    const container = document.getElementById('specialRainContainer');
-    const phrases = [
-      "يوسف بيحبك", 
-      "ينور عين يوسف", 
-      "ميرا نور عيني", 
-      "بحبك يا ميرا", 
-      "عمري يا ميرا",
-      "قلبي يا ميرا",
-      "روحي يا ميرا",
-      "غالية يا ميرا",
-      "يوسف يعشق ميرا"
-    ];
-    
-    // إزالة أي كلمات موجودة مسبقاً
-    container.innerHTML = '';
-    
-    // إنشاء 30 كلمة للمطر الخاص
-    for (let i = 0; i < 30; i++) {
-      setTimeout(() => {
-        const word = document.createElement('div');
-        word.className = 'special-rain-word';
-        word.textContent = phrases[Math.floor(Math.random() * phrases.length)];
-        word.style.left = Math.random() * 100 + 'vw';
-        word.style.animationDuration = (Math.random() * 3 + 4) + 's';
-        word.style.fontSize = (Math.random() * 10 + 24) + 'px';
-        word.style.color = `hsl(${Math.random() * 60 + 0}, 100%, 60%)`;
-        
-        container.appendChild(word);
-        
-        // إزالة الكلمة بعد انتهاء الأنيميشن
-        setTimeout(() => {
-          if (word.parentNode) {
-            word.parentNode.removeChild(word);
-          }
-        }, 7000);
-      }, i * 200);
-    }
-  }
-
-  // دالة التحقق من الباسوورد - تم تصحيحها
-  function checkPass(){
-    const v = document.getElementById('passInput').value.trim();
-    if(v === PASS){
-      document.getElementById('passPage').style.display='none';
-      const main = document.getElementById('mainContent');
-      main.style.display='block';
-      main.setAttribute('aria-hidden','false');
-      
-      // بدء تأثير المطر
-      createRain();
-      
-      // بدء عداد الحب
-      setInterval(updateLoveCounter, 1000);
-      updateLoveCounter();
-      
-      // إنشاء معرض الصور الدوار
-      createCarousel();
-      setupCarouselControls();
-      
-      // إعداد إظهار إجابات الأسئلة
-      setupQuizReveal();
-      
-      // تشغيل الأغنية الثانية تلقائياً
-      const song2 = document.getElementById('specialSong2');
-      song2.play().catch(error => {
-        console.log('لم يتمكن المتصفح من تشغيل الأغنية تلقائياً:', error);
-        // عرض رسالة للمستخدم
-        alert('اضغطي على زر التشغيل في مشغل الصوت يا ميرا ❤️');
-      });
-      
-      window.scrollTo({top:0,behavior:'smooth'});
-    } else {
-      alert('التاريخ غلط يا عمري — جربي تاني يا ميرا ❤️');
-    }
-  }
-
-  // دالة عرض باقي المحتوى
-  function showRestOfContent() {
-    document.getElementById('restOfContent').style.display = 'block';
-    document.getElementById('restOfContent').scrollIntoView({behavior: 'smooth'});
-  }
-
-  // دالة تشغيل/إيقاف الأغنية
-  const song = document.getElementById('song');
-  const playBtn = document.getElementById('playBtn');
-  
-  function toggleSong(){
-    if(song.paused){
-      song.play().catch(error => {
-        alert('اضغطي موافق ثم اضغطي على الزر مرة تانيه يا ميرا ❤️');
-      });
-      playBtn.textContent = '⏸ أوقفي الأغنية يا ميرا';
-    } else {
-      song.pause();
-      playBtn.textContent = '▶ استمعي لأغنية حب ميرا ويوسف 🎵';
-    }
-  }
-
-  // الأحداث
-  document.addEventListener('DOMContentLoaded', function() {
-    // زر المطر الخاص
-    document.getElementById('specialRainBtn').addEventListener('click', createSpecialRain);
-    
-    // زر الرسائل العشوائية
-    document.getElementById('randomMessageBtn').addEventListener('click', showRandomLoveMessage);
-    
-    // زر تشغيل الأغنية
-    if(document.getElementById('playBtn')) {
-      document.getElementById('playBtn').addEventListener('click', toggleSong);
-    }
-    
-    // إدخال الباسوورد
-    document.getElementById('passInput').addEventListener('keydown',(e)=>{
-      if(e.key === 'Enter') checkPass();
-    });
-    
-    document.getElementById('passInput').focus();
-    createHearts();
-  });
-</script>
-
-</body>
-                                                                             </html>
+      "حب لا ينتهي 💕
