@@ -609,6 +609,78 @@
     line-height: 1;
   }
 
+  /* زر عائم جديد */
+  .floating-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--reddeep), var(--redmid));
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(255,47,75,0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+  }
+  
+  .floating-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 30px rgba(255,47,75,0.7);
+    background: linear-gradient(135deg, var(--redmid), var(--accent));
+  }
+  
+  .floating-btn:active {
+    transform: scale(0.95);
+  }
+  
+  /* تأثير المطر الخاص بالزر العائم */
+  .special-rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+  }
+  
+  .special-rain-word {
+    position: absolute;
+    font-size: 28px;
+    color: var(--gold);
+    text-shadow: 0 0 15px rgba(255,215,0,0.8);
+    font-weight: bold;
+    opacity: 0;
+    animation: specialRainFall 6s linear forwards;
+  }
+  
+  @keyframes specialRainFall {
+    0% {
+      transform: translateY(-100px) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
   @media(min-width:700px){ 
     .hero{font-size:48px} 
     #finalMsg{font-size:28px} 
@@ -656,6 +728,19 @@
     .image-placeholder .icon {
       font-size: 70px;
     }
+    
+    /* تعديلات للزر العائم في الجوال */
+    .floating-btn {
+      width: 60px;
+      height: 60px;
+      bottom: 20px;
+      left: 20px;
+      font-size: 14px;
+    }
+    
+    .special-rain-word {
+      font-size: 22px;
+    }
   }
 </style>
 </head>
@@ -666,6 +751,14 @@
 
 <!-- تأثير المطر لكلمة "ميرا نور عيني" -->
 <div class="rain-container" id="rainContainer"></div>
+
+<!-- تأثير المطر الخاص بالزر العائم -->
+<div class="special-rain-container" id="specialRainContainer"></div>
+
+<!-- الزر العائم -->
+<button class="floating-btn" id="specialRainBtn" title="اضغطي علشان تشوفي رسالة خاصة">
+  💖<br>رسالة
+</button>
 
 <div class="wrap">
 
@@ -1171,6 +1264,48 @@
     }
   }
 
+  // دالة تأثير المطر الخاص بالزر العائم
+  function createSpecialRain() {
+    const container = document.getElementById('specialRainContainer');
+    const phrases = [
+      "يوسف بيحبك", 
+      "ينور عين يوسف", 
+      "ميرا نور عيني", 
+      "بحبك يا ميرا", 
+      "عمري يا ميرا",
+      "قلبي يا ميرا",
+      "حبيبتي ميرا",
+      "روحي يا ميرا",
+      "غالية يا ميرا",
+      "يوسف يعشق ميرا"
+    ];
+    
+    // إزالة أي كلمات موجودة مسبقاً
+    container.innerHTML = '';
+    
+    // إنشاء 30 كلمة للمطر الخاص
+    for (let i = 0; i < 30; i++) {
+      setTimeout(() => {
+        const word = document.createElement('div');
+        word.className = 'special-rain-word';
+        word.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+        word.style.left = Math.random() * 100 + 'vw';
+        word.style.animationDuration = (Math.random() * 3 + 4) + 's';
+        word.style.fontSize = (Math.random() * 10 + 24) + 'px';
+        word.style.color = `hsl(${Math.random() * 60 + 0}, 100%, 60%)`;
+        
+        container.appendChild(word);
+        
+        // إزالة الكلمة بعد انتهاء الأنيميشن
+        setTimeout(() => {
+          if (word.parentNode) {
+            word.parentNode.removeChild(word);
+          }
+        }, 7000);
+      }, i * 200);
+    }
+  }
+
   // الأحداث
   if(document.getElementById('playBtn')) {
     document.getElementById('playBtn').addEventListener('click', toggleSong);
@@ -1180,6 +1315,9 @@
     if(e.key === 'Enter') checkPass();
   });
   
+  // إضافة حدث للزر العائم
+  document.getElementById('specialRainBtn').addEventListener('click', createSpecialRain);
+  
   window.addEventListener('load', function() {
     document.getElementById('passInput').focus();
     createHearts();
@@ -1187,4 +1325,4 @@
 </script>
 
 </body>
-  </html>
+      </html>
