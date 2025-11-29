@@ -867,7 +867,7 @@
     display: block;
   }
   
-  /* محول الأسماء - الأنيميشن الجديدة */
+  /* محول الأسماء */
   .name-combiner {
     background: linear-gradient(135deg, #ff2f4b, #ff7a9a, #ffd700);
     padding: 40px 30px;
@@ -875,8 +875,6 @@
     margin: 40px auto;
     max-width: 800px;
     box-shadow: 0 20px 50px rgba(255,47,75,0.5);
-    position: relative;
-    overflow: hidden;
   }
   
   .combiner-title {
@@ -886,171 +884,11 @@
     text-shadow: 0 4px 15px rgba(0,0,0,0.5);
   }
   
-  .hearts-container {
-    position: relative;
-    height: 250px;
-    margin: 30px 0;
-    overflow: hidden;
-  }
-  
-  .animated-heart {
-    position: absolute;
-    width: 80px;
-    height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 16px;
+  .name-display {
+    font-size: 28px;
     color: white;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    z-index: 10;
-  }
-  
-  .animated-heart::before,
-  .animated-heart::after {
-    content: '';
-    position: absolute;
-    left: 40px;
-    top: 0;
-    width: 40px;
-    height: 64px;
-    border-radius: 40px 40px 0 0;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
-    z-index: -1;
-  }
-  
-  .animated-heart::after {
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
-  }
-  
-  .yousef-heart {
-    animation: moveYousef 4s ease-in-out infinite;
-  }
-  
-  .mira-heart {
-    animation: moveMira 4s ease-in-out infinite;
-  }
-  
-  .yousef-heart::before,
-  .yousef-heart::after {
-    background: #ff2f4b;
-  }
-  
-  .mira-heart::before,
-  .mira-heart::after {
-    background: #ff7a9a;
-  }
-  
-  .small-heart {
-    position: absolute;
-    width: 20px;
-    height: 18px;
-    opacity: 0;
-    z-index: 5;
-  }
-  
-  .small-heart::before,
-  .small-heart::after {
-    content: '';
-    position: absolute;
-    left: 10px;
-    top: 0;
-    width: 10px;
-    height: 16px;
-    background: #ffd700;
-    border-radius: 10px 10px 0 0;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
-  }
-  
-  .small-heart::after {
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
-  }
-  
-  .collision-point {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255, 215, 0, 0.5);
-    z-index: 15;
-    box-shadow: 0 0 20px 10px rgba(255, 215, 0, 0.3);
-  }
-  
-  @keyframes moveYousef {
-    0% {
-      left: 10%;
-      top: 50%;
-      transform: translateY(-50%) scale(1);
-    }
-    25% {
-      left: 35%;
-      top: 30%;
-      transform: translateY(-50%) scale(1.1);
-    }
-    50% {
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-    75% {
-      left: 35%;
-      top: 70%;
-      transform: translateY(-50%) scale(1.1);
-    }
-    100% {
-      left: 10%;
-      top: 50%;
-      transform: translateY(-50%) scale(1);
-    }
-  }
-  
-  @keyframes moveMira {
-    0% {
-      right: 10%;
-      top: 50%;
-      transform: translateY(-50%) scale(1);
-    }
-    25% {
-      right: 35%;
-      top: 70%;
-      transform: translateY(-50%) scale(1.1);
-    }
-    50% {
-      right: 50%;
-      top: 50%;
-      transform: translate(50%, -50%) scale(1.2);
-    }
-    75% {
-      right: 35%;
-      top: 30%;
-      transform: translateY(-50%) scale(1.1);
-    }
-    100% {
-      right: 10%;
-      top: 50%;
-      transform: translateY(-50%) scale(1);
-    }
-  }
-  
-  @keyframes fall {
-    0% {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(150px) scale(0.5);
-    }
+    margin: 20px 0;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
   }
   
   .combined-result {
@@ -1167,23 +1005,6 @@
     
     .combined-result {
       font-size: 28px;
-    }
-    
-    /* تعديلات للأنيميشن في الجوال */
-    .hearts-container {
-      height: 200px;
-    }
-    
-    .animated-heart {
-      width: 60px;
-      height: 54px;
-      font-size: 14px;
-    }
-    
-    .animated-heart::before,
-    .animated-heart::after {
-      width: 30px;
-      height: 48px;
     }
   }
 </style>
@@ -1317,18 +1138,10 @@
       </div>
     </div>
 
-    <!-- محول الأسماء - الأنيميشن الجديدة -->
+    <!-- محول الأسماء -->
     <div class="name-combiner">
-      <div class="combiner-title">💞 اتحاد القلوب - يوسف وميرا</div>
+      <div class="combiner-title">💞 محول أسماء الحب</div>
       <div class="name-display">يوسف + ميرا</div>
-      
-      <div class="hearts-container" id="heartsAnimationContainer">
-        <div class="collision-point"></div>
-        <div class="animated-heart yousef-heart">يوسف</div>
-        <div class="animated-heart mira-heart">ميرا</div>
-        <!-- سيتم إضافة القلوب الصغيرة ديناميكياً -->
-      </div>
-      
       <div class="combined-result">❤️ اتحاد القلوب ❤️</div>
       <div class="compatibility">🎯 نسبة التوافق: 100%</div>
       <div style="color: rgba(255,255,255,0.8); margin-top: 15px; font-size: 18px;">
@@ -1684,45 +1497,6 @@
     }
   }
 
-  // دالة إنشاء القلوب الصغيرة في أنيميشن اتحاد القلوب
-  function createSmallHearts() {
-    const heartsContainer = document.getElementById('heartsAnimationContainer');
-    
-    // إزالة القلوب الصغيرة القديمة
-    const existingSmallHearts = heartsContainer.querySelectorAll('.small-heart');
-    existingSmallHearts.forEach(heart => heart.remove());
-    
-    // إنشاء 15 قلب صغير
-    for (let i = 0; i < 15; i++) {
-      const smallHeart = document.createElement('div');
-      smallHeart.className = 'small-heart';
-      
-      // تحديد موقع عشوائي حول نقطة التصادم
-      const left = 50 + (Math.random() * 20 - 10);
-      const top = 50 + (Math.random() * 20 - 10);
-      
-      smallHeart.style.left = `${left}%`;
-      smallHeart.style.top = `${top}%`;
-      
-      // تحديد تأخير عشوائي للأنيميشن
-      const delay = Math.random() * 2;
-      const duration = 1 + Math.random() * 2;
-      
-      smallHeart.style.animation = `fall ${duration}s ease-in ${delay}s forwards`;
-      
-      heartsContainer.appendChild(smallHeart);
-    }
-  }
-
-  // دالة بدء أنيميشن اتحاد القلوب
-  function startHeartsAnimation() {
-    // إنشاء القلوب الصغيرة كل 4 ثواني (مدة دورة الأنيميشن)
-    setInterval(createSmallHearts, 4000);
-    
-    // إنشاء القلوب الصغيرة فوراً
-    createSmallHearts();
-  }
-
   // دالة التحقق من الباسوورد - تم تصحيحها
   function checkPass(){
     const v = document.getElementById('passInput').value.trim();
@@ -1745,11 +1519,64 @@
       // إعداد إظهار إجابات الأسئلة
       setupQuizReveal();
       
-      // بدء أنيميشن اتحاد القلوب
-      startHeartsAnimation();
-      
       // تشغيل الأغنية الرابعة تلقائياً (تم التغيير من song2.mp3 إلى song4.mp3)
       const song4 = document.getElementById('specialSong4');
       song4.play().catch(error => {
         console.log('لم يتمكن المتصفح من تشغيل الأغنية تلقائياً:', error);
-        // عرض رسالة للمس
+        // عرض رسالة للمستخدم
+        alert('اضغطي على زر التشغيل في مشغل الصوت يا ميرا ❤️');
+      });
+      
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+      alert('التاريخ غلط يا عمري — جربي تاني يا ميرا ❤️');
+    }
+  }
+
+  // دالة عرض باقي المحتوى
+  function showRestOfContent() {
+    document.getElementById('restOfContent').style.display = 'block';
+    document.getElementById('restOfContent').scrollIntoView({behavior: 'smooth'});
+  }
+
+  // دالة تشغيل/إيقاف الأغنية
+  const song = document.getElementById('song');
+  const playBtn = document.getElementById('playBtn');
+  
+  function toggleSong(){
+    if(song.paused){
+      song.play().catch(error => {
+        alert('اضغطي موافق ثم اضغطي على الزر مرة تانيه يا ميرا ❤️');
+      });
+      playBtn.textContent = '⏸ أوقفي الأغنية يا ميرا';
+    } else {
+      song.pause();
+      playBtn.textContent = '▶ استمعي لأغنية حب ميرا ويوسف 🎵';
+    }
+  }
+
+  // الأحداث
+  document.addEventListener('DOMContentLoaded', function() {
+    // زر المطر الخاص
+    document.getElementById('specialRainBtn').addEventListener('click', createSpecialRain);
+    
+    // زر الرسائل العشوائية
+    document.getElementById('randomMessageBtn').addEventListener('click', showRandomLoveMessage);
+    
+    // زر تشغيل الأغنية
+    if(document.getElementById('playBtn')) {
+      document.getElementById('playBtn').addEventListener('click', toggleSong);
+    }
+    
+    // إدخال الباسوورد
+    document.getElementById('passInput').addEventListener('keydown',(e)=>{
+      if(e.key === 'Enter') checkPass();
+    });
+    
+    document.getElementById('passInput').focus();
+    createHearts();
+  });
+</script>
+
+</body>
+  </html>
