@@ -1025,6 +1025,11 @@
   💖<br>رسالة
 </button>
 
+<!-- الأغنية التي تشغل تلقائياً -->
+<audio id="autoSong" autoplay loop>
+  <source src="song4.mp3" type="audio/mpeg">
+</audio>
+
 <div class="wrap">
 
   <!-- PASSWORD PAGE -->
@@ -1338,10 +1343,10 @@
       "ضحكاتنا معاً 😄",
       "لحظات خاصة 🤗",
       "رحلة حبنا 🚀",
-      "أجمل الأوقات 🌟",
+      "أجمل الأوقات 🌟", // صورة 7
       "قلوب متحدة 💞",
-      "حب حقيقي 💖",
-      "فرحتنا معاً 🎉",
+      "حب حقيقي 💖", // صورة 9
+      "فرحتنا معاً 🎉", // صورة 10
       "لحظات ثمينة 💎",
       "ذكريات جميلة 🌸",
       "ابتساماتنا 😊",
@@ -1350,7 +1355,7 @@
       "قلوب متحدة 💑",
       "فرحتنا الدائمة 🎊",
       "حبنا الأبدي 💘",
-      "لحظات سعيدة 😍",
+      "لحظات سعيدة 😍", // صورة 19 (تم استبدالها بالصورة 27)
       "ذكريات حلوة 🍬",
       "أجمل الذكريات 📸",
       "فرحتنا معاً 💃",
@@ -1361,7 +1366,11 @@
     ];
     
     // إضافة 26 صورة حقيقية من image1.jpg إلى image26.jpg
+    // مع التعديلات المطلوبة
     for (let i = 1; i <= 26; i++) {
+      // تخطي الصور 7، 9، 10
+      if (i === 7 || i === 9 || i === 10) continue;
+      
       const photoItem = document.createElement('div');
       photoItem.className = 'photo-item';
       
@@ -1388,6 +1397,32 @@
       photoItem.appendChild(caption);
       photoGrid.appendChild(photoItem);
     }
+    
+    // إضافة الصورة 27 بدلاً من 19
+    const photoItem27 = document.createElement('div');
+    photoItem27.className = 'photo-item';
+    
+    const img27 = document.createElement('img');
+    img27.src = 'image27.jpg';
+    img27.alt = 'صورة 27';
+    img27.className = 'photo-img';
+    img27.onerror = function() {
+      this.parentNode.innerHTML = `
+        <div class="image-placeholder">
+          <div class="icon">💕</div>
+          <div>صورة 27</div>
+          <div class="message">لحظات سعيدة 😍</div>
+        </div>
+      `;
+    };
+    
+    const caption27 = document.createElement('div');
+    caption27.className = 'photo-caption';
+    caption27.textContent = "لحظات سعيدة 😍";
+    
+    photoItem27.appendChild(img27);
+    photoItem27.appendChild(caption27);
+    photoGrid.appendChild(photoItem27);
   }
 
   // رسائل الحب العشوائية
@@ -1548,6 +1583,12 @@
 
   // الأحداث
   document.addEventListener('DOMContentLoaded', function() {
+    // تشغيل الأغنية تلقائياً عند فتح الموقع
+    const autoSong = document.getElementById('autoSong');
+    autoSong.play().catch(error => {
+      console.log('لم يتمكن المتصفح من تشغيل الأغنية تلقائياً:', error);
+    });
+    
     // زر المطر الخاص
     document.getElementById('specialRainBtn').addEventListener('click', createSpecialRain);
     
