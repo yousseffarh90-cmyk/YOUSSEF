@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>موقع حب ميرا ❤️ - معمول خصيصاً لميرا</title>
 <style>
-  /* جميع الأنماط السابقة تبقى كما هي */
   :root{
     --dark:#1a0004;
     --reddeep:#8b0000;
@@ -26,7 +25,6 @@
     min-height: 100vh;
   }
 
-  /* جميع الأنماط الأخرى تبقى كما هي */
   .wrap{max-width:1400px;margin:0 auto;padding:20px; position: relative; z-index: 10;}
   .center{display:flex;flex-direction:column;align-items:center;justify-content:center}
 
@@ -228,7 +226,7 @@
     box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 25px rgba(255,47,75,0.3);
   }
 
-  /* معرض الصور الدوار */
+  /* معرض الصور الدوار - تم التعديل */
   .gallery-section {
     background: linear-gradient(135deg, var(--reddeep), var(--redmid), #ff5c7a);
     padding: 40px 30px;
@@ -263,20 +261,16 @@
     height: 100%;
     position: absolute;
     transform-style: preserve-3d;
-    animation: rotate 40s infinite linear;
-  }
-  
-  .carousel:hover {
-    animation-play-state: paused;
+    transition: transform 0.5s ease;
   }
   
   .carousel-item {
     position: absolute;
-    width: 300px;
+    width: 280px;
     height: 350px;
     left: 50%;
     top: 50%;
-    margin-left: -150px;
+    margin-left: -140px;
     margin-top: -175px;
     border-radius: 20px;
     overflow: hidden;
@@ -317,15 +311,6 @@
     backdrop-filter: blur(5px);
   }
   
-  @keyframes rotate {
-    from {
-      transform: rotateY(0deg);
-    }
-    to {
-      transform: rotateY(360deg);
-    }
-  }
-  
   .carousel-controls {
     display: flex;
     justify-content: center;
@@ -350,6 +335,11 @@
     background: rgba(255,255,255,0.3);
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  }
+  
+  .carousel-btn.active {
+    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
+    box-shadow: 0 5px 15px rgba(255,47,75,0.5);
   }
   
   /* تصميم بديل للصور المفقودة */
@@ -1010,10 +1000,10 @@
     }
     
     .carousel-item {
-      width: 250px;
-      height: 300px;
-      margin-left: -125px;
-      margin-top: -150px;
+      width: 220px;
+      height: 280px;
+      margin-left: -110px;
+      margin-top: -140px;
     }
     
     /* تعديلات للزر العائم في الجوال */
@@ -1062,6 +1052,10 @@
     
     .combined-result {
       font-size: 28px;
+    }
+    
+    .carousel-controls {
+      flex-wrap: wrap;
     }
   }
 </style>
@@ -1206,7 +1200,7 @@
       </div>
     </div>
 
-    <!-- معرض الصور الدوار -->
+    <!-- معرض الصور الدوار - تم إصلاحه -->
     <div class="gallery-section">
       <div class="gallery-title">📸 ألبوم ذكريات <span class="mira-name">ميرا</span> ويوسف</div>
       
@@ -1223,8 +1217,8 @@
       <div class="carousel-controls">
         <button class="carousel-btn" id="prevBtn">⬅️ السابق</button>
         <button class="carousel-btn" id="nextBtn">التالي ➡️</button>
+        <button class="carousel-btn active" id="playBtnCarousel">▶ تشغيل</button>
         <button class="carousel-btn" id="pauseBtn">⏸ إيقاف</button>
-        <button class="carousel-btn" id="playBtnCarousel">▶ تشغيل</button>
       </div>
     </div>
 
@@ -1430,15 +1424,26 @@
     for (let i = 1; i <= 26; i++) {
       const carouselItem = document.createElement('div');
       carouselItem.className = 'carousel-item';
+      carouselItem.dataset.index = i-1;
       
       // حساب الزاوية لكل عنصر في الدائرة
-      const angle = (i / 26) * 360;
-      carouselItem.style.transform = `rotateY(${angle}deg) translateZ(700px)`;
+      const angle = ((i-1) / 26) * 360;
+      carouselItem.style.transform = `rotateY(${angle}deg) translateZ(650px)`;
       
       const img = document.createElement('img');
       img.src = `image${i}.jpg`;
       img.alt = `صورة ${i}`;
       img.className = 'carousel-img';
+      img.onerror = function() {
+        // إذا فشل تحميل الصورة، استخدم بديل
+        this.parentNode.innerHTML = `
+          <div class="image-placeholder">
+            <div class="icon">💕</div>
+            <div>صورة ${i}</div>
+            <div class="message">${captions[i-1] || "ذكريات جميلة"}</div>
+          </div>
+        `;
+      };
       
       const caption = document.createElement('div');
       caption.className = 'carousel-caption';
@@ -1450,7 +1455,7 @@
     }
   }
 
-  // التحكم في معرض الصور الدوار
+  // التحكم في معرض الصور الدوار - تم إصلاحه
   function setupCarouselControls() {
     const carousel = document.getElementById('carousel');
     const prevBtn = document.getElementById('prevBtn');
@@ -1461,6 +1466,7 @@
     let rotation = 0;
     let isPlaying = true;
     const angleStep = 360 / 26; // 26 صورة
+    let animationId;
     
     // دورة الدوران
     function rotateCarousel() {
@@ -1468,7 +1474,7 @@
         rotation += 0.3; // إبطاء قليلاً لتناسب 26 صورة
         carousel.style.transform = `rotateY(${rotation}deg)`;
       }
-      requestAnimationFrame(rotateCarousel);
+      animationId = requestAnimationFrame(rotateCarousel);
     }
     
     // بدء الدوران
@@ -1487,10 +1493,25 @@
     
     pauseBtn.addEventListener('click', () => {
       isPlaying = false;
+      pauseBtn.classList.remove('active');
+      playBtn.classList.add('active');
     });
     
     playBtn.addEventListener('click', () => {
       isPlaying = true;
+      playBtn.classList.add('active');
+      pauseBtn.classList.remove('active');
+    });
+    
+    // إضافة تأثير عند التمرير
+    carousel.addEventListener('mouseenter', () => {
+      isPlaying = false;
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+      if (playBtn.classList.contains('active')) {
+        isPlaying = true;
+      }
     });
   }
 
@@ -1675,4 +1696,4 @@
 </script>
 
 </body>
-        </html>
+  </html>
