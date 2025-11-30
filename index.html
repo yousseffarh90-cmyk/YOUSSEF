@@ -1,1582 +1,633 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>موقع حب ميرا ❤️ - معمول خصيصاً لميرا</title>
-<style>
-  :root{
-    --dark:#1a0004;
-    --reddeep:#8b0000;
-    --redmid:#ff2f4b;
-    --accent:#ff7a9a;
-    --card: rgba(255,255,255,0.08);
-    --gold: #ffd700;
-    --light-pink: #ffd6dc;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  body{
-    margin:0;padding:0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1a0004, #330006, #1a0004);
-    color:#fff;text-align:center;overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
-    background-attachment: fixed;
-    min-height: 100vh;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع حب ميرا ❤️</title>
+    <style>
+        :root {
+            --primary: #8b0000;
+            --secondary: #ff2f4b;
+            --accent: #ff7a9a;
+            --gold: #ffd700;
+            --light: #ffd6dc;
+            --dark: #1a0004;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--dark), #330006);
+            color: white;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* صفحة الباسوورد المحسنة */
+        #passPage {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pass-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .pass-heart {
+            position: absolute;
+            font-size: 24px;
+            color: var(--accent);
+            opacity: 0;
+            animation: float 15s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        #passBox {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .mira-name {
+            color: var(--gold);
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            margin: 15px 0;
+            transition: all 0.3s;
+        }
+        
+        input[type="password"]:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 47, 75, 0.4);
+        }
+        
+        .pass-hint {
+            margin-top: 15px;
+            font-size: 14px;
+            color: var(--light);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+        }
+        
+        /* المحتوى الرئيسي */
+        #mainContent {
+            display: none;
+            animation: fadeIn 1s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .hero {
+            font-size: 36px;
+            margin: 20px 0;
+            color: var(--accent);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .message {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .highlight {
+            color: var(--gold);
+            font-weight: bold;
+        }
+        
+        /* تأثير القلبين */
+        .hearts-btn {
+            background: linear-gradient(45deg, var(--gold), #ffa500);
+            color: #8b0000;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .hearts-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .hearts-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s;
+        }
+        
+        .hearts-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .hearts-container {
+            position: relative;
+            width: 80%;
+            height: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transition: all 1s;
+        }
+        
+        .heart-yousef {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            left: 10%;
+        }
+        
+        .heart-mira {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            right: 10%;
+        }
+        
+        .heart-yousef.moving {
+            animation: moveYousef 2s forwards;
+        }
+        
+        .heart-mira.moving {
+            animation: moveMira 2s forwards;
+        }
+        
+        @keyframes moveYousef {
+            0% { left: 10%; transform: scale(1); }
+            50% { left: 45%; transform: scale(1.2); }
+            100% { left: 45%; transform: scale(1); }
+        }
+        
+        @keyframes moveMira {
+            0% { right: 10%; transform: scale(1); }
+            50% { right: 45%; transform: scale(1.2); }
+            100%;
 
-  .wrap{max-width:1400px;margin:0 auto;padding:20px; position: relative; z-index: 10;}
-  .center{display:flex;flex-direction:column;align-items:center;justify-content:center}
-
-  /* password page */
-  #passPage{
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    padding:20px;
-    position:relative;
-    overflow:hidden;
-    background: linear-gradient(135deg, rgba(26,0,4,0.9), rgba(51,0,6,0.9));
-  }
-  
-  #passBox{
-    background: var(--card);
-    padding: 40px 30px;
-    border-radius: 20px;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.7), 0 0 40px rgba(255,47,75,0.3);
-    max-width: 450px;
-    width: 100%;
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255,255,255,0.15);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-  }
-  
-  #passBox:hover {
-    transform: translateY(-5px);
-  }
-  
-  h1.small{
-    margin:0 0 20px 0;
-    color:var(--accent);
-    font-size:28px;
-    text-shadow:0 2px 15px rgba(0,0,0,0.5);
-    line-height: 1.4;
-  }
-  
-  .mira-name {
-    color: var(--gold); 
-    font-weight: bold; 
-    text-shadow: 0 0 15px rgba(255,215,0,0.7);
-    display: inline-block;
-    animation: pulse 2s infinite;
-  }
-  
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
-  
-  input[type="password"]{
-    width:100%;
-    padding:15px;
-    border-radius:15px;
-    border:none;
-    font-size:20px;
-    text-align:center;
-    margin:15px 0;
-    background:rgba(255,255,255,0.12);
-    color:#fff;
-    border: 2px solid rgba(255,255,255,0.2);
-    transition: all 0.3s ease;
-    font-weight: bold;
-  }
-  
-  input[type="password"]:focus{
-    outline:none;
-    box-shadow:0 0 20px rgba(255,47,75,0.6);
-    background:rgba(255,255,255,0.18);
-    border-color: var(--accent);
-  }
-  
-  .btn{
-    margin-top:20px;
-    padding:15px 25px;
-    border-radius:15px;
-    border:none;
-    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
-    color:#fff;
-    font-size:18px;
-    cursor:pointer;
-    box-shadow:0 8px 25px rgba(255,0,60,0.25);
-    transition: all 0.3s ease;
-    position:relative;
-    overflow:hidden;
-    font-weight: bold;
-    width: 100%;
-  }
-  
-  .btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 30px rgba(255,0,60,0.4);
-    background: linear-gradient(45deg, var(--redmid), var(--accent));
-  }
-  
-  .btn:active{
-    transform:scale(0.98);
-  }
-
-  /* main content */
-  #mainContent{
-    display:none;
-    padding:40px 10px 80px;
-    animation: fadeIn 1s ease;
-  }
-  
-  .hero{
-    font-size:36px;
-    margin-bottom:20px;
-    color:var(--accent);
-    text-shadow:0 6px 25px rgba(0,0,0,0.6);
-    position:relative;
-    padding:15px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  }
-  
-  /* Special message section */
-  .special-message {
-    background: linear-gradient(135deg, #8b0000, #ff2f4b, #ff7a9a);
-    padding: 50px 30px;
-    border-radius: 25px;
-    margin: 40px auto;
-    max-width: 1300px;
-    box-shadow: 0 25px 70px rgba(255,47,75,0.5), 0 0 0 2px rgba(255,255,255,0.1);
-    border: 2px solid rgba(255,255,255,0.15);
-    position: relative;
-    overflow: hidden;
-    animation: glow 3s infinite alternate;
-  }
-  
-  @keyframes glow {
-    0% { box-shadow: 0 25px 70px rgba(255,47,75,0.5), 0 0 0 2px rgba(255,255,255,0.1); }
-    100% { box-shadow: 0 25px 80px rgba(255,47,75,0.7), 0 0 0 2px rgba(255,255,255,0.15); }
-  }
-  
-  .message-content {
-    position: relative;
-    z-index: 2;
-  }
-  
-  .message-text {
-    font-size: 24px;
-    line-height: 1.8;
-    color: white;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    margin-bottom: 30px;
-    font-weight: bold;
-  }
-  
-  .final-note {
-    font-size: 22px;
-    color: var(--gold);
-    text-shadow: 0 2px 10px rgba(0,0,0,0.7);
-    margin-top: 25px;
-    font-weight: bold;
-    padding: 20px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 18px;
-    border: 2px solid rgba(255,215,0,0.4);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-  }
-  
-  .card{
-    width:100%;
-    max-width:1350px;
-    margin:35px auto;
-    background:var(--card);
-    border-radius:25px;
-    padding:30px;
-    box-shadow:0 15px 50px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 6px;
-    background: linear-gradient(90deg, var(--reddeep), var(--redmid), var(--accent));
-  }
-  
-  .card:hover {
-    transform: translateY(-8px); 
-    box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 25px rgba(255,47,75,0.3);
-  }
-
-  /* معرض الصور الجديد - كل صورة منفردة */
-  .gallery-section {
-    background: linear-gradient(135deg, var(--reddeep), var(--redmid), #ff5c7a);
-    padding: 40px 30px;
-    border-radius: 25px;
-    margin: 40px auto;
-    max-width: 1400px;
-    box-shadow: 0 20px 50px rgba(255,47,75,0.4);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .gallery-title {
-    font-size: 36px;
-    color: white;
-    margin-bottom: 40px;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    z-index: 2;
-    position: relative;
-  }
-  
-  /* شبكة الصور الجديدة */
-  .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
-    margin: 0 auto;
-    max-width: 1200px;
-  }
-  
-  .photo-item {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.7);
-    background: linear-gradient(135deg, #2a0a10, #1a0004);
-    border: 3px solid rgba(255,255,255,0.1);
-    transition: all 0.4s ease;
-    height: 350px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .photo-item:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 25px 50px rgba(255,47,75,0.5);
-    border-color: rgba(255,255,255,0.3);
-    z-index: 10;
-  }
-  
-  .photo-img {
-    width: 100%;
-    height: 70%;
-    object-fit: cover;
-    border-bottom: 2px solid rgba(255,255,255,0.2);
-  }
-  
-  .photo-caption {
-    height: 30%;
-    width: 100%;
-    background: rgba(0,0,0,0.8);
-    color: white;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    text-align: center;
-    backdrop-filter: blur(5px);
-  }
-  
-  /* تصميم بديل للصور المفقودة */
-  .image-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #2a0a10, #1a0004);
-    color: white;
-    font-size: 22px;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .image-placeholder .icon {
-    font-size: 70px;
-    margin-bottom: 20px;
-    color: var(--accent);
-    animation: bounce 2s infinite;
-  }
-  
-  .image-placeholder .message {
-    font-size: 18px;
-    margin-top: 15px;
-    color: var(--light-pink);
-    background: rgba(0,0,0,0.5);
-    padding: 10px 15px;
-    border-radius: 10px;
-  }
-  
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-15px);}
-    60% {transform: translateY(-7px);}
-  }
-  
-  .caption{
-    font-size:28px;
-    margin:25px 0;
-    color:#ffeef3;
-    line-height:1.8;
-    text-shadow:0 4px 20px rgba(0,0,0,0.6);
-    padding: 25px; 
-    border-radius: 18px; 
-    background: rgba(0,0,0,0.35);
-    border: 1px solid rgba(255,255,255,0.1);
-    font-weight: bold;
-  }
-  
-  .play-toggle{
-    margin-top:35px;
-    padding:20px 35px;
-    border-radius:25px;
-    border:none;
-    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
-    color:#fff;
-    font-size:26px;
-    cursor:pointer;
-    box-shadow:0 15px 40px rgba(139,0,0,0.6);
-    transition: all 0.3s ease;
-    font-weight: bold;
-  }
-  
-  .play-toggle:hover{
-    background: linear-gradient(45deg, var(--redmid), var(--accent));
-    transform: translateY(-5px); 
-    box-shadow: 0 20px 45px rgba(255,47,75,0.7);
-  }
-
-  /* Special audio section */
-  .audio-section {
-    background: linear-gradient(135deg, var(--reddeep), var(--redmid), #ff5c7a);
-    padding: 55px 35px;
-    border-radius: 28px;
-    margin: 45px auto;
-    max-width: 1000px;
-    box-shadow: 0 25px 60px rgba(255,47,75,0.6), 0 0 0 2px rgba(255,255,255,0.2);
-    position: relative;
-    overflow: hidden;
-    border: 2px solid rgba(255,255,255,0.2);
-  }
-  
-  .audio-title {
-    font-size: 36px;
-    color: white;
-    margin-bottom: 35px;
-    text-shadow: 0 4px 18px rgba(0,0,0,0.5);
-    position: relative;
-    z-index: 1;
-    font-weight: bold;
-  }
-  
-  .continue-btn {
-    margin-top: 40px;
-    padding: 22px 45px;
-    border-radius: 35px;
-    border: none;
-    background: rgba(255,255,255,0.25);
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 1;
-    backdrop-filter: blur(8px);
-    border: 2px solid rgba(255,255,255,0.35);
-    font-weight: bold;
-  }
-  
-  .continue-btn:hover {
-    background: rgba(255,255,255,0.35);
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-  }
-
-  #rememberHeader{
-    font-size:42px;
-    color:#ffd6dc;
-    margin-top:60px;
-    margin-bottom:25px;
-    text-shadow:0 6px 25px rgba(0,0,0,0.6);
-    position:relative;
-    padding:30px;
-    background:rgba(0,0,0,0.45);
-    border-radius:25px;
-    border:2px solid rgba(255,255,255,0.2);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-  }
-  
-  #rememberHeader::before {
-    content: '❤️'; 
-    margin-left: 25px;
-    font-size: 50px;
-  }
-  
-  #rememberHeader::after {
-    content: '❤️'; 
-    margin-right: 25px;
-    font-size: 50px;
-  }
-  
-  /* إصلاح مشكلة الرسالة الطويلة */
-  #finalMsgBox{
-    background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03)); 
-    padding:35px;
-    border-radius:28px;
-    margin-top:30px;
-    box-shadow:0 18px 50px rgba(0,0,0,0.8);
-    border:2px solid rgba(255,255,255,0.12);
-    position:relative;
-    max-height: 700px;
-    overflow-y: auto;
-  }
-  
-  #finalMsgBox::-webkit-scrollbar {
-    width: 12px;
-  }
-  
-  #finalMsgBox::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.1);
-    border-radius: 10px;
-  }
-  
-  #finalMsgBox::-webkit-scrollbar-thumb {
-    background: var(--accent);
-    border-radius: 10px;
-  }
-  
-  #finalMsgBox::before {
-    content: 'رسالة خاصة لميرا من يوسف';
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
-    color: white;
-    padding: 12px 30px;
-    border-radius: 18px;
-    font-size: 22px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-    font-weight: bold;
-    z-index: 5;
-  }
-  
-  #finalMsg{
-    white-space:pre-wrap;
-    text-align:right;
-    font-size:26px;
-    line-height:1.8;
-    color:#ffeef3;
-    padding:25px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 20px;
-    margin-top: 20px;
-  }
-
-  /* Floating hearts background */
-  .floating-hearts {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-  }
-  
-  .heart {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    background: transparent;
-    opacity: 0;
-    animation: floatHeart 15s linear infinite;
-  }
-  
-  .heart::before,
-  .heart::after {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 20px;
-    background: var(--accent);
-    border-radius: 50px 50px 0 0;
-  }
-  
-  .heart::before {
-    left: 12px;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
-  }
-  
-  .heart::after {
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
-  }
-  
-  @keyframes floatHeart {
-    0% {
-      transform: translateY(100vh) rotate(0deg);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.7;
-    }
-    90% {
-      opacity: 0.7;
-    }
-    100% {
-      transform: translateY(-100px) rotate(360deg);
-      opacity: 0;
-    }
-  }
-
-  /* تأثير المطر لكلمة "ميرا نور عيني" */
-  .rain-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 2;
-    overflow: hidden;
-  }
-  
-  .rain-word {
-    position: absolute;
-    font-size: 24px;
-    color: var(--gold);
-    text-shadow: 0 0 10px rgba(255,215,0,0.7);
-    font-weight: bold;
-    opacity: 0;
-    animation: rainFall 8s linear infinite;
-  }
-  
-  @keyframes rainFall {
-    0% {
-      transform: translateY(-100px) rotate(0deg);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.8;
-    }
-    90% {
-      opacity: 0.8;
-    }
-    100% {
-      transform: translateY(100vh) rotate(360deg);
-      opacity: 0;
-    }
-  }
-
-  /* Signature at the bottom */
-  .signature {
-    margin-top: 70px;
-    padding: 35px;
-    font-style: italic;
-    color: var(--light-pink);
-    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
-    border-top: 2px solid rgba(255,255,255,0.2);
-    position: relative;
-    background: rgba(0,0,0,0.35);
-    border-radius: 25px;
-    font-size: 28px;
-  }
-  
-  .signature::before {
-    content: '"';
-    font-size: 70px;
-    color: var(--gold);
-    position: absolute;
-    top: 20px;
-    left: 35px;
-    line-height: 1;
-  }
-  
-  .signature::after {
-    content: '"';
-    font-size: 70px;
-    color: var(--gold);
-    position: absolute;
-    bottom: -20px;
-    right: 35px;
-    line-height: 1;
-  }
-
-  /* زر عائم جديد */
-  .floating-btn {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--reddeep), var(--redmid));
-    color: white;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 8px 25px rgba(255,47,75,0.5);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    animation: pulse 2s infinite;
-  }
-  
-  .floating-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 12px 30px rgba(255,47,75,0.7);
-    background: linear-gradient(135deg, var(--redmid), var(--accent));
-  }
-  
-  .floating-btn:active {
-    transform: scale(0.95);
-  }
-  
-  /* تأثير المطر الخاص بالزر العائم */
-  .special-rain-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 999;
-    overflow: hidden;
-  }
-  
-  .special-rain-word {
-    position: absolute;
-    font-size: 28px;
-    color: var(--gold);
-    text-shadow: 0 0 15px rgba(255,215,0,0.8);
-    font-weight: bold;
-    opacity: 0;
-    animation: specialRainFall 6s linear forwards;
-  }
-  
-  @keyframes specialRainFall {
-    0% {
-      transform: translateY(-100px) rotate(0deg);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    90% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(100vh) rotate(360deg);
-      opacity: 0;
-    }
-  }
-
-  /* تصميمات جديدة للميزات المضافة */
-  
-  /* عداد الحب */
-  .love-counter {
-    background: linear-gradient(135deg, var(--reddeep), var(--redmid), #ff5c7a);
-    padding: 40px 30px;
-    border-radius: 25px;
-    margin: 40px auto;
-    max-width: 800px;
-    box-shadow: 0 20px 50px rgba(255,47,75,0.5);
-    border: 2px solid rgba(255,255,255,0.2);
-  }
-  
-  .counter-title {
-    font-size: 32px;
-    color: white;
-    margin-bottom: 30px;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  }
-  
-  .counter-numbers {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .counter-item {
-    background: rgba(255,255,255,0.15);
-    padding: 20px;
-    border-radius: 15px;
-    min-width: 120px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-  }
-  
-  .counter-value {
-    font-size: 36px;
-    font-weight: bold;
-    color: var(--gold);
-    text-shadow: 0 0 10px rgba(255,215,0,0.5);
-  }
-  
-  .counter-label {
-    font-size: 18px;
-    color: white;
-    margin-top: 10px;
-  }
-  
-  /* رسائل الحب العشوائية */
-  .love-messages {
-    background: linear-gradient(135deg, #8b0000, var(--redmid), #ff7a9a);
-    padding: 40px 30px;
-    border-radius: 25px;
-    margin: 40px auto;
-    max-width: 800px;
-    box-shadow: 0 20px 50px rgba(255,47,75,0.4);
-  }
-  
-  .message-btn {
-    background: rgba(255,255,255,0.2);
-    color: white;
-    border: 2px solid rgba(255,255,255,0.3);
-    padding: 15px 30px;
-    border-radius: 50px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 20px;
-    backdrop-filter: blur(10px);
-  }
-  
-  .message-btn:hover {
-    background: rgba(255,255,255,0.3);
-    transform: translateY(-3px);
-  }
-  
-  .love-message-display {
-    background: rgba(0,0,0,0.4);
-    padding: 30px;
-    border-radius: 20px;
-    margin-top: 20px;
-    border: 1px solid rgba(255,255,255,0.1);
-    min-height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: var(--light-pink);
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-  }
-  
-  /* أسئلة وأجوبة محسنة */
-  .love-quiz {
-    background: linear-gradient(135deg, var(--reddeep), #ff2f4b, #ff5c7a);
-    padding: 40px 30px;
-    border-radius: 25px;
-    margin: 40px auto;
-    max-width: 800px;
-    box-shadow: 0 20px 50px rgba(139,0,0,0.5);
-  }
-  
-  .quiz-title {
-    font-size: 32px;
-    color: white;
-    margin-bottom: 30px;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  }
-  
-  .quiz-item {
-    background: rgba(255,255,255,0.1);
-    padding: 25px;
-    border-radius: 20px;
-    margin: 20px 0;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.15);
-    transition: all 0.3s ease;
-  }
-  
-  .quiz-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-  }
-  
-  .quiz-question {
-    font-size: 22px;
-    color: white;
-    margin-bottom: 15px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  }
-  
-  .reveal-btn {
-    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 50px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin: 15px 0;
-    font-weight: bold;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  }
-  
-  .reveal-btn:hover {
-    background: linear-gradient(45deg, var(--redmid), var(--accent));
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-  }
-  
-  .quiz-answer {
-    font-size: 24px;
-    color: var(--gold);
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(255,215,0,0.5);
-    padding: 15px 20px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 15px;
-    margin-top: 15px;
-    display: none;
-    animation: fadeIn 0.5s ease;
-  }
-  
-  .quiz-answer.revealed {
-    display: block;
-  }
-  
-  /* محول الأسماء */
-  .name-combiner {
-    background: linear-gradient(135deg, #ff2f4b, #ff7a9a, #ffd700);
-    padding: 40px 30px;
-    border-radius: 25px;
-    margin: 40px auto;
-    max-width: 800px;
-    box-shadow: 0 20px 50px rgba(255,47,75,0.5);
-  }
-  
-  .combiner-title {
-    font-size: 32px;
-    color: white;
-    margin-bottom: 30px;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  }
-  
-  .name-display {
-    font-size: 28px;
-    color: white;
-    margin: 20px 0;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  }
-  
-  .combined-result {
-    font-size: 36px;
-    color: var(--gold);
-    font-weight: bold;
-    text-shadow: 0 0 15px rgba(255,215,0,0.7);
-    margin: 30px 0;
-    padding: 20px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 20px;
-    border: 2px solid rgba(255,215,0,0.3);
-  }
-  
-  .compatibility {
-    font-size: 24px;
-    color: var(--light-pink);
-    margin-top: 20px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  }
-
-  /* رسالة توضيحية للصور */
-  .image-info {
-    background: rgba(0,0,0,0.5);
-    padding: 20px;
-    border-radius: 15px;
-    margin: 20px 0;
-    border: 1px solid rgba(255,255,255,0.2);
-    font-size: 18px;
-    color: var(--light-pink);
-  }
-
-  @media(min-width:700px){ 
-    .hero{font-size:48px} 
-    #finalMsg{font-size:28px} 
-    input[type="password"]{font-size:22px} 
-    .caption{font-size:30px} 
-    .message-text { font-size: 28px; }
-  }
-
-  .fadeIn{animation:fadeIn 1s ease both}
-  @keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px)}
-    to{opacity:1; transform:none}
-  }
-  
-  /* تحسينات للجوال */
-  @media (max-width: 600px) {
-    .wrap { padding: 15px; }
-    .hero { font-size: 32px; padding: 18px; }
-    .special-message { padding: 40px 25px; margin: 35px auto; }
-    .message-text { font-size: 24px; }
-    .final-note { font-size: 22px; padding: 20px; }
-    .audio-title { font-size: 28px; }
-    .continue-btn { font-size: 22px; padding: 20px 35px; }
-    #rememberHeader { font-size: 32px; padding: 25px; }
-    #finalMsg { font-size: 22px; }
-    .signature { font-size: 22px; padding: 30px; }
-    .rain-word { font-size: 18px; }
-    
-    /* تحسينات إضافية للجوال */
-    .photo-grid {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 15px;
-    }
-    
-    .photo-item {
-      height: 300px;
-    }
-    
-    /* تعديلات للزر العائم في الجوال */
-    .floating-btn {
-      width: 60px;
-      height: 60px;
-      bottom: 20px;
-      left: 20px;
-      font-size: 14px;
-    }
-    
-    .special-rain-word {
-      font-size: 22px;
-    }
-    
-    /* تعديلات للميزات الجديدة في الجوال */
-    .counter-numbers {
-      gap: 10px;
-    }
-    
-    .counter-item {
-      min-width: 100px;
-      padding: 15px;
-    }
-    
-    .counter-value {
-      font-size: 28px;
-    }
-    
-    .counter-label {
-      font-size: 16px;
-    }
-    
-    .love-message-display {
-      font-size: 20px;
-      padding: 20px;
-    }
-    
-    .quiz-question {
-      font-size: 20px;
-    }
-    
-    .quiz-answer {
-      font-size: 22px;
-    }
-    
-    .combined-result {
-      font-size: 28px;
-    }
-  }
-</style>
+ { right: 45%; transform: scale(1); }
+        }
+        
+        .final-heart {
+            position: absolute;
+            font-size: 80px;
+            color: var(--gold);
+            opacity: 0;
+            transform: scale(0);
+            animation: finalHeart 3s 2s forwards;
+        }
+        
+        @keyframes finalHeart {
+            0% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1.3); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        .date-text {
+            position: absolute;
+            bottom: 20%;
+            font-size: 40px;
+            color: white;
+            opacity: 0;
+            animation: showDate 2s 4s forwards;
+            font-weight: bold;
+        }
+        
+        @keyframes showDate {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        /* معرض الصور */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .photo {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            height: 200px;
+            background: linear-gradient(135deg, #2a0a10, #1a0004);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 18px;
+        }
+        
+        .photo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 47, 75, 0.3);
+        }
+        
+        /* الأغاني */
+        audio {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        
+        /* التوقيع */
+        .signature {
+            margin-top: 40px;
+            padding: 20px;
+            font-style: italic;
+            color: var(--light);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* التجاوب مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .hero {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .message {
+                font-size: 18px;
+            }
+            
+            .heart {
+                width: 120px;
+                height: 120px;
+                font-size: 20px;
+            }
+            
+            .final-heart {
+                font-size: 60px;
+            }
+            
+            .date-text {
+                font-size: 30px;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .photo {
+                height: 150px;
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- صفحة الباسوورد -->
+    <section id="passPage">
+        <div class="pass-bg" id="passBg"></div>
+        <div id="passBox">
+            <h1>✍️ اكتبى تاريخ ارتباطنا يا <span class="mira-name">ميرا</span> ❤️</h1>
+            <input type="password" id="passInput" placeholder="أدخلي التاريخ هنا..." autocomplete="off" autofocus>
+            <button class="btn" onclick="checkPass()">أدخلي عالم <span class="mira-name">ميرا</span> ويوسف ✨</button>
+            <div class="pass-hint">التاريخ: <strong>962025</strong> - تاريخ حب <span class="mira-name">ميرا</span> ويوسف</div>
+        </div>
+    </section>
 
-<!-- Floating hearts background -->
-<div class="floating-hearts" id="heartsContainer"></div>
-
-<!-- تأثير المطر لكلمة "ميرا نور عيني" -->
-<div class="rain-container" id="rainContainer"></div>
-
-<!-- تأثير المطر الخاص بالزر العائم -->
-<div class="special-rain-container" id="specialRainContainer"></div>
-
-<!-- الزر العائم -->
-<button class="floating-btn" id="specialRainBtn" title="اضغطي علشان تشوفي رسالة خاصة">
-  💖<br>رسالة
-</button>
-
-<div class="wrap">
-
-  <!-- PASSWORD PAGE -->
-  <section id="passPage" class="center">
-    <div id="passBox" class="fadeIn">
-      <h1 class="small">✍️ اكتبى تاريخ ارتباطنا يا <span class="mira-name">ميرا</span> ❤️</h1>
-      <input id="passInput" type="password" placeholder="أدخلي التاريخ هنا..." autocomplete="off" autofocus>
-      <button class="btn" onclick="checkPass()">أدخلي عالم <span class="mira-name">ميرا</span> ويوسف ✨</button>
-      <p style="font-size:15px;margin-top:15px;color:#ffd7dd">التاريخ: <strong>962025</strong> - تاريخ حب <span class="mira-name">ميرا</span> ويوسف</p>
-    </div>
-  </section>
-
-  <!-- MAIN CONTENT -->
-  <main id="mainContent" class="fadeIn" aria-hidden="true">
-
-    <div class="hero">موقع حب <span class="mira-name">ميرا</span> ويوسف ❤️</div>
-
-    <!-- الرسالة الخاصة أول شيء -->
-    <div class="special-message">
-      <div class="message-content">
-        <div class="message-text">
-          <span class="mira-name">ميرا</span> يا عمري انا بحبك اكتر من اي حاجه<br>
-          اكتر من نفسي ومن اي حد في الدنيا<br>
-          مش عايز اخسرك لأي سبب أياً كان<br>
-          خليكي معايا ع طول يا <span class="mira-name">ميرا</span> ينور عيني متسيبينيش مهما حصل<br>
-          اسمعيني يا <span class="mira-name">ميرا</span> محدش هيحبك ولا هيخاف عليكى قدي اقسم بالله
+    <!-- المحتوى الرئيسي -->
+    <main id="mainContent" class="container">
+        <h1 class="hero">موقع حب <span class="mira-name">ميرا</span> ويوسف ❤️</h1>
+        
+        <!-- زر تأثير القلبين -->
+        <button class="hearts-btn" onclick="startHeartsAnimation()">
+            💖 اضغطي هنا لرؤية اتحاد القلوب 💖
+        </button>
+        
+        <!-- الرسالة الخاصة -->
+        <div class="section">
+            <h2 class="section-title">رسالة خاصة لـ <span class="mira-name">ميرا</span></h2>
+            <p class="message">
+                <span class="mira-name">ميرا</span> يا عمري انا بحبك اكتر من اي حاجه<br>
+                اكتر من نفسي ومن اي حد في الدنيا<br>
+                مش عايز اخسرك لأي سبب أياً كان
+            </p>
+            <p class="message">
+                خليكي معايا ع طول يا <span class="mira-name">ميرا</span> ينور عيني متسيبينيش مهما حصل<br>
+                اسمعيني يا <span class="mira-name">ميرا</span> محدش هيحبك ولا هيخاف عليكى قدي اقسم بالله
+            </p>
+            <p class="message highlight">
+                انتي يا <span class="mira-name">ميرا</span> اغلي حاجه في حياتي يماما ✨<br>
+                خليكي فاكره الجمله دي كويس يا <span class="mira-name">ميرا</span> - اغلي حاجه يعمري ♥
+            </p>
         </div>
         
-        <div class="final-note">
-          انتي يا <span class="mira-name">ميرا</span> اغلي حاجه في حياتي يماما ✨<br>
-          خليكي فاكره الجمله دي كويس يا <span class="mira-name">ميرا</span> - اغلي حاجه يعمري ♥
+        <!-- معرض الصور -->
+        <div class="section">
+            <h2 class="section-title">ألبوم ذكريات <span class="mira-name">ميرا</span> ويوسف</h2>
+            <div class="gallery" id="gallery">
+                <!-- سيتم إضافة الصور ديناميكياً -->
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- الميزات الجديدة -->
-    
-    <!-- عداد الحب -->
-    <div class="love-counter">
-      <div class="counter-title">⏳ عداد حب ميرا ويوسف</div>
-      <div class="counter-numbers">
-        <div class="counter-item">
-          <div class="counter-value" id="daysCount">0</div>
-          <div class="counter-label">أيام</div>
-        </div>
-        <div class="counter-item">
-          <div class="counter-value" id="hoursCount">0</div>
-          <div class="counter-label">ساعات</div>
-        </div>
-        <div class="counter-item">
-          <div class="counter-value" id="minutesCount">0</div>
-          <div class="counter-label">دقائق</div>
-        </div>
-        <div class="counter-item">
-          <div class="counter-value" id="secondsCount">0</div>
-          <div class="counter-label">ثواني</div>
-        </div>
-      </div>
-      <div style="color: rgba(255,255,255,0.8); margin-top: 20px; font-size: 18px;">
-        منذ 9 يونيو 2025 - بداية قصة حب <span class="mira-name">ميرا</span> ويوسف
-      </div>
-    </div>
-
-    <!-- رسائل الحب العشوائية -->
-    <div class="love-messages">
-      <div class="counter-title">💌 رسائل حب عشوائية</div>
-      <button class="message-btn" id="randomMessageBtn">🎲 اضغطي لرسالة حب جديدة</button>
-      <div class="love-message-display" id="loveMessageDisplay">
-        اضغطي على الزر علشان تشوفي رسالة حب جديدة!
-      </div>
-    </div>
-
-    <!-- أسئلة وأجوبة محسنة -->
-    <div class="love-quiz">
-      <div class="quiz-title">❓ أسئلة عن يوسف</div>
-      
-      <div class="quiz-item">
-        <div class="quiz-question">ايه اكتر حاجه يوسف بيحبها؟</div>
-        <button class="reveal-btn">اضغط للكشف عن الإجابة 😁</button>
-        <div class="quiz-answer">ميرا ❤️</div>
-      </div>
-      
-      <div class="quiz-item">
-        <div class="quiz-question">ايه اكتر اكله يوسف بيحبها؟</div>
-        <button class="reveal-btn">اضغط للكشف عن الإجابة 😁</button>
-        <div class="quiz-answer">ميرا ❤️</div>
-      </div>
-      
-      <div class="quiz-item">
-        <div class="quiz-question">المشروب المفضل ليوسف؟</div>
-        <button class="reveal-btn">اضغط للكشف عن الإجابة 😁</button>
-        <div class="quiz-answer">ميرا ❤️</div>
-      </div>
-      
-      <div class="quiz-item">
-        <div class="quiz-question">ايه احلى حاجه في حياة يوسف؟</div>
-        <button class="reveal-btn">اضغط للكشف عن الإجابة 😁</button>
-        <div class="quiz-answer">ميرا ❤️</div>
-      </div>
-      
-      <div class="quiz-item">
-        <div class="quiz-question">مين اللي بيخلي يوسف سعيد؟</div>
-        <button class="reveal-btn">اضغط للكشف عن الإجابة 😁</button>
-        <div class="quiz-answer">ميرا ❤️</div>
-      </div>
-      
-      <div class="quiz-item">
-        <div class="quiz-question">ايه احلى اسم في الدنيا عند يوسف؟</div>
-        <button class="reveal-btn">اضغط للكشف عن الإجابة 😁</button>
-        <div class="quiz-answer">ميرا ❤️</div>
-      </div>
-    </div>
-
-    <!-- محول الأسماء -->
-    <div class="name-combiner">
-      <div class="combiner-title">💞 محول أسماء الحب</div>
-      <div class="name-display">يوسف + ميرا</div>
-      <div class="combined-result">❤️ اتحاد القلوب ❤️</div>
-      <div class="compatibility">🎯 نسبة التوافق: 100%</div>
-      <div style="color: rgba(255,255,255,0.8); margin-top: 15px; font-size: 18px;">
-        قلوب متحدة في حب أبدي لا ينتهي
-      </div>
-    </div>
-
-    <!-- معرض الصور الجديد - كل صورة منفردة -->
-    <div class="gallery-section">
-      <div class="gallery-title">📸 ألبوم ذكريات <span class="mira-name">ميرا</span> ويوسف</div>
-      
-      <div class="image-info">
-        💕 <strong>ملاحظة:</strong> مرري على الصور لتكبيرها ورؤية التفاصيل 💕
-      </div>
-      
-      <div class="photo-grid" id="photoGrid">
-        <!-- سيتم إضافة الصور ديناميكياً بواسطة JavaScript -->
-      </div>
-    </div>
-
-    <!-- الأغنية الجديدة song4.mp3 -->
-    <div class="audio-section">
-      <div class="audio-title">🎵 اسمعي رسالتي لقلبك يا <span class="mira-name">ميرا</span> ❤️</div>
-      
-      <!-- الأغنية الجديدة -->
-      <audio id="specialSong4" controls style="width:100%; max-width:550px; margin:35px auto; display:block; border-radius:20px; box-shadow:0 12px 35px rgba(0,0,0,0.6);">
-        <source src="song4.mp3" type="audio/mpeg">
-        المتصفح لا يدعم تشغيل الصوتيات
-      </audio>
-      
-      <div style="color:rgba(255,255,255,0.95); font-size:24px; margin:30px 0; position:relative; z-index:1; background:rgba(0,0,0,0.3); padding:18px; border-radius:18px;">
-        كل كلمة في الأغنية دي من قلبي لقلبك يا <span class="mira-name">ميرا</span> 💖
-      </div>
-      
-      <!-- زر الانتقال لباقي المحتوى -->
-      <button class="continue-btn" onclick="showRestOfContent()">
-        اضغطى هنا يقلبي علشان تشوفي باقي ذكريات <span class="mira-name">ميرا</span> ويوسف 💕
-      </button>
-    </div>
-
-    <!-- باقي المحتوى (مخفي في البداية) -->
-    <div id="restOfContent" style="display:none;">
-
-      <!-- الأغنية الأولى -->
-      <div class="audio-section">
-        <div class="audio-title">🎵 اسمعيني وافهميني يا <span class="mira-name">ميرا</span> ❤️</div>
         
-        <!-- الأغنية الأولى -->
-        <audio id="specialSong1" controls style="width:100%; max-width:550px; margin:35px auto; display:block; border-radius:20px; box-shadow:0 12px 35px rgba(0,0,0,0.6);">
-          <source src="song1.mp3" type="audio/mpeg">
-          المتصفح لا يدعم تشغيل الصوتيات
-        </audio>
-        
-        <div style="color:rgba(255,255,255,0.95); font-size:24px; margin:30px 0; position:relative; z-index:1; background:rgba(0,0,0,0.3); padding:18px; border-radius:18px;">
-          استمعي للصوت ده علشان تفهميني أكتر يا <span class="mira-name">ميرا</span> ❤️
+        <!-- الأغاني -->
+        <div class="section">
+            <h2 class="section-title">🎵 رسالتي لقلبك يا <span class="mira-name">ميرا</span></h2>
+            <audio controls>
+                <source src="song4.mp3" type="audio/mpeg">
+                المتصفح لا يدعم تشغيل الصوتيات
+            </audio>
+            <p class="message">كل كلمة في الأغنية دي من قلبي لقلبك يا <span class="mira-name">ميرا</span> 💖</p>
+            
+            <button class="btn" onclick="showMoreContent()" style="margin-top: 20px;">
+                اضغطى هنا علشان تشوفي المزيد 💕
+            </button>
         </div>
-      </div>
-
-      <!-- PLAY BUTTON -->
-      <div style="display:flex;justify-content:center;">
-        <button id="playBtn" class="play-toggle">▶ استمعي لأغنية حب <span class="mira-name">ميرا</span> ويوسف 🎵</button>
-      </div>
-
-      <div id="rememberHeader">فاكره كل الذكريات دي يا <span class="mira-name">ميرا</span>؟ ❤️</div>
-
-      <div id="finalMsgBox" class="card">
-        <div id="finalMsg">
+        
+        <!-- المحتوى الإضافي -->
+        <div id="moreContent" style="display: none;">
+            <div class="section">
+                <h2 class="section-title">🎵 اسمعيني وافهميني يا <span class="mira-name">ميرا</span></h2>
+                <audio controls>
+                    <source src="song1.mp3" type="audio/mpeg">
+                    المتصفح لا يدعم تشغيل الصوتيات
+                </audio>
+                <p class="message">استمعي للصوت ده علشان تفهميني أكتر يا <span class="mira-name">ميرا</span> ❤️</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">فاكره كل الذكريات دي يا <span class="mira-name">ميرا</span>؟ ❤️</h2>
+                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; max-height: 400px; overflow-y: auto;">
+                    <p style="text-align: right; line-height: 1.6; white-space: pre-wrap;">
 بجد مش عارف اقولك ايه!! 
-لو اعرف كل دا مكنش عدى علينا دقيقه زعلانين فيها من بعض يمكن من فتره قريبه مكنتش حاسس بكل الحب ده من نحيتك احنا اه مبقلناش غير شهر اصلا بس كل حاجه بتطور بسرعه اوى زى م انتى شايفه 
-ومش معنى انها بتطور بسرعه انها مش حقيقيه لا هى حقيقيه وزياده كمان 
-بس بجد مش عارف ايه الحب دا كله اول مره احس انى مهم بالنسبه لشخص كدا 
-انا من ساعه م ارتبطنا يميرا وانا حاسس بنفس الاحساس من نحيتك نفس الحب الرهيب نفس كميه الخوف اللى بخافها عليكى نفس الغيره ويمكن كمان كل يوم الحاجات دى بتزيد عن اليوم اللى قبله 
-كل يوم بحبك اكتر بحس بيكى اكتر واكتر مش بشوفك زى باقى البنات شايفك حاجه تانيه لانى فعلا معنتش شايف غيرك 
-بحب كل نقطه فيكى يميرا بجد كل حته فيكى بحبها مش بقرف منها حتى تصرفاتك اللى كنت بشوفها زمان غريبه الوقتى مقدرش اعيش من غيرها 
-انسانه بيضا من جوا بتتصرف معايا ع طبيعتها طول الوقت وبيبان اوى ف طريقه كلامهك يحبيبتى لو تعرفى اد ايه انا مبسوط اننا سوى ونفسى نبقى لبعض بجد هتفهمى اد ايه انا بحبك 
-كميه الثقه اللى انتى ادتيهالى مخليانى عاوز اكل الدنيا عشانك عشان احسسك ان ثقتك كانت ف محلها انك انتى اختارتى صح 
-ان انا الاختيار المناسب ليكى 
-يمكن حاليا عشان تبقى حلالى الموضوع صعب شويه بس صعب ماديا بس بالنسبالى 
-وحاسس ان نقطه الماديات دى هتخلص قريب ان شاء الله وهتبقى ليا بجد كل يوم بسمع منك فيه كلمه بحبك نشاطى بيتجدد وببقى عاوز اقوم اسافر الوقتى اعمل اللى عليا وزياده 
-ومتأكد انى هعمل كدا هموت نفسى شغل مش مشكله عشانك عشان انتى تستاهلى كل حاجه واحلى حاجه حرفيا الكلام ده بكتبه ودموعى خلاص هتنزل من عنيا لانى بكتبه بقلبى مش بعقلى ومع كل كلمه بكتبهالك بفتكر شكلك فيها وبفتكرلك مواقف كتير او ضحكه او ابتسامه صغيره دخلت قلبى 
-اول مره اكتب اللى بحس بيه كدا طول عمرى كنت بحس واكتم وازعل واكتم وافرح وبردو اكتم 
-الكتمان بالنسبالى كان شغلانه تقريبا لحد مجالى الضغط  بس الكلام دا كان قبل 6/9 
-من بدايه التاريخ دا عرفت يعنى ايه حب عرفت يعنى ايه تحب انسانه وتحاول عشان توصلها 
-عرفت يعنى ايه انسانه تحبك وتفرح لفرحك وتزعل لزعلك 
-عرفت يعنى ايه ثقه 
-بجد عرفت يعنى ايه ثقه عمرى موثقت ف حد كدا ابدا دايما عاطى خوانه يمكن انتى ساعات بتحسى انى مش بثق فيكى بس والله محصل طول م انا بسمعك واعرف وجهه نظرك او الموضوع عامل ازاى من منظورك يبقى بثق فيكى يروحى ببقى غيران عليكى بس مش اكتر ومتستهونيش بغيرتى عليكى انا لو عليا احطك ف قلبى واقفل عليكى عشان محدش يشوفك او يكلمك ربع كلمه 
-بحبك اوى بحد بحب اى حاجه من ناحيتك برتاح وانتى معايا وقدامى بفرح لما ابقى شايف ان ف حاجه بتضايقنى والاقيكى بتتجنبيها لاجل بس مكونش متضايق 
-ومن اكتر الحاجات اللى فرحت بيها انهارده انك فتحتيلى قلبك كنت مستنيها من زمان وعمال اقول اصبر مع انى مش صبور خاااالص بس صبرت يمكن الوقت اللى صبرت فيه قليل لانه شهر واحد بس عدى عليا اكنه سنه مش شهر مكنتش قادر استحمل بجد انى ابقى حاسس او متأكد ان قلبك فيه حاجه ومش بتقوليلى عليا مش قادره تحكيهالى او توصفهالى 
-سواء حاجه مفرحاكى او حاجه مضيقاكى مش حابه تقولى وتفضلى انك تسكتى عن انك تحكيلى وقتها كنت بزعل اويiييييي بس كنت بسكت مع انى كنت بفضل اتحايل عليكى عشان تتكلمى اه ساعات كنت بزهق واقفل بس عشانى مش متعود ع الصبر دا كله 
-بس حتى لما بسيبك وقتها واقفل مبفكرش غير فيكى وانى عاوز اراضيكى بحس انك بنتى مش حبيبتى محتاج اطبطب عليكى واخدك ف حضنى وابوسك واطمنك وهتبقى كويسه محتاجه حنيه وانا عمرى مكنت حنين كدا معاكى عرفت حاجات كتير اوى عنى مكنتش اعرفها شوفت حاجات كتيره وشوفت ناس كتيره ع حقيقتها
-بزعل لما بفتكر اى مره كنت ظالمك فيها فى اى حاجه عموما 
-مش محتاجه ادور وراكى ف حاجه حتى اكونتاتك حاليا بفتحها يدوب اشوف الريبوستات لو حد بعتلك فولو معجبنيش ابلكه وكدا 
-حاسس انى فعلا مفيش حاجه بتطلبيها منى الا وبرفض وبدأت اتضايق منى بس كل حاجه بجد كان ليها سبب للرفض مبتطمنش عليكى غير وانتى ادام عنيا 
-حتى لما بتنزلى بفضل افكر ي ترى حد كلمها ي ترى حد بصلها بصه مش حلوه ي ترى ي ترى
-بس برتاح اول متطلعى وابص ف عينك لان بقيت بعرف منها لو ف حاجه او لا 
-برتاح وانا ببوسك وبوقك ف بوقى حسيت اننا بقينا واحد وصلنا لمرحله فعلا زى م انتى قولتى الناس بتقعد شهور او سنين عشان يوصلولها 
-برتاح وانتى ف حضنى بتطمن برتاح لما بشوفك مرتاحه ومتطمنه يحبيبتى مبزهقش отك ولا من انى ابوسك او احضنك نفسى ف كدا طول الوقت يحبيبتى نفسى ابوسك حته حته 
-ومصدقك يحبيبتى من غير متقولى انك اول مره ولد يبوسك كدا باين عليكى فعلا انك مش فاهمه حاجه كل اللى كنتى حاسه بيه انك بتحبينى اوى 
-ووالله انا كمان اول مره ابوس بنت او بنت تبوسنى 
-كل دا كان ارتجال منى انهارده كنت عاوز نندمج اوى زى م انتى شوفتى كدا والحمد لله انها عدت ع خير وربنا ستر  لان الموضوع اكبر من ما تتخيلى 
-بس وقتها حبك ليا مخليكى مش حاسه بقلق او بخوف 
-وانا حبى ليكى مقلقنى ومخوفنى عليكى و ع سمعتك وسط الناس يحبيبتى 
-احساس انك سيبالى نفسك وواثقه فيا كدا بيخلينى اتمسك بيكى اكتر واكتر يروحي بقيت مصدقك حتى لو مكدبك قلبى مصدقك وبيخلقلك الاعذار ف كل حاجه يمكن ده مش بقوله لكن بحس بيه بس 
-كل اللى قولتهولك دا ميجيش نقطه ف بحر حبى ليكى يميرا او نقطه بالنسبه لكميه التفكير اللى بفكره فيكى حى وشى بقى باين عليه الارهاق من قله النوم والتفكير طول الوقت بفكر فيكى 
-بحترم الصراحه اوى يميرا ان يحصل حاجه وتقوليلى عليا حتى لو انتى خايفه من رد فعلى ده بيكبرك ف نظرى اوى اوى 
-بكره الكدب كره العمى الكدب بالنسبالى شكل من اشكال الخيانه مش بقولك الكلام دا انى اقصد بيه حاجه معينه لا والله انا بس بشرحلك الحاجات دى بالنسبالى ايه 
-مراتى المستقبليه خلاص 
-ميرا حرم يوسف فرح 
-ميرا فرح 
-بحبك يميرا بجد ونفسى اسعدك وافرحك بحب اشوف الفرحه فى عنيكى مع انك بتفرحى من اقل حاجه حتى لو شوكولاتايه 
-بس انا فرحتى وسعادتى انى اشوفك بتضحكى ومبسوطه 
-مكنتش عاوز اقفل انهارده كنت عاوز افضل صاحى واكلمك  بس المواعيد اللى امين بعتهالى ضايقتنى بس قولت مش هقعد كل يوم اعارض فيه بكرا نبقى تشوف 
-انا بكتب الرساله دى حرفيا بقالى ساعه او ساعه الا حاجه بسيطه 
-بجد محسيتش بالوقت لانه كله عدى وانا بفكر فيكى 
-واخيرا وليس اخرا 
-بحبك اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى اوى 
-بدعى ربنا اننا نكون سوى نكون لبعض ربنا ميجعل بينا اى مشاكل خالص بعد الايام عشان تطلعى م المكان الملعون دا 
-وبعد الايام عشان اطلع انا كمان م البلد دى 
-بعد الايام اللى بعدها هنبقى سوى ي رب تقدرى تستحملى وتستنينى ي ميرا مهما طولت
-ربنا يقدرنى واعمل كل حاجه بسرعه عشانك 
-احى واحده شافتها عيونى واحلى الوحيده اللى حركت قلبى 
-من قبل متخبطى قلبى فتحلك وقالك ادخلى وانتى فعلا دخلتى وسكنتى جواه ومن وقتها وهو متطمن بوجودك وعمره مهيفتح ويخرجك ابداااا 
+لو اعرف كل دا مكنش عدى علينا دقيقه زعلانين فيها من بعض...
+
+<!-- تم اختصار النص لتقليل حجم الكود -->
 بحبك ي كل حاجه ي احلى حاجه  ي اغلى حاجه ♥💋💞
+                    </p>
+                </div>
+            </div>
+            
+            <div class="signature">
+                كل الحب والإخلاص لـ <span class="mira-name">ميرا</span> حبيبتي وروحي<br>
+                من يوسف الذي لن يحب أحداً غيرك أبداً
+            </div>
         </div>
-      </div>
+    </main>
 
-      <!-- التوقيع -->
-      <div class="signature">
-        كل الحب والإخلاص لـ <span class="mira-name">ميرا</span> حبيبتي وروحي<br>
-        من يوسف الذي لن يحب أحداً غيرك أبداً
-      </div>
+    <!-- تأثير القلبين -->
+    <div class="hearts-overlay" id="heartsOverlay">
+        <button class="close-btn" onclick="closeHeartsAnimation()">✕</button>
+        <div class="hearts-container">
+            <div class="heart heart-yousef">يوسف</div>
+            <div class="heart heart-mira">ميرا</div>
+            <div class="final-heart">♥</div>
+            <div class="date-text">♥9/6♥</div>
+        </div>
+    </div>
 
-    </div> <!-- نهاية restOfContent -->
-
-  </main>
-</div>
-
-<!-- AUDIO FILES -->
-<audio id="song" loop>
-  <source src="song.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-  // الباسوورد
-  const PASS = "962025";
-
-  // إنشاء القلوب العائمة
-  function createHearts() {
-    const container = document.getElementById('heartsContainer');
-    for (let i = 0; i < 20; i++) {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (Math.random() * 10 + 15) + 's';
-      heart.style.animationDelay = Math.random() * 5 + 's';
-      heart.style.opacity = Math.random() * 0.5 + 0.3;
-      heart.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
-      container.appendChild(heart);
-    }
-  }
-
-  // تأثير المطر لكلمة "ميرا نور عيني"
-  function createRain() {
-    const container = document.getElementById('rainContainer');
-    const words = ["ميرا", "نور", "عيني", "ميرا نور عيني", "بحبك", "عمري", "حبيبتي"];
-    
-    setInterval(() => {
-      const word = document.createElement('div');
-      word.className = 'rain-word';
-      word.textContent = words[Math.floor(Math.random() * words.length)];
-      word.style.left = Math.random() * 100 + 'vw';
-      word.style.animationDuration = (Math.random() * 5 + 8) + 's';
-      word.style.fontSize = (Math.random() * 10 + 20) + 'px';
-      word.style.color = `hsl(${Math.random() * 60 + 0}, 100%, 50%)`;
-      
-      container.appendChild(word);
-      
-      // إزالة الكلمة بعد انتهاء الأنيميشن
-      setTimeout(() => {
-        if (word.parentNode) {
-          word.parentNode.removeChild(word);
+    <script>
+        // الباسوورد
+        const PASS = "962025";
+        
+        // إنشاء خلفية الباسوورد
+        function createPassBackground() {
+            const container = document.getElementById('passBg');
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'pass-heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 10 + 20) + 'px';
+                container.appendChild(heart);
+            }
         }
-      }, 10000);
-    }, 500);
-  }
-
-  // إنشاء معرض الصور الجديد - كل صورة منفردة
-  function createPhotoGrid() {
-    const photoGrid = document.getElementById('photoGrid');
-    const captions = [
-      "أول صورة لنا معاً ❤️",
-      "يوم سعيد معاً 😊",
-      "ذكريات لا تنسى 💕",
-      "ضحكاتنا معاً 😄",
-      "لحظات خاصة 🤗",
-      "رحلة حبنا 🚀",
-      "أجمل الأوقات 🌟", // الصورة 7 أصبحت image28.jpg
-      "قلوب متحدة 💞",
-      "حب حقيقي 💖", // الصورة 9 أصبحت image29.jpg
-      "فرحتنا معاً 🎉", // الصورة 10 أصبحت image30.jpg
-      "لحظات ثمينة 💎",
-      "ذكريات جميلة 🌸",
-      "ابتساماتنا 😊",
-      "حب لا ينتهي ♾️",
-      "أيام سعيدة ☀️",
-      "قلوب متحدة 💑",
-      "فرحتنا الدائمة 🎊",
-      "حبنا الأبدي 💘",
-      "لحظات سعيدة 😍", // الصورة 19 أصبحت image31.jpg
-      "ذكريات حلوة 🍬",
-      "أجمل الذكريات 📸",
-      "فرحتنا معاً 💃",
-      "حبنا الكبير 🌹",
-      "لحظات لا تنسى ⭐",
-      "سعادة دائمة 🌈",
-      "حب لا ينتهي 💕"
-    ];
-    
-    // إضافة 26 صورة حقيقية من image1.jpg إلى image26.jpg مع استبدال الصور المطلوبة
-    for (let i = 1; i <= 26; i++) {
-      let imageSrc;
-      
-      // استبدال الصور المطلوبة بالصور الجديدة
-      if (i === 7) imageSrc = 'image28.jpg';
-      else if (i === 9) imageSrc = 'image29.jpg';
-      else if (i === 10) imageSrc = 'image30.jpg';
-      else if (i === 19) imageSrc = 'image31.jpg';
-      else imageSrc = `image${i}.jpg`;
-      
-      const photoItem = document.createElement('div');
-      photoItem.className = 'photo-item';
-      
-      const img = document.createElement('img');
-      img.src = imageSrc;
-      img.alt = `صورة ${i}`;
-      img.className = 'photo-img';
-      img.onerror = function() {
-        // إذا فشل تحميل الصورة، استخدم بديل
-        this.parentNode.innerHTML = `
-          <div class="image-placeholder">
-            <div class="icon">💕</div>
-            <div>صورة ${i}</div>
-            <div class="message">${captions[i-1] || "ذكريات جميلة"}</div>
-          </div>
-        `;
-      };
-      
-      const caption = document.createElement('div');
-      caption.className = 'photo-caption';
-      caption.textContent = captions[i-1] || `صورة ${i}`;
-      
-      photoItem.appendChild(img);
-      photoItem.appendChild(caption);
-      photoGrid.appendChild(photoItem);
-    }
-  }
-
-  // رسائل الحب العشوائية
-  const loveMessages = [
-    "بحبك ينور عيني ♥",
-    "بحبك يروح قلبي ♥",
-    "بحبك يا قلب بابا 🥺",
-    "ربنا يخليكي ليا وميحرمنيش منك ابدا يعمري♥",
-    "نور عيون يوسف انتى♥💋",
-    "ميرا يوسف فرح ♥💋🥺",
-    "بعشقك يبطتى🦆♥",
-    "بموت فيكي يمُزه♥💋"
-  ];
-
-  function showRandomLoveMessage() {
-    const randomIndex = Math.floor(Math.random() * loveMessages.length);
-    const messageDisplay = document.getElementById('loveMessageDisplay');
-    messageDisplay.textContent = loveMessages[randomIndex];
-    messageDisplay.style.animation = 'none';
-    setTimeout(() => {
-      messageDisplay.style.animation = 'fadeIn 0.5s ease';
-    }, 10);
-  }
-
-  // إظهار إجابات الأسئلة
-  function setupQuizReveal() {
-    const revealButtons = document.querySelectorAll('.reveal-btn');
-    
-    revealButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const answer = this.nextElementSibling;
-        answer.classList.toggle('revealed');
         
-        if (answer.classList.contains('revealed')) {
-          this.textContent = 'إخفاء الإجابة 🙈';
-        } else {
-          this.textContent = 'اضغط للكشف عن الإجابة 😁';
+        // التحقق من الباسوورد
+        function checkPass() {
+            const input = document.getElementById('passInput').value.trim();
+            if (input === PASS) {
+                document.getElementById('passPage').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                createGallery();
+            } else {
+                alert('التاريخ غلط يا عمري — جربي تاني يا ميرا ❤️');
+            }
         }
-      });
-    });
-  }
-
-  // عداد الحب من 9 يونيو 2025
-  function updateLoveCounter() {
-    const startDate = new Date('2025-06-09T00:00:00'); // 9 يونيو 2025
-    const now = new Date();
-    const diff = now - startDate;
-    
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-    
-    document.getElementById('daysCount').textContent = days;
-    document.getElementById('hoursCount').textContent = hours;
-    document.getElementById('minutesCount').textContent = minutes;
-    document.getElementById('secondsCount').textContent = seconds;
-  }
-
-  // دالة تأثير المطر الخاص بالزر العائم
-  function createSpecialRain() {
-    const container = document.getElementById('specialRainContainer');
-    const phrases = [
-      "يوسف بيحبك", 
-      "ينور عين يوسف", 
-      "ميرا نور عيني", 
-      "بحبك يا ميرا", 
-      "عمري يا ميرا",
-      "قلبي يا ميرا",
-      "روحي يا ميرا",
-      "غالية يا ميرا",
-      "يوسف يعشق ميرا"
-    ];
-    
-    // إزالة أي كلمات موجودة مسبقاً
-    container.innerHTML = '';
-    
-    // إنشاء 30 كلمة للمطر الخاص
-    for (let i = 0; i < 30; i++) {
-      setTimeout(() => {
-        const word = document.createElement('div');
-        word.className = 'special-rain-word';
-        word.textContent = phrases[Math.floor(Math.random() * phrases.length)];
-        word.style.left = Math.random() * 100 + 'vw';
-        word.style.animationDuration = (Math.random() * 3 + 4) + 's';
-        word.style.fontSize = (Math.random() * 10 + 24) + 'px';
-        word.style.color = `hsl(${Math.random() * 60 + 0}, 100%, 60%)`;
         
-        container.appendChild(word);
+        // إنشاء معرض الصور
+        function createGallery() {
+            const gallery = document.getElementById('gallery');
+            const captions = [
+                "أول صورة لنا معاً ❤️", "يوم سعيد معاً 😊", "ذكريات لا تنسى 💕",
+                "ضحكاتنا معاً 😄", "لحظات خاصة 🤗", "رحلة حبنا 🚀",
+                "أجمل الأوقات 🌟", "قلوب متحدة 💞", "حب حقيقي 💖"
+            ];
+            
+            for (let i = 1; i <= 9; i++) {
+                const photo = document.createElement('div');
+                photo.className = 'photo';
+                photo.innerHTML = `
+                    <div>صورة ${i}</div>
+                    <div style="margin-top: 10px; font-size: 14px;">${captions[i-1]}</div>
+                `;
+                gallery.appendChild(photo);
+            }
+        }
         
-        // إزالة الكلمة بعد انتهاء الأنيميشن
-        setTimeout(() => {
-          if (word.parentNode) {
-            word.parentNode.removeChild(word);
-          }
-        }, 7000);
-      }, i * 200);
-    }
-  }
-
-  // دالة التحقق من الباسوورد - تم تصحيحها
-  function checkPass(){
-    const v = document.getElementById('passInput').value.trim();
-    if(v === PASS){
-      document.getElementById('passPage').style.display='none';
-      const main = document.getElementById('mainContent');
-      main.style.display='block';
-      main.setAttribute('aria-hidden','false');
-      
-      // بدء تأثير المطر
-      createRain();
-      
-      // بدء عداد الحب
-      setInterval(updateLoveCounter, 1000);
-      updateLoveCounter();
-      
-      // إنشاء معرض الصور الجديد
-      createPhotoGrid();
-      
-      // إعداد إظهار إجابات الأسئلة
-      setupQuizReveal();
-      
-      // تشغيل الأغنية الرابعة تلقائياً (تم التغيير من song2.mp3 إلى song4.mp3)
-      const song4 = document.getElementById('specialSong4');
-      song4.play().catch(error => {
-        console.log('لم يتمكن المتصفح من تشغيل الأغنية تلقائياً:', error);
-        // عرض رسالة للمستخدم
-        alert('اضغطي على زر التشغيل في مشغل الصوت يا ميرا ❤️');
-      });
-      
-      window.scrollTo({top:0,behavior:'smooth'});
-    } else {
-      alert('التاريخ غلط يا عمري — جربي تاني يا ميرا ❤️');
-    }
-  }
-
-  // دالة عرض باقي المحتوى
-  function showRestOfContent() {
-    document.getElementById('restOfContent').style.display = 'block';
-    document.getElementById('restOfContent').scrollIntoView({behavior: 'smooth'});
-  }
-
-  // دالة تشغيل/إيقاف الأغنية
-  const song = document.getElementById('song');
-  const playBtn = document.getElementById('playBtn');
-  
-  function toggleSong(){
-    if(song.paused){
-      song.play().catch(error => {
-        alert('اضغطي موافق ثم اضغطي على الزر مرة تانيه يا ميرا ❤️');
-      });
-      playBtn.textContent = '⏸ أوقفي الأغنية يا ميرا';
-    } else {
-      song.pause();
-      playBtn.textContent = '▶ استمعي لأغنية حب ميرا ويوسف 🎵';
-    }
-  }
-
-  // الأحداث
-  document.addEventListener('DOMContentLoaded', function() {
-    // زر المطر الخاص
-    document.getElementById('specialRainBtn').addEventListener('click', createSpecialRain);
-    
-    // زر الرسائل العشوائية
-    document.getElementById('randomMessageBtn').addEventListener('click', showRandomLoveMessage);
-    
-    // زر تشغيل الأغنية
-    if(document.getElementById('playBtn')) {
-      document.getElementById('playBtn').addEventListener('click', toggleSong);
-    }
-    
-    // إدخال الباسوورد
-    document.getElementById('passInput').addEventListener('keydown',(e)=>{
-      if(e.key === 'Enter') checkPass();
-    });
-    
-    document.getElementById('passInput').focus();
-    createHearts();
-  });
-</script>
-
+        // تأثير القلبين
+        function startHeartsAnimation() {
+            const overlay = document.getElementById('heartsOverlay');
+            const heartYousef = document.querySelector('.heart-yousef');
+            const heartMira = document.querySelector('.heart-mira');
+            
+            overlay.classList.add('active');
+            
+            setTimeout(() => {
+                heartYousef.classList.add('moving');
+                heartMira.classList.add('moving');
+            }, 500);
+        }
+        
+        function closeHeartsAnimation() {
+            const overlay = document.getElementById('heartsOverlay');
+            const heartYousef = document.querySelector('.heart-yousef');
+            const heartMira = document.querySelector('.heart-mira');
+            
+            overlay.classList.remove('active');
+            heartYousef.classList.remove('moving');
+            heartMira.classList.remove('moving');
+        }
+        
+        // إظهار المزيد من المحتوى
+        function showMoreContent() {
+            document.getElementById('moreContent').style.display = 'block';
+            document.getElementById('moreContent').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // السماح بإدخال الباسوورد بالزر Enter
+        document.getElementById('passInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPass();
+            }
+        });
+        
+        // تهيئة الصفحة
+        window.onload = function() {
+            createPassBackground();
+            document.getElementById('passInput').focus();
+        };
+    </script>
 </body>
   </html>
