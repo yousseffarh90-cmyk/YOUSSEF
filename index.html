@@ -28,7 +28,7 @@
   .wrap{max-width:1400px;margin:0 auto;padding:20px; position: relative; z-index: 10;}
   .center{display:flex;flex-direction:column;align-items:center;justify-content:center}
 
-  /* password page */
+  /* صفحة الباسوورد المحسنة */
   #passPage{
     height:100vh;
     display:flex;
@@ -41,89 +41,194 @@
     background: linear-gradient(135deg, rgba(26,0,4,0.9), rgba(51,0,6,0.9));
   }
   
+  /* خلفية متحركة للصفحة */
+  .pass-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  .pass-heart {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    opacity: 0;
+    animation: floatPassHeart 20s linear infinite;
+  }
+  
+  .pass-heart::before,
+  .pass-heart::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 25px;
+    background: var(--accent);
+    border-radius: 50px 50px 0 0;
+  }
+  
+  .pass-heart::before {
+    left: 15px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+  
+  .pass-heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+  }
+  
+  @keyframes floatPassHeart {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.7;
+    }
+    90% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-100px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
   #passBox{
     background: var(--card);
-    padding: 40px 30px;
-    border-radius: 20px;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.7), 0 0 40px rgba(255,47,75,0.3);
-    max-width: 450px;
+    padding: 50px 40px;
+    border-radius: 25px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 50px rgba(255,47,75,0.4);
+    max-width: 500px;
     width: 100%;
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255,255,255,0.2);
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    z-index: 2;
+  }
+  
+  #passBox::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, var(--reddeep), var(--redmid), var(--accent), var(--gold));
+    border-radius: 25px 25px 0 0;
   }
   
   #passBox:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.9), 0 0 60px rgba(255,47,75,0.5);
   }
   
   h1.small{
-    margin:0 0 20px 0;
+    margin:0 0 30px 0;
     color:var(--accent);
-    font-size:28px;
-    text-shadow:0 2px 15px rgba(0,0,0,0.5);
+    font-size:32px;
+    text-shadow:0 4px 20px rgba(0,0,0,0.6);
     line-height: 1.4;
+    position: relative;
   }
   
   .mira-name {
     color: var(--gold); 
     font-weight: bold; 
-    text-shadow: 0 0 15px rgba(255,215,0,0.7);
+    text-shadow: 0 0 20px rgba(255,215,0,0.8);
     display: inline-block;
     animation: pulse 2s infinite;
+    position: relative;
+  }
+  
+  .mira-name::after {
+    content: '✨';
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    font-size: 20px;
+    animation: twinkle 1.5s infinite alternate;
+  }
+  
+  @keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
   }
   
   @keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    50% { transform: scale(1.08); }
     100% { transform: scale(1); }
   }
   
   input[type="password"]{
     width:100%;
-    padding:15px;
-    border-radius:15px;
+    padding:20px;
+    border-radius:20px;
     border:none;
-    font-size:20px;
+    font-size:24px;
     text-align:center;
-    margin:15px 0;
-    background:rgba(255,255,255,0.12);
+    margin:20px 0;
+    background:rgba(255,255,255,0.15);
     color:#fff;
-    border: 2px solid rgba(255,255,255,0.2);
-    transition: all 0.3s ease;
+    border: 3px solid rgba(255,255,255,0.25);
+    transition: all 0.4s ease;
     font-weight: bold;
+    box-shadow: inset 0 5px 15px rgba(0,0,0,0.3);
   }
   
   input[type="password"]:focus{
     outline:none;
-    box-shadow:0 0 20px rgba(255,47,75,0.6);
-    background:rgba(255,255,255,0.18);
-    border-color: var(--accent);
+    box-shadow:0 0 30px rgba(255,47,75,0.8), inset 0 5px 15px rgba(0,0,0,0.3);
+    background:rgba(255,255,255,0.2);
+    border-color: var(--gold);
   }
   
   .btn{
-    margin-top:20px;
-    padding:15px 25px;
-    border-radius:15px;
+    margin-top:25px;
+    padding:20px 30px;
+    border-radius:20px;
     border:none;
-    background: linear-gradient(45deg, var(--reddeep), var(--redmid));
+    background: linear-gradient(45deg, var(--reddeep), var(--redmid), var(--accent));
     color:#fff;
-    font-size:18px;
+    font-size:22px;
     cursor:pointer;
-    box-shadow:0 8px 25px rgba(255,0,60,0.25);
-    transition: all 0.3s ease;
+    box-shadow:0 12px 35px rgba(255,0,60,0.4);
+    transition: all 0.4s ease;
     position:relative;
     overflow:hidden;
     font-weight: bold;
     width: 100%;
+    letter-spacing: 1px;
+  }
+  
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
   }
   
   .btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 30px rgba(255,0,60,0.4);
-    background: linear-gradient(45deg, var(--redmid), var(--accent));
+    transform:translateY(-5px);
+    box-shadow:0 18px 40px rgba(255,0,60,0.6);
+    background: linear-gradient(45deg, var(--redmid), var(--accent), var(--gold));
+  }
+  
+  .btn:hover::before {
+    left: 100%;
   }
   
   .btn:active{
@@ -1029,11 +1134,13 @@
 
   <!-- PASSWORD PAGE -->
   <section id="passPage" class="center">
+    <!-- خلفية متحركة للصفحة -->
+    <div class="pass-background" id="passBackground"></div>
+    
     <div id="passBox" class="fadeIn">
       <h1 class="small">✍️ اكتبى تاريخ ارتباطنا يا <span class="mira-name">ميرا</span> ❤️</h1>
       <input id="passInput" type="password" placeholder="أدخلي التاريخ هنا..." autocomplete="off" autofocus>
       <button class="btn" onclick="checkPass()">أدخلي عالم <span class="mira-name">ميرا</span> ويوسف ✨</button>
-      <p style="font-size:15px;margin-top:15px;color:#ffd7dd">التاريخ: <strong>962025</strong> - تاريخ حب <span class="mira-name">ميرا</span> ويوسف</p>
     </div>
   </section>
 
@@ -1287,6 +1394,21 @@
 <script>
   // الباسوورد
   const PASS = "962025";
+
+  // إنشاء القلوب العائمة لصفحة الباسوورد
+  function createPassHearts() {
+    const container = document.getElementById('passBackground');
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'pass-heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 15 + 20) + 's';
+      heart.style.animationDelay = Math.random() * 10 + 's';
+      heart.style.opacity = Math.random() * 0.5 + 0.3;
+      heart.style.transform = `scale(${Math.random() * 0.7 + 0.5})`;
+      container.appendChild(heart);
+    }
+  }
 
   // إنشاء القلوب العائمة
   function createHearts() {
@@ -1557,6 +1679,9 @@
 
   // الأحداث
   document.addEventListener('DOMContentLoaded', function() {
+    // إنشاء القلوب العائمة لصفحة الباسوورد
+    createPassHearts();
+    
     // زر المطر الخاص
     document.getElementById('specialRainBtn').addEventListener('click', createSpecialRain);
     
@@ -1579,4 +1704,4 @@
 </script>
 
 </body>
-    </html>
+  </html>
